@@ -109,12 +109,12 @@ format = '[$user ]($style)'
 disabled = false
 
 [hostname]
-ssh_only = false
+ssh_only = true
 ssh_symbol = ' '
 trim_at = ''
 style = "fg:#FFFFFF bg:#9A348E"
 disabled = false
-format = '[$ssh_symbol$hostname ]($style)'
+format = '[$ssh_symbol](fg:#FFFF00 bg:#9A348E)[$hostname ]($style)'
 
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
@@ -133,7 +133,9 @@ Windows = " "
 
 [directory]
 style = "fg:#FFFFFF bg:#DA627D"
-format = "[ $path ]($style)"
+format = "[ $path ]($style)[$read_only]($read_only_style)"
+truncate_to_repo = false
+fish_style_pwd_dir_length = 3
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -183,6 +185,12 @@ format = '[ $symbol $branch ]($style)'
 [git_status]
 style = "fg:#FFFFFF bg:#FCA17D"
 format = '[$all_status$ahead_behind ]($style)'
+conflicted = " Merge conflict"
+ahead = " Ahead"
+behind = " Behind"
+untracked = " Untracked"
+modified = " Modified"
+staged = " Staged"
 
 [golang]
 symbol = " "
@@ -208,8 +216,13 @@ symbol = " "
 style = "fg:#FFFFFF bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
+[lua]
+symbol = " "
+style = "fg:#FFFFFF bg:#86BBD8"
+format = '[ $symbol ($version) ]($style)'
+
 [nodejs]
-symbol = ""
+symbol = " "
 style = "fg:#FFFFFF bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
@@ -221,10 +234,10 @@ format = '[ $symbol ($version) ]($style)'
 [python]
 symbol = " "
 style = "fg:#FFFFFF bg:#86BBD8"
-format = '[ via ${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+format = '[ ${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 
 [rust]
-symbol = ""
+symbol = " "
 style = "fg:#FFFFFF bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
