@@ -1,5 +1,6 @@
 ###############################################################################
 # Location: ~/.config/starship.toml
+# starship.rs
 
 format = """
 [╭──](#FFFFFF)\
@@ -133,10 +134,11 @@ Windows = " "
 
 [directory]
 style = "fg:#FFFFFF bg:#DA627D"
-format = "[ $path ]($style)[$read_only]($read_only_style)"
-truncate_to_repo = false
-fish_style_pwd_dir_length = 3
-truncation_length = 3
+read_only_style = "fg:#FFFFFF bg:#DA627D"
+format = "[ 󰝰 $path ]($style)[$read_only]($read_only_style)"
+truncate_to_repo = true
+fish_style_pwd_dir_length = 0
+truncation_length = 20
 truncation_symbol = "…/"
 
 # Here is how you can shorten some long paths by text replacement
@@ -180,17 +182,17 @@ format = '[ $symbol ($version) ]($style)'
 [git_branch]
 symbol = ""
 style = "fg:#FFFFFF bg:#FCA17D"
-format = '[ $symbol $branch ]($style)'
+format = '[ $symbol $branch]($style)'
 
 [git_status]
 style = "fg:#FFFFFF bg:#FCA17D"
 format = '[$all_status$ahead_behind ]($style)'
-conflicted = " Merge conflict"
-ahead = " Ahead"
-behind = " Behind"
-untracked = " Untracked"
-modified = " Modified"
-staged = " Staged"
+conflicted = "  Merge conflict"
+ahead = "  Ahead"
+behind = "  Behind"
+untracked = "  Untracked"
+modified = "  Modified"
+staged = "  Staged"
 
 [golang]
 symbol = " "
