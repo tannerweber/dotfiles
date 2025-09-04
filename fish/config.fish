@@ -1,0 +1,12 @@
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+    fish_add_path $HOME/.local/bin
+    fish_add_path $HOME/.local/nvim-linux-x86_64/bin/
+
+    set fish_cursor_default block
+    set fish_cursor_visual block
+    set fish_cursor_insert line
+    set fish_cursor_external line
+
+    starship init fish | source
+end

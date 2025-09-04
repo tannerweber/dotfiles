@@ -1,4 +1,4 @@
-colorscheme desert
+colorscheme evening
 
 syntax match PointerOperator /[*&]/
 highlight PointerOperator ctermfg=Yellow guifg=Orange
