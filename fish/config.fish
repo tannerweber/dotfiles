@@ -3,6 +3,9 @@ if status is-interactive
     fish_add_path $HOME/.local/bin
     fish_add_path $HOME/.local/nvim-linux-x86_64/bin/
 
+    fish_hybrid_key_bindings
+    #fish_default_keybindings
+
     set -x LS_COLORS "di=1;33:*.o=0;34:*.txt=01;31"
 
     set fish_cursor_default block
@@ -11,4 +14,9 @@ if status is-interactive
     set fish_cursor_external line
 
     starship init fish | source
+end
+
+function fish_greeting
+    set_color ffffff
+    echo Using (fish -v) as $USER on $hostname
 end

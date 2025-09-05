@@ -6,8 +6,11 @@ vim.opt.tabstop = 8
 vim.opt.shiftwidth = 8
 vim.opt.expandtab = false
 
+vim.opt.relativenumber = true
+
 vim.g.autoformat = false
 
 vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor"
 
--- vim.opt.completeopt = "menu, menuone, noinsert, noselect"
+-- Completion
+vim.opt.completeopt = "fuzzy,menu,menuone,noinsert,noselect,popup,preview"
