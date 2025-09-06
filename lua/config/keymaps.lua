@@ -13,5 +13,3 @@ map('i', '<ENTER>', function()
     return '<C-e>'
   end
 end, { expr = true, noremap = true })
-
-vim.g.clipboard = 'tmux'

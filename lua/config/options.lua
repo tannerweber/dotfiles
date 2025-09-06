@@ -6,6 +6,8 @@ vim.opt.tabstop = 8
 vim.opt.shiftwidth = 8
 vim.opt.expandtab = false
 
+vim.g.clipboard = 'tmux'
+
 vim.opt.relativenumber = true
 
 vim.g.autoformat = false
