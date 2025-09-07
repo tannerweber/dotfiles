@@ -26,6 +26,7 @@ _comp_options+=(globdots)		# Include hidden files.
 
 # NVIM path
 export PATH="$HOME/.local/nvim-linux-x86_64/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 
 # LS
@@ -47,3 +48,5 @@ source ~/.config/zsh/zsh-history-substring-search/zsh-history-substring-search.z
 # zsh-history-substring-search options
 bindkey '^[[1;5A' history-substring-search-up
 bindkey '^[[1;5B' history-substring-search-down
+
+eval "$(starship init zsh)"

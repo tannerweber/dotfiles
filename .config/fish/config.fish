@@ -14,6 +14,9 @@ if status is-interactive
     set fish_cursor_insert line
     set fish_cursor_external line
 
+    set -g LESS "N"
+    alias less "less -N --use-color -DNG -Dur -Ddg"
+
     # starship.rs
     starship init fish | source
 end
