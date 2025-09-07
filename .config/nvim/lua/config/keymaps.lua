@@ -5,6 +5,7 @@
 
 local map = vim.keymap.set
 
+-- Enter doesn't select from completion menu
 map('i', '<ENTER>', function()
   if vim.fn.pumvisible() == 0 then
     return '<ENTER>'
@@ -14,6 +15,7 @@ map('i', '<ENTER>', function()
   end
 end, { expr = true, noremap = true })
 
+-- Telescope
 local builtin = require('telescope.builtin')
 map('n', '<leader>ff', function() builtin.find_files({ hidden=false }) end, { desc = 'Telescope find files' })
 map('n', '<leader>fh', function() builtin.find_files({ hidden = true }) end, { desc = 'Telescope find hidden files' })

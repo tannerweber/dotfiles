@@ -8,6 +8,8 @@ vim.opt.expandtab = false
 
 vim.g.clipboard = 'tmux'
 
+vim.opt.mouse = 'nv'
+
 vim.opt.relativenumber = true
 
 vim.g.autoformat = false
