@@ -3,6 +3,9 @@ if status is-interactive
     fish_add_path $HOME/.local/bin
     fish_add_path $HOME/.local/nvim-linux-x86_64/bin/
 
+    # fzf
+    fzf --fish | source
+
     # Colors
     set -x LS_COLORS "di=1;33:*.o=0;34:*.txt=01;31"
 
@@ -14,6 +17,7 @@ if status is-interactive
     set fish_cursor_insert line
     set fish_cursor_external line
 
+    # Less
     set -g LESS "N"
     alias less "less -N --use-color -DNG -Dur -Ddg"
 

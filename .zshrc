@@ -35,10 +35,6 @@ export LS_COLORS
 alias ls='ls --color=auto'
 
 
-# Output working
-echo "zshrc functioning\n"
-
-
 # Syntax Highlighting
 # Has to be at the end of file
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # https://github.com/zsh-users/zsh-syntax-highlighting

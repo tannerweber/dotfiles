@@ -22,6 +22,3 @@ PS1='\[\e[97m\]╭──\[\e[38;5;26m\]\[\e[97;48;5;26m\] \[\e[97;48;5;26;1m\
 export PATH="$HOME/.local/nvim-linux-x86_64/bin:$PATH"
 
 eval "$(starship init bash)"
-
-# END
-echo "bashrc functioning"

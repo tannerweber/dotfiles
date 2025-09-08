@@ -21,10 +21,11 @@ ln -s ~/.dotfiles/.zsh_profile		~/.zsh_profile
 ln -s ~/.dotfiles/.config/starship.toml		~/.config/starship.toml
 
 # tmux
-ln -s ~/.dotfiles/.tmux.conf		~/.tmux.conf
+ln -s ~/.dotfiles/.tmux.conf			~/.tmux.conf
+ln -s ~/.dotfiles/.local/bin/tmux-sessionizer	~/.local/bin/tmux-sessionizer
 
 # vim
-ln -s ~/.dotfiles/.vimrc		~/.vimrc
+ln -s ~/.dotfiles/.vimrc	~/.vimrc
 
 # nvim, neovim, lazy
 ln -s ~/.dotfiles/.config/nvim/lua/config/autocmds.lua		~/.config/nvim/lua/config/autocmds.lua
