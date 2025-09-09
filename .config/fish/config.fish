@@ -5,6 +5,7 @@ if status is-interactive
 
     # fzf
     fzf --fish | source
+    alias f "fzf --style full --reverse"
 
     # Colors
     set -x LS_COLORS "di=1;33:*.o=0;34:*.txt=01;31"

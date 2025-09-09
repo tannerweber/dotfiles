@@ -32,7 +32,8 @@ vim.opt.shiftwidth = 8
 vim.opt.expandtab = false
 
 vim.g.clipboard = 'tmux'
-vim.opt.mouse = 'nv'
+vim.opt.mouse = 'nvi'
+vim.opt.number = true
 vim.opt.relativenumber = true
 vim.g.autoformat = false
 vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor"
@@ -73,9 +74,17 @@ require("lazy").setup({
       options = {
 	theme = 'ayu_mirage'
       },
+      sections = {
+	lualine_a = {'mode'},
+	lualine_b = {'branch','diff','diagnostics'},
+	lualine_c = {'filename', show_filename_only = false, path = 3},
+	lualine_x = {'lsp_status','encoding','fileformat','filetype'},
+        lualine_y = {'progress'},
+        lualine_z = {'location'},
+      },
       config = function()
-	require('lualine').setup()
-      end
+	require('lualine').setup({})
+      end,
     },
     {
       "mason-org/mason.nvim",
@@ -95,11 +104,25 @@ require("lazy").setup({
       opts = {
 	animate = { duration = 10, fps = 144, },
         bigfile = { enabled = true },
-        dashboard = { enabled = true },
+        dashboard = {
+	  enabled = true,
+	  preset = {
+	    keys = {
+	      { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.smart()" },
+              { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+              { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+              { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+              { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+              { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+              { icon = " ", key = "u", desc = "Help poor children in Uganda!", action = ":help iccf" },
+              { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+	    },
+	  },
+        },
         explorer = { enabled = true },
         indent = { enabled = true },
         input = { enabled = true },
-        picker = { enabled = false },
+        picker = { enabled = true },
         notifier = { enabled = true , timeout = 10000, },
         quickfile = { enabled = true },
         scope = { enabled = true },
@@ -117,12 +140,30 @@ require("lazy").setup({
 	  },
 	},
       },
+      keys = {
+	{ "<leader>ff", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+	{ "<leader>fg", function() Snacks.picker.grep() end, desc = "Grep" },
+	{ "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+	{ "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
+	{ "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
+        { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
+        { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+        { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
+        { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+        { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+        { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+      },
     },
     {
       "nvim-telescope/telescope.nvim",
+      enabled = false,
       tag = "0.1.8",
       dependencies = { 'nvim-lua/plenary.nvim' },
       lazy = false,
+      defaults = {
+        layout_strategy = 'vertical',
+        layout_config = { prompt_position = 'top' },
+      },
       config = function()
 	local builtin = require('telescope.builtin')
         vim.keymap.set('n', '<leader>ff', function() builtin.find_files({ hidden = false }) end, { desc = 'Telescope find files' })
