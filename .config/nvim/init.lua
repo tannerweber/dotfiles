@@ -24,7 +24,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
+vim.g.mapleader = " "	-- Space leader
 vim.g.maplocalleader = "\\"
 
 vim.opt.tabstop = 8
@@ -38,14 +38,20 @@ vim.opt.relativenumber = true
 vim.g.autoformat = false
 vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor"
 vim.opt.completeopt = "fuzzy,menu,menuone,noinsert,noselect,popup,preview"
+vim.opt.termguicolors = true
 
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    -- add your plugins here
+    {
+      "Saghen/blink.cmp",
+      dependencies = { 'rafamadriz/friendly-snippets' },
+    },
     {
       "akinsho/bufferline.nvim",
+      lazy = true,
     },
+    --------------------------------------------- Harpoon ---------------------
     {
       "ThePrimeagen/harpoon",
       branch = "harpoon2",
@@ -66,6 +72,51 @@ require("lazy").setup({
     {
       "lewis6991/gitsigns.nvim",
     },
+    --------------------------------------------- Lazydev ---------------------
+    {
+      "folke/lazydev.nvim",
+      ft = "lua",
+    },
+    --------------------------------------------- LSP -------------------------
+    {
+      "mason-org/mason-lspconfig.nvim",
+      opts = {
+	ensure_installed = {
+	  "lua_ls",
+	},
+      },
+      dependencies = {
+        { "mason-org/mason.nvim", opts = {} },
+        "neovim/nvim-lspconfig",
+      },
+    },
+    {
+      "neovim/nvim-lspconfig",
+      dependencies = {
+	{
+	  'saghen/blink.cmp',
+	  dependences = { 'rafamadriz/friendly-snippets' },
+	  version = '1.*',
+	  opts = {
+	    sources = {
+	      default = { "lazydev", "lsp", "path", "snippets", "buffer", },
+	      providers = {
+		lazydev = {
+		  name = "LazyDev",
+                  module = "lazydev.integrations.blink",
+                  -- make lazydev completions top priority (see `:h blink.cmp`)
+                  score_offset = 100,
+		},
+	      },
+	    },
+	  },
+	},
+      },
+      config = function()
+	vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+      end
+    },
+    --------------------------------------------- Lua Line --------------------
     {
       "nvim-lualine/lualine.nvim",
       dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -74,23 +125,20 @@ require("lazy").setup({
       options = {
 	theme = 'ayu_mirage'
       },
-      sections = {
-	lualine_a = {'mode'},
-	lualine_b = {'branch','diff','diagnostics'},
-	lualine_c = {'filename', show_filename_only = false, path = 3},
-	lualine_x = {'lsp_status','encoding','fileformat','filetype'},
-        lualine_y = {'progress'},
-        lualine_z = {'location'},
-      },
       config = function()
-	require('lualine').setup({})
+	require('lualine').setup({
+	  sections = {
+	  lualine_a = {'mode'},
+	  lualine_b = {'branch','diff','diagnostics'},
+	  lualine_c = {
+	    {'filename', show_filename_only = false, path = 3},
+          },
+	  lualine_x = {'lsp_status','encoding','fileformat','filetype'},
+          lualine_y = {'progress'},
+          lualine_z = {'location'},
+          },
+	})
       end,
-    },
-    {
-      "mason-org/mason.nvim",
-      lazy = false,
-      opts = {
-      },
     },
     {
       "nvim-lua/plenary.nvim",
@@ -155,30 +203,11 @@ require("lazy").setup({
       },
     },
     {
-      "nvim-telescope/telescope.nvim",
-      enabled = false,
-      tag = "0.1.8",
-      dependencies = { 'nvim-lua/plenary.nvim' },
-      lazy = false,
-      defaults = {
-        layout_strategy = 'vertical',
-        layout_config = { prompt_position = 'top' },
-      },
-      config = function()
-	local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<leader>ff', function() builtin.find_files({ hidden = false }) end, { desc = 'Telescope find files' })
-        vim.keymap.set('n', '<leader>fh', function() builtin.find_files({ hidden = true }) end, { desc = 'Telescope find hidden files' })
-        vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-        vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-        vim.keymap.set('n', '<leader>ft', builtin.help_tags, { desc = 'Telescope help tags' })
-      end
-    },
-    {
       "folke/tokyonight.nvim",
       lazy = false,
       priority = 1000,
       config = function()
-	vim.cmd([[colorscheme tokyonight-moon]])
+	vim.cmd([[colorscheme tokyonight-night]])
       end,
     },
     {
@@ -223,13 +252,6 @@ require("lazy").setup({
       event = "VeryLazy",
       opts = {
 	preset = "helix",
-      },
-      keys = {
-	"<leader>?",
-	function()
-	  require("which-key").show({ global = false })
-	end,
-	desc = "Buffer Local Keymaps (which-key)",
       },
     },
   },
