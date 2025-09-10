@@ -96,8 +96,9 @@ require("lazy").setup({
 	{
 	  'saghen/blink.cmp',
 	  dependences = { 'rafamadriz/friendly-snippets' },
-	  version = '1.*',
+	  version = '1.6',
 	  opts = {
+	    fuzzy = { implementation = "lua" },
 	    sources = {
 	      default = { "lazydev", "lsp", "path", "snippets", "buffer", },
 	      providers = {
@@ -112,8 +113,17 @@ require("lazy").setup({
 	  },
 	},
       },
+      diagnostics = {
+	underline = true,
+	virtual_text = {
+	  spacing = 4,
+	  source = "if_many",
+	  prefix = "●",
+	},
+	severity_sort = true,
+      },
       config = function()
-	vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+	vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = "LSP definition" })
       end
     },
     --------------------------------------------- Lua Line --------------------
@@ -144,6 +154,7 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim",
       lazy = true,
     },
+    --------------------------------------------- Snacks ----------------------
     {
       "folke/snacks.nvim",
       priority = 1000,
@@ -195,12 +206,22 @@ require("lazy").setup({
 	{ "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
 	{ "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
         { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
-        { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+        --{ "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
         { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
         { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
         { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
         { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
       },
+      --[[
+        https://neovim.io/doc/user/lsp.html
+        "grn" is mapped in Normal mode to vim.lsp.buf.rename()
+        "gra" is mapped in Normal and Visual mode to vim.lsp.buf.code_action()
+        "grr" is mapped in Normal mode to vim.lsp.buf.references()
+        "gri" is mapped in Normal mode to vim.lsp.buf.implementation()
+        "grt" is mapped in Normal mode to vim.lsp.buf.type_definition()
+        "gO" is mapped in Normal mode to vim.lsp.buf.document_symbol()
+        CTRL-S is mapped in Insert mode to vim.lsp.buf.signature_help()
+      ]]--
     },
     {
       "folke/tokyonight.nvim",
@@ -260,4 +281,12 @@ require("lazy").setup({
   install = { colorscheme = { "tokyonight" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
+})
+
+------------------------------------------------- Auto Commands ---------------
+-- Highlight on yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
