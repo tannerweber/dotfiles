@@ -69,13 +69,9 @@ require("lazy").setup({
         vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
       end
     },
+    --------------------------------------------- Git Signs -------------------
     {
       "lewis6991/gitsigns.nvim",
-    },
-    --------------------------------------------- Lazydev ---------------------
-    {
-      "folke/lazydev.nvim",
-      ft = "lua",
     },
     --------------------------------------------- LSP -------------------------
     {
@@ -98,6 +94,7 @@ require("lazy").setup({
 	  dependences = { 'rafamadriz/friendly-snippets' },
 	  version = '1.6',
 	  opts = {
+	    keymap = { preset = 'default' },
 	    fuzzy = { implementation = "lua" },
 	    sources = {
 	      default = { "lazydev", "lsp", "path", "snippets", "buffer", },
@@ -111,6 +108,10 @@ require("lazy").setup({
 	      },
 	    },
 	  },
+	},
+	{
+	  "folke/lazydev.nvim",
+	  ft = "lua",
 	},
       },
       diagnostics = {
