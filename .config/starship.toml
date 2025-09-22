@@ -231,6 +231,10 @@ symbol = "󰆥 "
 style = "fg:#FFFFFF bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
+[package]
+style = "fg:#FFFFFF bg:#86BBD8"
+format = '[ $symbol ($version) ]($style)'
+
 [python]
 symbol = " "
 style = "fg:#FFFFFF bg:#86BBD8"
