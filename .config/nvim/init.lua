@@ -31,12 +31,15 @@ vim.opt.tabstop = 8
 vim.opt.shiftwidth = 8
 vim.opt.expandtab = false
 
+vim.keymap.set("i", "jj", "<ESC>", { silent = true })
+
 vim.g.clipboard = 'tmux'
 vim.opt.mouse = 'nvi'
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.cursorline = true
 vim.g.autoformat = false
-vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor"
+vim.o.guicursor = "n-v-c-sm:block-blinkwait1000-blinkon1000-blinkoff1,i-ci-ve:ver25-Cursor,r-cr-o:hor20"
 vim.opt.completeopt = "fuzzy,menu,menuone,noinsert,noselect,popup,preview"
 vim.opt.termguicolors = true
 
