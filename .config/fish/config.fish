@@ -19,8 +19,9 @@ if status is-interactive
     set fish_cursor_external line
 
     # Less
-    set -g LESS "N"
-    alias less "less -N --use-color -DNG -Dur -Ddg"
+    set -x PAGER "less"
+    set -x LESS "-N -M -R"
+    set -x LESSOPEN "~/.config/less/lessfilter"
 
     # starship.rs
     starship init fish | source

@@ -34,14 +34,20 @@ vim.opt.expandtab = false
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
 
 vim.g.clipboard = 'tmux'
-vim.opt.mouse = 'nvi'
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.cursorline = true
 vim.g.autoformat = false
+vim.opt.relativenumber = true
+vim.opt.colorcolumn = "80"
+vim.opt.mouse = 'nvi'
+vim.opt.autoindent = true
+vim.opt.number = true
+vim.opt.cursorline = true
 vim.o.guicursor = "n-v-c-sm:block-blinkwait1000-blinkon1000-blinkoff1,i-ci-ve:ver25-Cursor,r-cr-o:hor20"
 vim.opt.completeopt = "fuzzy,menu,menuone,noinsert,noselect,popup,preview"
 vim.opt.termguicolors = true
+vim.opt.scrolloff = 10
+vim.opt.ignorecase = true
+vim.opt.signcolumn =  "yes:1"
+vim.opt.list = true
 
 -- Setup lazy.nvim
 require("lazy").setup({
