@@ -3,7 +3,7 @@
 # starship.rs
 
 format = """
-[╭──](#FFFFFF)\
+\n[╭──](#FFFFFF)\
 [](#9A348E)\
 $os\
 $username\

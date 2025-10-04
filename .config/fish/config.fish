@@ -20,7 +20,7 @@ if status is-interactive
 
     # Less
     set -x PAGER "less"
-    set -x LESS "-N -M -R"
+    set -x LESS "-M -R"
     set -x LESSOPEN "|~/.config/less/lessfilter %s"
 
     # starship.rs
