@@ -27,27 +27,27 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "	-- Space leader
 vim.g.maplocalleader = "\\"
 
-vim.opt.tabstop = 8
-vim.opt.shiftwidth = 8
-vim.opt.expandtab = false
+vim.o.tabstop = 8
+vim.o.shiftwidth = 8
+vim.o.expandtab = false
 
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
 
 vim.g.clipboard = 'tmux'
 vim.g.autoformat = false
-vim.opt.relativenumber = true
-vim.opt.colorcolumn = "80"
-vim.opt.mouse = 'nvi'
-vim.opt.autoindent = true
-vim.opt.number = true
-vim.opt.cursorline = true
+vim.o.relativenumber = true
+vim.o.colorcolumn = "80"
+vim.o.mouse = 'nvi'
+vim.o.autoindent = true
+vim.o.number = true
+vim.o.cursorline = true
 vim.o.guicursor = "n-v-c-sm:block-blinkwait1000-blinkon1000-blinkoff1,i-ci-ve:ver25-Cursor,r-cr-o:hor20"
-vim.opt.completeopt = "fuzzy,menu,menuone,noinsert,noselect,popup,preview"
-vim.opt.termguicolors = true
-vim.opt.scrolloff = 10
-vim.opt.ignorecase = true
-vim.opt.signcolumn =  "yes:1"
-vim.opt.list = true
+vim.o.completeopt = "fuzzy,menu,menuone,noinsert,noselect,popup,preview"
+vim.o.termguicolors = true
+vim.o.scrolloff = 10
+vim.o.ignorecase = true
+vim.o.signcolumn =  "yes:1"
+vim.o.list = true
 
 -- Setup lazy.nvim
 require("lazy").setup({
@@ -100,11 +100,21 @@ require("lazy").setup({
       dependencies = {
 	{
 	  'saghen/blink.cmp',
-	  dependences = { 'rafamadriz/friendly-snippets' },
+	  dependences = {
+	    'rafamadriz/friendly-snippets',
+	    'folke/lazydev.nvim',
+          },
 	  version = '1.6',
 	  opts = {
 	    keymap = { preset = 'default' },
-	    fuzzy = { implementation = "lua" },
+	    fuzzy = {
+	      implementation = "lua",
+	      sorts = {
+		'score',
+		'sort_text',
+		'label',
+	      },
+            },
 	    sources = {
 	      default = { "lazydev", "lsp", "path", "snippets", "buffer", },
 	      providers = {
@@ -120,7 +130,7 @@ require("lazy").setup({
 	},
 	{
 	  "folke/lazydev.nvim",
-	  ft = "lua",
+	  --ft = "lua",
 	},
       },
       diagnostics = {

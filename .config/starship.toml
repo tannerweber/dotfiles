@@ -135,7 +135,7 @@ Windows = " "
 [directory]
 style = "fg:#FFFFFF bg:#DA627D"
 read_only_style = "fg:#FFFFFF bg:#DA627D"
-format = "[ 󰝰 $path ]($style)[$read_only]($read_only_style)"
+format = "[ $path ]($style)[$read_only]($read_only_style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -254,7 +254,7 @@ format = '[ $symbol ($version) ]($style)'
 disabled = false
 time_format = "%r" # Hour:Minute Format
 style = "fg:#FFFFFF bg:#33658A"
-format = '[  $time ]($style)'
+format = '[ $time ]($style)'
 
 [shell]
 disabled = false
