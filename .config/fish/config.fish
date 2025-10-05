@@ -23,11 +23,20 @@ if status is-interactive
     set -x LESS "-M -R"
     set -x LESSOPEN "|~/.config/less/lessfilter %s"
 
+    # Yazi
+    function y
+	set tmp (mktemp -t "yazi-cwd.XXXXXX")
+	yazi $argv --cwd-file="$tmp"
+	if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+		builtin cd -- "$cwd"
+	end
+	rm -f -- "$tmp"
+    end
+
     # starship.rs
     starship init fish | source
 end
 
 function fish_greeting
-    set_color ffffff
     echo Using (fish -v) as $USER on $hostname
 end
