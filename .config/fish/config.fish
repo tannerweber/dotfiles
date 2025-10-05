@@ -7,8 +7,9 @@ if status is-interactive
     fzf --fish | source
     alias f "fzf --style full --reverse"
 
-    # Colors
+    # LS
     set -x LS_COLORS "di=1;33:*.o=0;34:*.txt=01;31"
+    alias la "eza -al --icons"
 
     # Vim bindings
     fish_hybrid_key_bindings
