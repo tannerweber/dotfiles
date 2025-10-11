@@ -125,6 +125,8 @@ disabled = false
 
 [os.symbols]
 Arch = " "
+Debian = " "
+NixOS = " "
 Kali = " "
 Linux = " "
 Macos = " "
@@ -234,6 +236,7 @@ format = '[ $symbol ($version) ]($style)'
 [nix_shell]
 symbol = " "
 style = "fg:#FFFFFF bg:#86BBD8"
+format = '[$symbol$state( \($name\))]($style)'
 
 [package]
 style = "fg:#FFFFFF bg:#86BBD8"
