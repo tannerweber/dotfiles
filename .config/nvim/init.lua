@@ -60,6 +60,12 @@ require("lazy").setup({
       "akinsho/bufferline.nvim",
       lazy = true,
     },
+    {
+      'nvim-mini/mini.pairs', version = '*',
+      config = function()
+	require('mini.pairs').setup()
+      end
+    },
     --------------------------------------------- Harpoon ---------------------
     {
       "ThePrimeagen/harpoon",
@@ -106,7 +112,10 @@ require("lazy").setup({
           },
 	  version = '1.6',
 	  opts = {
-	    keymap = { preset = 'default' },
+	    keymap = {
+	      preset = 'default',
+	      ['<C-l>'] = { 'accept' },
+            },
 	    fuzzy = {
 	      implementation = "lua",
 	      sorts = {
