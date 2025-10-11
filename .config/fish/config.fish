@@ -1,13 +1,18 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+    # PATH
     fish_add_path $HOME/.local/bin
     fish_add_path $HOME/.local/nvim-linux-x86_64/bin/
+
+    # ALIASES
+    alias gs "git status"
+    alias gd "git diff"
+    alias gl "git log"
 
     # fzf
     fzf --fish | source
     alias f "fzf --style full --reverse"
 
-    # LS
+    # ls
     set -x LS_COLORS "di=1;33:*.o=0;34:*.txt=01;31"
     alias la "eza -al --icons"
 
