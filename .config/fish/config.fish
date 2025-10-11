@@ -27,11 +27,6 @@ if status is-interactive
     # bat
     set -x MANPAGER "sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
 
-    # less
-    set -x PAGER "less"
-    set -x LESS "-M -R"
-    set -x LESSOPEN "|~/.config/less/lessfilter %s"
-
     # yazi
     function y
 	set tmp (mktemp -t "yazi-cwd.XXXXXX")
