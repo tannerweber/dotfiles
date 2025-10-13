@@ -20,7 +20,8 @@ set statusline=%F\ [%l/%L]\ [%p%%]\ %c	" Display line and column numbers in the 
 
 "set smartindent
 "set tabstop=4
-"set shiftwidth=4
+"set shiftwidth=2
+"set expandtab=false
 
 "set incsearch      "Incremental search
 "set autowrite      "Automatically save before commands like :next and :make
