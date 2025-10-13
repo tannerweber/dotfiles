@@ -1,0 +1,25 @@
+* {                                                                     ╭─────────────   lazy.nvim ─────────────╮
+	font-size: 12px;                                                    │ # Plugin Updates                       │
+}                                                                       │ - lazy.nvim                            │
+
+window#waybar {                                                         ╰────────────────────────────────────────╯
+	background: rgba(255, 255, 255, 0.15);
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	border-radius: 3rem;
+	box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2),
+		inset 0 4px 20px rgba(255, 255, 255, 0.3);
+	border-bottom: 3px solid rgba(100, 114, 125, 0.3);
+	transition-property: background-color;
+	transition-duration: .5s;
+}
+
+label.module {
+	padding: 5px 15px;
+	background: rgba(255, 255, 255, 0.15);
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	border-radius: 3rem;
+	box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2),
+		inset 0 4px 20px rgba(255, 255, 255, 0.3);
+	border-bottom: 3px solid rgba(100, 114, 125, 0.3);
+	transition-property: background-color;
+	transition-duration: .5s;
