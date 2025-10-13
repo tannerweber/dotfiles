@@ -1,8 +1,8 @@
-* {                                                                     ╭─────────────   lazy.nvim ─────────────╮
-	font-size: 12px;                                                    │ # Plugin Updates                       │
-}                                                                       │ - lazy.nvim                            │
+* {
+	font-size: 12px;
+}
 
-window#waybar {                                                         ╰────────────────────────────────────────╯
+window#waybar {
 	background: rgba(255, 255, 255, 0.15);
 	border: 1px solid rgba(255, 255, 255, 0.8);
 	border-radius: 3rem;
