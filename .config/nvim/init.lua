@@ -266,9 +266,13 @@ require("lazy").setup({
       "folke/tokyonight.nvim",
       lazy = false,
       priority = 1000,
-      config = function()
-	vim.cmd([[colorscheme tokyonight-night]])
-      end,
+	  opts = {
+		transparent = true,
+		styles = {
+          sidebars = "transparent",
+		  floats = "transparent",
+		},
+	  },
     },
     {
       "nvim-treesitter/nvim-treesitter",
@@ -276,20 +280,20 @@ require("lazy").setup({
       priority = 900,
       opts = {
         highlight = { enable = true },
-	indent = { enable = true },
-	ensure_installed = {
-	  "bash",
-	  "c",
-	  "lua",
-	  "luadoc",
-	  "luap",
-	  "python",
-	  "toml",
-	  "yaml",
-	  "xml",
-	  "vim",
-	  "vimdoc",
-	},
+	    indent = { enable = true },
+	    ensure_installed = {
+	      "bash",
+		  "c",
+		  "lua",
+		  "luadoc",
+		  "luap",
+		  "python",
+		  "toml",
+		  "yaml",
+		  "xml",
+		  "vim",
+		  "vimdoc",
+	    },
       },
     },
     {
@@ -321,6 +325,9 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
+
+------------------------------------------------- Colorscheme -----------------
+vim.cmd.colorscheme("tokyonight-night")
 
 ------------------------------------------------- Auto Commands ---------------
 -- Highlight on yank
