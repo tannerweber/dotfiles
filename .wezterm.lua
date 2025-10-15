@@ -12,7 +12,7 @@ end
 -- Appearance
 config.max_fps = 255
 config.color_scheme = 'Paul Millr (Gogh)'
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.8
 config.font_size = 12
 config.font = wezterm.font 'Hack Nerd Font'
 config.window_decorations = 'RESIZE'

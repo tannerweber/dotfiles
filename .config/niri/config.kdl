@@ -16,7 +16,7 @@ input {
 
     touchpad {
         tap
-        natural-scroll
+        //natural-scroll
         // scroll-method "two-finger"
     }
 
