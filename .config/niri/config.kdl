@@ -82,7 +82,7 @@ layout { // Settings that influence how windows are positioned and sized.
 
     shadow { // Drop shadow for windows
 		on
-        draw-behind-window true
+        draw-behind-window false
         softness 10 // Softness controls the shadow blur radius.
         spread 10 // Spread expands the shadow.
         offset x=0 y=5 // Offset moves the shadow relative to the window.

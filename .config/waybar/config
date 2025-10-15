@@ -1,6 +1,6 @@
 // -*- mode: jsonc -*-
 {
-	"reload_style_on_change": true,
+    "reload_style_on_change": true,
     "position": "top",
 	"margin": 5,
     "layer": "top",
@@ -50,7 +50,7 @@
         // }
     },
     "clock": {
-		"format": "{:%H:%M %p %a %b %d}",
+		"format": "{:%I:%M %p %a %b %d}",
         "timezone": "America/Los_Angeles",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     },
