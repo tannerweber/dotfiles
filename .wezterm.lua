@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 -- Tanner Weber
 -- .wezterm.lua
 
@@ -52,7 +51,7 @@ config.keys = {
   { key = '7', mods = 'ALT', action = act{ActivateTab=6} },
   { key = '8', mods = 'ALT', action = act{ActivateTab=7} },
   { key = '9', mods = 'ALT', action = act{ActivateTab=8} },
-  
+
   -- Tmux like binds using a leader key
   { key = '"', mods = 'LEADER|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
   { key = '%', mods = 'LEADER|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
@@ -100,80 +99,3 @@ wezterm.on(
 
 -- Return the configuration to wezterm
 return config
-=======
--- Tanner Weber
--- .wezterm.lua
-
-local wezterm = require 'wezterm'
-local config = wezterm.config_builder()
-
--- Windows Powershell 7
-if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
-  config.default_prog = { 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' }
-end
-
--- Appearance
-config.max_fps = 255
-config.color_scheme = 'Paul Millr (Gogh)'
-config.window_background_opacity = 0.8
-config.font_size = 12
-config.font = wezterm.font 'Hack Nerd Font'
-config.window_decorations = 'RESIZE'
-config.enable_tab_bar = true
-
--- Start in fullscreen
-local mux = wezterm.mux
-wezterm.on('gui-startup', function(window)
-  local tab, pane, window = mux.spawn_window(cmd or {})
-  local gui_window = window:gui_window();
-  gui_window:perform_action(wezterm.action.ToggleFullScreen, pane)
-end)
-
--- Binds
-local act = wezterm.action
-config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
-config.keys = {
-  { key = 'a', mods = 'LEADER|CTRL', action = act.SendKey { key = 'a', mods = 'CTRL' } },
-
-  { key = 'w', mods = 'ALT', action = act.CloseCurrentPane { confirm = false }, },
-  { key = 't', mods = 'ALT', action = act.SpawnTab 'CurrentPaneDomain' },
-  { key = 'c', mods = 'ALT', action = act.SpawnTab 'CurrentPaneDomain' },
-  { key = 's', mods = 'ALT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
-  { key = 'd', mods = 'ALT', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
-  { key = 'h', mods = 'ALT', action = act{ActivatePaneDirection="Left"} },
-  { key = 'j', mods = 'ALT', action = act{ActivatePaneDirection="Down"} },
-  { key = 'k', mods = 'ALT', action = act{ActivatePaneDirection="Up"} },
-  { key = 'l', mods = 'ALT', action = act{ActivatePaneDirection="Right"} },
-  { key = '1', mods = 'ALT', action = act{ActivateTab=0} },
-  { key = '2', mods = 'ALT', action = act{ActivateTab=1} },
-  { key = '3', mods = 'ALT', action = act{ActivateTab=2} },
-  { key = '4', mods = 'ALT', action = act{ActivateTab=3} },
-  { key = '5', mods = 'ALT', action = act{ActivateTab=4} },
-  { key = '6', mods = 'ALT', action = act{ActivateTab=5} },
-  { key = '7', mods = 'ALT', action = act{ActivateTab=6} },
-  { key = '8', mods = 'ALT', action = act{ActivateTab=7} },
-  { key = '9', mods = 'ALT', action = act{ActivateTab=8} },
-
-  -- Tmux like binds using a leader key
-  { key = '"', mods = 'LEADER|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
-  { key = '%', mods = 'LEADER|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
-  { key = 'c', mods = 'LEADER', action = act.SpawnTab 'CurrentPaneDomain' },
-  { key = '1', mods = 'LEADER', action = act{ActivateTab=0} },
-  { key = '2', mods = 'LEADER', action = act{ActivateTab=1} },
-  { key = '3', mods = 'LEADER', action = act{ActivateTab=2} },
-  { key = '4', mods = 'LEADER', action = act{ActivateTab=3} },
-  { key = '5', mods = 'LEADER', action = act{ActivateTab=4} },
-  { key = '6', mods = 'LEADER', action = act{ActivateTab=5} },
-  { key = '7', mods = 'LEADER', action = act{ActivateTab=6} },
-  { key = '8', mods = 'LEADER', action = act{ActivateTab=7} },
-  { key = '9', mods = 'LEADER', action = act{ActivateTab=8} },
-  { key = 'x', mods = 'LEADER', action = act.CloseCurrentPane { confirm = false } },
-  { key = 'h', mods = 'LEADER', action = act{ActivatePaneDirection="Left"} },
-  { key = 'j', mods = 'LEADER', action = act{ActivatePaneDirection="Down"} },
-  { key = 'k', mods = 'LEADER', action = act{ActivatePaneDirection="Up"} },
-  { key = 'l', mods = 'LEADER', action = act{ActivatePaneDirection="Right"} },
-}
-
--- Return the configuration to wezterm
-return config
->>>>>>> origin/main
