@@ -15,3 +15,4 @@ HISTFILE=~/.config/bash/.bash_history
 PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='(\u@\H) \w (${PS1_CMD1}) \@ \s\n\\$ '
 
 eval "$(starship init bash)"
+. "$HOME/.cargo/env"

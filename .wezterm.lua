@@ -12,10 +12,11 @@ end
 -- Appearance
 config.max_fps = 255
 config.color_scheme = 'Paul Millr (Gogh)'
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.90
 config.font_size = 12
 config.font = wezterm.font 'Hack Nerd Font'
 config.window_decorations = 'RESIZE'
+config.use_fancy_tab_bar = true
 config.enable_tab_bar = true
 
 -- Start in fullscreen
@@ -50,7 +51,7 @@ config.keys = {
   { key = '7', mods = 'ALT', action = act{ActivateTab=6} },
   { key = '8', mods = 'ALT', action = act{ActivateTab=7} },
   { key = '9', mods = 'ALT', action = act{ActivateTab=8} },
-
+  
   -- Tmux like binds using a leader key
   { key = '"', mods = 'LEADER|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
   { key = '%', mods = 'LEADER|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
@@ -70,6 +71,31 @@ config.keys = {
   { key = 'k', mods = 'LEADER', action = act{ActivatePaneDirection="Up"} },
   { key = 'l', mods = 'LEADER', action = act{ActivatePaneDirection="Right"} },
 }
+
+-- Tab bar style
+function tab_title(tab_info)
+  local title = tab_info.tab_title
+  -- if the tab title is explicitly set, take that
+  if title and #title > 0 then
+    return title
+  end
+  -- Otherwise, use the title from the active pane in that tab
+  return tab_info.active_pane.title
+end
+
+wezterm.on(
+  'format-tab-title',
+  function(tab, tabs, panes, config, hover, max_width)
+    local title = tab_title(tab)
+    if tab.is_active then
+      return {
+        { Foreground = { Color = 'white' } },
+        { Background = { Color = 'black' } },
+        { Text = ' ' .. title .. ' ' },
+      }
+    end
+  end
+)
 
 -- Return the configuration to wezterm
 return config
