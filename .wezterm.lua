@@ -19,6 +19,7 @@ config.window_decorations = 'RESIZE'
 config.use_fancy_tab_bar = true
 config.enable_tab_bar = true
 
+--[[
 -- Start in fullscreen
 local mux = wezterm.mux
 wezterm.on('gui-startup', function(window)
@@ -26,6 +27,7 @@ wezterm.on('gui-startup', function(window)
   local gui_window = window:gui_window();
   gui_window:perform_action(wezterm.action.ToggleFullScreen, pane)
 end)
+--]]
 
 -- Binds
 local act = wezterm.action
