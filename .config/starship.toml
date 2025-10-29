@@ -1,6 +1,5 @@
-###############################################################################
-# Location: ~/.config/starship.toml
 # starship.rs
+# Location: ~/.config/starship.toml
 
 format = """
 \n[╭──](#FFFFFF)\
@@ -14,6 +13,7 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:#FCA17D bg:#86BBD8)\
+$fill\
 $singularity\
 $kubernetes\
 $vcsh\
@@ -97,8 +97,15 @@ $jobs\
 \n$character\
 """
 
+right_format = """$time"""
+
 # Disable the blank line at the start of the prompt
 add_newline = false
+
+[fill]
+symbol = '─'
+style = 'bold white'
+disabled = false
 
 # You can also replace your username with a neat symbol like   or disable this
 # and use the os module below
@@ -190,8 +197,8 @@ format = '[$all_status$ahead_behind ]($style)'
 conflicted = "  Merge conflict"
 ahead = "  Ahead"
 behind = "  Behind"
-untracked = "  Untracked"
-modified = "  Modified"
+untracked = "  U"
+modified = "  M"
 staged = "  Staged"
 
 [golang]
