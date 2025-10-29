@@ -42,7 +42,7 @@ if status is-interactive
     zoxide init fish | source
 
     # starship.rs
-    starship init fish | source
+	starship init fish | source
 end
 
 function fish_greeting
