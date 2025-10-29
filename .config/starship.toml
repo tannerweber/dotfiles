@@ -2,7 +2,7 @@
 # Location: ~/.config/starship.toml
 
 format = """
-\n[╭──](#FFFFFF)\
+\n[╭─](#FFFFFF)\
 [](#9A348E)\
 $os\
 $username\
@@ -13,7 +13,6 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:#FCA17D bg:#86BBD8)\
-$fill\
 $singularity\
 $kubernetes\
 $vcsh\
@@ -94,16 +93,19 @@ $container\
 [](fg:#FDFD96)\
 $sudo\
 $jobs\
+$fill\
+[](fg:#DA627D)\
+$directory\
+[ ](fg:#DA627D)\
 \n$character\
 """
-
-right_format = """$time"""
 
 # Disable the blank line at the start of the prompt
 add_newline = false
 
 [fill]
-symbol = '─'
+#symbol = '─'
+symbol = ' '
 style = 'bold white'
 disabled = false
 
@@ -299,9 +301,9 @@ symbol = ' '
 format = '[ $symbol$number ]($style)'
 
 [character]
-success_symbol = '[╰──](#FFFFFF)[](#D7AFFF)[I](fg:#FFFFFF bg:#D7AFFF)[](#D7AFFF)[──](#FFFFFF)'
-error_symbol = '[╰──](#FFFFFF)[](#D7AFFF)[I](fg:#FFFFFF bg:#D7AFFF)[](#D7AFFF)[──](#FF0000)'
-vimcmd_symbol = '[╰──](#FFFFFF)[](#D7AFFF)[N](fg:#000000 bg:#D7AFFF)[](#D7AFFF)[──](#FFFFFF)'
-vimcmd_visual_symbol = '[╰──](#FFFFFF)[](#D7AFFF)[VISUAL](fg:#000000 bg:#D7AFFF)[](#D7AFFF)[──](#FFFFFF)'
-vimcmd_replace_one_symbol = '[╰──](#FFFFFF)[](#D7AFFF)[REPLACE ONE](fg:#000000 bg:#D7AFFF)[](#D7AFFF)[──](#FFFFFF)'
-vimcmd_replace_symbol = '[╰──](#FFFFFF)[](#D7AFFF)[REPLACE](fg:#000000 bg:#D7AFFF)[](#D7AFFF)[──](#FFFFFF)'
+success_symbol = '[╰─](#FFFFFF)[](#D7AFFF)[I](fg:#FFFFFF bg:#D7AFFF)[](#D7AFFF)[─](#FFFFFF)'
+error_symbol = '[╰─](#FFFFFF)[](#D7AFFF)[I](fg:#FFFFFF bg:#D7AFFF)[](#D7AFFF)[─](#FF0000)'
+vimcmd_symbol = '[╰─](#FFFFFF)[](#D7AFFF)[N](fg:#000000 bg:#D7AFFF)[](#D7AFFF)[─](#FFFFFF)'
+vimcmd_visual_symbol = '[╰─](#FFFFFF)[](#D7AFFF)[VISUAL](fg:#000000 bg:#D7AFFF)[](#D7AFFF)[─](#FFFFFF)'
+vimcmd_replace_one_symbol = '[╰─](#FFFFFF)[](#D7AFFF)[REPLACE ONE](fg:#000000 bg:#D7AFFF)[](#D7AFFF)[─](#FFFFFF)'
+vimcmd_replace_symbol = '[╰─](#FFFFFF)[](#D7AFFF)[REPLACE](fg:#000000 bg:#D7AFFF)[](#D7AFFF)[─](#FFFFFF)'
