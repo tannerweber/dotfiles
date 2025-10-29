@@ -1,31 +1,31 @@
-#!/usr/bin/env bash
+#!/usr/bin/env fish
 
-if [[ $# -eq 1 ]]; then
-	directory=$1
+if count $argv
+	set directory $1
 else
-	directory=$(find ~/ ~/.dotfiles ~/Personal_Projects ~/CS350_Programs -mindepth 1 -maxdepth 1 -type d | fzf --style full --reverse)
-fi
+	set directory $(find ~/ ~/.dotfiles ~/Personal_Projects ~/CS350_Programs -mindepth 1 -maxdepth 1 -type d | fzf --style full --reverse)
+end
 
-if [[ -z $directory ]]; then
+if test -z $directory
 	echo "The name given is an empty string."
 	exit 1
-fi
+end
 
-this_user=$(whoami)
-selected_name=$(basename "$directory" | tr . _)
-tmux_running=$(pgrep -u $this_user "tmux")
+set this_user $(whoami)
+set selected_name $(basename "$directory" | tr . _)
+set tmux_running $(pgrep -u $this_user "tmux")
 
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+if test -z $TMUX && test -z $tmux_running
 	echo "tmux not running, creating a new session"
-	sleep 1
+	sleep 3
 	exec tmux new-session -s $selected_name -c $directory
 	exit 0
-fi
+end
 
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
+if ! tmux has-session -t=$selected_name 2> /dev/null
 	echo "creating inside session"
-	sleep 1
+	sleep 3
 	tmux new-session -ds $selected_name -c $directory
-fi
+end
 
 tmux switch-client -t $selected_name
