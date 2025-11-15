@@ -38,7 +38,14 @@ local act = wezterm.action
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
   { key = 'a', mods = 'LEADER|CTRL', action = act.SendKey { key = 'a', mods = 'CTRL' } },
+
+  -- Fix key encoding for ANSI sequences
   { key = 'c', mods = 'CTRL', action = act.SendString '\x03' },
+  { key = 'd', mods = 'CTRL', action = act.SendString '\x04' },
+  { key = 'UpArrow', action = act.SendString '\x1b[A' },
+  { key = 'DownArrow', action = act.SendString '\x1b[B' },
+  { key = 'RightArrow', action = act.SendString '\x1b[C' },
+  { key = 'LeftArrow', action = act.SendString '\x1b[D' },
 
   { key = 'w', mods = 'ALT', action = act.CloseCurrentPane { confirm = false }, },
   { key = 't', mods = 'ALT', action = act.SpawnTab 'CurrentPaneDomain' },
