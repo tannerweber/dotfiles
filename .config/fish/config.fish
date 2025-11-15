@@ -39,7 +39,10 @@ if status is-interactive
     end
 
     # zoxide
-    zoxide init fish | source
+	if test -n (which zoxide)
+    	zoxide init fish | source
+		alias cd "z"
+	end
 
     # starship.rs
 	starship init fish | source
