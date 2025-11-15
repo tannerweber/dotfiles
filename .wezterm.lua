@@ -19,6 +19,10 @@ config.window_decorations = 'RESIZE'
 config.use_fancy_tab_bar = true
 config.enable_tab_bar = true
 
+-- Keyboard Encoding
+config.allow_win32_input_mode = false
+config.enable_kitty_keyboard = true
+
 --[[
 -- Start in fullscreen
 local mux = wezterm.mux
