@@ -38,6 +38,7 @@ local act = wezterm.action
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
   { key = 'a', mods = 'LEADER|CTRL', action = act.SendKey { key = 'a', mods = 'CTRL' } },
+  { key = 'c', mods = 'CTRL', action = act.SendString '\x03' },
 
   { key = 'w', mods = 'ALT', action = act.CloseCurrentPane { confirm = false }, },
   { key = 't', mods = 'ALT', action = act.SpawnTab 'CurrentPaneDomain' },
