@@ -120,18 +120,20 @@ require("lazy").setup({
     --------------------------------------------- LSP -------------------------
     {
       "mason-org/mason-lspconfig.nvim",
+      lazy = false,
       opts = {
         ensure_installed = {
           "lua_ls",
         },
       },
       dependencies = {
-        { "mason-org/mason.nvim", opts = {} },
+        { "mason-org/mason.nvim", lazy = false, opts = {} },
         "neovim/nvim-lspconfig",
       },
     },
     {
       "neovim/nvim-lspconfig",
+      lazy = false,
       dependencies = {
         {
           "saghen/blink.cmp",
