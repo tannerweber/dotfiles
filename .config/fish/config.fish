@@ -1,8 +1,9 @@
 if status is-interactive
     # PATH
-    fish_add_path $HOME/.local/bin
-    fish_add_path $HOME/.local/nvim-linux-x86_64/bin/
+    fish_add_path $HOME/.npm-global/bin/
     fish_add_path /usr/local/go/bin/
+    fish_add_path $HOME/.local/nvim-linux-x86_64/bin/
+    fish_add_path $HOME/.local/bin/
 
     # ALIASES
     alias gs "git status"
