@@ -12,7 +12,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out,                            "WarningMsg" },
+      { out, "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -119,6 +119,19 @@ require("lazy").setup({
     },
     --------------------------------------------- LSP -------------------------
     {
+      "mason-org/mason-lspconfig.nvim",
+      lazy = false,
+      opts = {
+        ensure_installed = {
+          "lua_ls",
+        },
+      },
+      dependencies = {
+        { "mason-org/mason.nvim", lazy = false, opts = {} },
+        "neovim/nvim-lspconfig",
+      },
+    },
+    {
       "neovim/nvim-lspconfig",
       lazy = false,
       dependencies = {
@@ -177,12 +190,6 @@ require("lazy").setup({
         severity_sort = true,
       },
       config = function()
-        vim.lsp.enable("lua_ls")
-        vim.lsp.enable("clangd")
-        vim.lsp.enable("pyright")
-        vim.lsp.enable("rust_analyzer")
-        vim.lsp.enable("fish_lsp")
-        vim.lsp.enable("bashls")
         vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP definition" })
         vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "Format code with LSP" })
       end,
