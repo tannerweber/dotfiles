@@ -1,38 +1,36 @@
 #!/usr/bin/env fish
 
 if count $argv
-	set directory $1
+    set directory $1
 else
-	set directory $(find ~/ ~/.dotfiles ~/personal ~/cs333 ~/cs314 \
+    set directory $(find ~/ ~/.dotfiles ~/personal ~/cs333 ~/cs314 \
 		-mindepth 1 -maxdepth 1 -type d | fzf --style full --reverse)
 end
 
-if test -z $directory
-	echo "The name given is an empty string."
-	exit 1
+if test -z "$directory"
+    echo "The name given is an empty string."
+    exit 1
 end
 
-set this_user $(whoami)
+tmux has-session -t=$selected_name 2>&1
+if test $status -ne 0
+    set -f session_exists true
+end
+
 set selected_name $(basename "$directory" | tr . _)
-set session_exists $(tmux has-session -t=$selected_name 2>&1)
 set in_tmux $TMUX
 
-if test -z $session_exists
-	echo "Session already exists"
-	if test -n $in_tmux
-		echo "Inside tmux"
-		tmux switch-client -t $selected_name
-	else
-		tmux attach -t $selected_name
-	end
+if test -z "$session_exists"
+    if test -n "$in_tmux"
+        tmux switch-client -t $selected_name
+    else
+        tmux attach -t $selected_name
+    end
 else
-	echo "Creating new session"
-	if test -n $in_tmux
-		echo "Inside tmux"
-		tmux new-session -d -s $selected_name -c $directory
-		tmux switch-client -t $selected_name
-	else
-		tmux new-session -s $selected_name -c $directory
-	end
+    if test -n "$in_tmux"
+        tmux new-session -d -s $selected_name -c $directory
+        tmux switch-client -t $selected_name
+    else
+        tmux new-session -s $selected_name -c $directory
+    end
 end
-
