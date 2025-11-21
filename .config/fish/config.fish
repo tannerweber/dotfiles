@@ -1,9 +1,11 @@
 if status is-interactive
     # PATH
+    fish_add_path $HOME/.local/bin/
     fish_add_path $HOME/.npm-global/bin/
     fish_add_path /usr/local/go/bin/
     fish_add_path $HOME/.local/nvim-linux-x86_64/bin/
-    fish_add_path $HOME/.local/bin/
+    fish_add_path $HOME/.local/lua-language-server-3.15.0-linux-x64/bin/
+    fish_add_path $HOME/.local/clangd_21.1.0/bin/
 
     # ALIASES
     alias gs "git status"
@@ -40,7 +42,7 @@ if status is-interactive
     end
 
     # zoxide
-	if test -n (which zoxide)
+	if test -n "(which zoxide)"
     	zoxide init fish | source
 		alias cd "z"
 	end
