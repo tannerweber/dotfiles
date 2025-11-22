@@ -12,15 +12,15 @@ if test -z "$directory"
     exit 1
 end
 
-tmux has-session -t=$selected_name 2>&1
-if test $status -ne 0
-    set -f session_exists true
-end
-
 set selected_name $(basename "$directory" | tr . _)
 set in_tmux $TMUX
 
-if test -z "$session_exists"
+tmux has-session -t=$selected_name 2>&1
+if test $status -eq 0
+    set -f session_exists true
+end
+
+if test -n "$session_exists"
     if test -n "$in_tmux"
         tmux switch-client -t $selected_name
     else
