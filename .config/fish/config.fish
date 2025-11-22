@@ -7,18 +7,18 @@ if status is-interactive
     fish_add_path $HOME/.local/lua-language-server-3.15.0-linux-x64/bin/
     fish_add_path $HOME/.local/clangd_21.1.0/bin/
 
-    # ALIASES
-    alias gs "git status"
-    alias gd "git diff"
-    alias gl "git log"
+    # Abbreviations
+	abbr --add gs git status
+	abbr --add gd git diff
+	abbr --add gl git log
+	abbr --add gc git commit -m
 
     # fzf
     fzf --fish | source
-    alias f "fzf --style full --reverse"
 
     # ls
     set -x LS_COLORS "di=1;33:*.o=0;34:*.txt=01;31"
-    alias la "eza -al --icons"
+    abbr --add la "eza -al --icons"
 
     # Vim bindings
     fish_hybrid_key_bindings
@@ -44,7 +44,7 @@ if status is-interactive
     # zoxide
 	if test -n "(which zoxide)"
     	zoxide init fish | source
-		alias cd "z"
+		abbr --add cd "z"
 	end
 
     # starship.rs
