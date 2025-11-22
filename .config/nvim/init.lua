@@ -227,18 +227,11 @@ require("lazy").setup({
           preset = {
             keys = {
               { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.smart()" },
-              { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
               {
                 icon = " ",
                 key = "g",
                 desc = "Find Text",
                 action = ":lua Snacks.dashboard.pick('live_grep')",
-              },
-              {
-                icon = " ",
-                key = "r",
-                desc = "Recent Files",
-                action = ":lua Snacks.dashboard.pick('oldfiles')",
               },
               {
                 icon = " ",
@@ -250,17 +243,9 @@ require("lazy").setup({
               { icon = " ", key = "u", desc = "Help poor children in Uganda!", action = ":help iccf" },
               { icon = " ", key = "q", desc = "Quit", action = ":qa" },
             },
-            header = "                                            \
-       ████ ██████           █████      ██\
-███████████             █████ \
-                        █████████ ███████████████████ ███   ███████████\
-                       █████████  ███    █████████████ █████ ██████████████\
-                      █████████ ██████████ █████████ █████ █████ ████ █████\
-                     ███████████ ███    ███ █████████ █████ █████ ████ █████\
-                    ██████  █████████████████████ ████ █████ █████ ████ ██████",
           },
         },
-        explorer = { enabled = true },
+        explorer = { enabled = false },
         indent = { enabled = true },
         input = { enabled = true },
         picker = { enabled = true },
@@ -270,16 +255,6 @@ require("lazy").setup({
         scroll = { enabled = true },
         statuscolumn = { enabled = true },
         words = { enabled = true },
-        terminal = {
-          win = {
-            keys = {
-              --nav_h = { "<C-h>", term_nav("h"), desc = "Go to Left Window", expr = true, mode = "t" },
-              --nav_j = { "<C-j>", term_nav("j"), desc = "Go to Lower Window", expr = true, mode = "t" },
-              --nav_k = { "<C-k>", term_nav("k"), desc = "Go to Upper Window", expr = true, mode = "t" },
-              --nav_l = { "<C-l>", term_nav("l"), desc = "Go to Right Window", expr = true, mode = "t" },
-            },
-          },
-        },
       },
       keys = {
         {
