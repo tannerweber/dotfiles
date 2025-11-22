@@ -15,7 +15,7 @@ end
 set selected_name $(basename "$directory" | tr . _)
 set in_tmux $TMUX
 
-tmux has-session -t=$selected_name 2>&1
+tmux has-session -t=$selected_name > /dev/null 2>&1
 if test $status -eq 0
     set -f session_exists true
 end
