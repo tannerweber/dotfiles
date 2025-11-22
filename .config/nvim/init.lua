@@ -160,8 +160,6 @@ require("lazy").setup({
           ft = "lua", -- only load on lua files
           opts = {
             library = {
-              -- See the configuration section for more details
-              -- Load luvit types when the `vim.uv` word is found
               { path = "${3rd}/luv/library", words = { "vim%.uv" } },
             },
           },
@@ -356,17 +354,6 @@ require("lazy").setup({
           desc = "LSP Workspace Symbols",
         },
       },
-      --[[
-        https://neovim.io/doc/user/lsp.html
-        "grn" is mapped in Normal mode to vim.lsp.buf.rename()
-        "gra" is mapped in Normal and Visual mode to vim.lsp.buf.code_action()
-        "grr" is mapped in Normal mode to vim.lsp.buf.references()
-        "gri" is mapped in Normal mode to vim.lsp.buf.implementation()
-        "grt" is mapped in Normal mode to vim.lsp.buf.type_definition()
-        "gO" is mapped in Normal mode to vim.lsp.buf.document_symbol()
-        CTRL-S is mapped in Insert mode to vim.lsp.buf.signature_help()
-      ]]
-      --
     },
     {
       "folke/tokyonight.nvim",
@@ -383,7 +370,8 @@ require("lazy").setup({
     {
       "nvim-treesitter/nvim-treesitter",
       lazy = false,
-      priority = 900,
+      branch = "main",
+      build = ":TSUpdate",
       opts = {
         highlight = { enable = true },
         indent = { enable = true },
@@ -394,6 +382,7 @@ require("lazy").setup({
           "luadoc",
           "luap",
           "python",
+          "rust",
           "toml",
           "yaml",
           "xml",
