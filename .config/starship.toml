@@ -119,12 +119,12 @@ format = '[$user ]($style)'
 disabled = false
 
 [hostname]
-ssh_only = true
+ssh_only = false
 ssh_symbol = ' '
 trim_at = ''
 style = "fg:#FFFFFF bg:#9A348E"
 disabled = false
-format = '[$ssh_symbol](fg:#FFFF00 bg:#9A348E)[$hostname ]($style)'
+format = '[$ssh_symbol](fg:#FFFF00 bg:#9A348E)[ $hostname ]($style)'
 
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
