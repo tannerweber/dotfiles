@@ -4,6 +4,26 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
+-- Domains
+config.ssh_domains = {
+  {
+    name = 'babbage',
+    remote_address = 'babbage.cs.pdx.edu',
+    username = 'tannerw',
+  },
+  {
+    name = 'ada',
+    remote_address = 'linux.cs.pdx.edu',
+    username = 'tannerw',
+  },
+}
+config.unix_domains = {
+  {
+    name = 'my_unix_domain',
+  },
+}
+--config.default_gui_startup_args = { 'connect', 'my_unix_domain' }
+
 -- Windows Powershell 7
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
   config.default_prog = { 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' }
@@ -39,6 +59,70 @@ config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
   { key = 'a', mods = 'LEADER|CTRL', action = act.SendKey { key = 'a', mods = 'CTRL' } },
 
+  -- Domain bindings
+  { key = 'a', mods = 'ALT', action = act.ShowLauncherArgs { flags = 'DOMAINS' } },
+  { key = 'd', mods = 'ALT', action = act.DetachDomain 'CurrentPaneDomain' },
+  { key = 's', mods = 'ALT', action = act.ShowLauncherArgs { flags = 'WORKSPACES' } },
+  {
+    key = 'r',
+    mods = 'ALT',
+    action = act.PromptInputLine {
+      description = 'Rename Session',
+      action = wezterm.action_callback(
+        function(window, pane, line)
+          if line then
+	    mux.rename_workspace(
+	      window:mux_window():get_workspace(),
+	      line
+	    )
+	  end
+	end
+      ),
+    },
+  },
+
+  -- Navigation bindings
+  { key = 'w', mods = 'ALT', action = act.CloseCurrentPane { confirm = false }, },
+  { key = 't', mods = 'ALT', action = act.SpawnTab 'CurrentPaneDomain' },
+  { key = 'c', mods = 'ALT', action = act.SpawnTab 'CurrentPaneDomain' },
+  { key = 'f', mods = 'ALT', action = act.TogglePaneZoomState },
+  { key = '%', mods = 'ALT|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
+  { key = '"', mods = 'ALT|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
+
+  { key = 'h', mods = 'ALT', action = act{ActivatePaneDirection="Left"} },
+  { key = 'j', mods = 'ALT', action = act{ActivatePaneDirection="Down"} },
+  { key = 'k', mods = 'ALT', action = act{ActivatePaneDirection="Up"} },
+  { key = 'l', mods = 'ALT', action = act{ActivatePaneDirection="Right"} },
+
+  { key = '1', mods = 'ALT', action = act{ActivateTab=0} },
+  { key = '2', mods = 'ALT', action = act{ActivateTab=1} },
+  { key = '3', mods = 'ALT', action = act{ActivateTab=2} },
+  { key = '4', mods = 'ALT', action = act{ActivateTab=3} },
+  { key = '5', mods = 'ALT', action = act{ActivateTab=4} },
+  { key = '6', mods = 'ALT', action = act{ActivateTab=5} },
+  { key = '7', mods = 'ALT', action = act{ActivateTab=6} },
+  { key = '8', mods = 'ALT', action = act{ActivateTab=7} },
+  { key = '9', mods = 'ALT', action = act{ActivateTab=8} },
+
+  -- Tmux like binds using a leader key
+  { key = '%', mods = 'LEADER|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
+  { key = '"', mods = 'LEADER|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
+  { key = 'c', mods = 'LEADER', action = act.SpawnTab 'CurrentPaneDomain' },
+  { key = '1', mods = 'LEADER', action = act{ActivateTab=0} },
+  { key = '2', mods = 'LEADER', action = act{ActivateTab=1} },
+  { key = '3', mods = 'LEADER', action = act{ActivateTab=2} },
+  { key = '4', mods = 'LEADER', action = act{ActivateTab=3} },
+  { key = '5', mods = 'LEADER', action = act{ActivateTab=4} },
+  { key = '6', mods = 'LEADER', action = act{ActivateTab=5} },
+  { key = '7', mods = 'LEADER', action = act{ActivateTab=6} },
+  { key = '8', mods = 'LEADER', action = act{ActivateTab=7} },
+  { key = '9', mods = 'LEADER', action = act{ActivateTab=8} },
+  { key = 'x', mods = 'LEADER', action = act.CloseCurrentPane { confirm = false } },
+  { key = 'h', mods = 'LEADER', action = act{ActivatePaneDirection="Left"} },
+  { key = 'j', mods = 'LEADER', action = act{ActivatePaneDirection="Down"} },
+  { key = 'k', mods = 'LEADER', action = act{ActivatePaneDirection="Up"} },
+  { key = 'l', mods = 'LEADER', action = act{ActivatePaneDirection="Right"} },
+
   -- Fix key encoding for ANSI sequences
   { key = 'a', mods = 'CTRL', action = act.SendString '\x01' },
   { key = 'b', mods = 'CTRL', action = act.SendString '\x02' },
@@ -70,45 +154,6 @@ config.keys = {
   { key = 'DownArrow', action = act.SendString '\x1b[B' },
   { key = 'RightArrow', action = act.SendString '\x1b[C' },
   { key = 'LeftArrow', action = act.SendString '\x1b[D' },
-
-  -- Navigation bindings
-  { key = 'w', mods = 'ALT', action = act.CloseCurrentPane { confirm = false }, },
-  { key = 't', mods = 'ALT', action = act.SpawnTab 'CurrentPaneDomain' },
-  { key = 'c', mods = 'ALT', action = act.SpawnTab 'CurrentPaneDomain' },
-  { key = 's', mods = 'ALT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
-  { key = 'd', mods = 'ALT', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
-  { key = 'h', mods = 'ALT', action = act{ActivatePaneDirection="Left"} },
-  { key = 'j', mods = 'ALT', action = act{ActivatePaneDirection="Down"} },
-  { key = 'k', mods = 'ALT', action = act{ActivatePaneDirection="Up"} },
-  { key = 'l', mods = 'ALT', action = act{ActivatePaneDirection="Right"} },
-  { key = '1', mods = 'ALT', action = act{ActivateTab=0} },
-  { key = '2', mods = 'ALT', action = act{ActivateTab=1} },
-  { key = '3', mods = 'ALT', action = act{ActivateTab=2} },
-  { key = '4', mods = 'ALT', action = act{ActivateTab=3} },
-  { key = '5', mods = 'ALT', action = act{ActivateTab=4} },
-  { key = '6', mods = 'ALT', action = act{ActivateTab=5} },
-  { key = '7', mods = 'ALT', action = act{ActivateTab=6} },
-  { key = '8', mods = 'ALT', action = act{ActivateTab=7} },
-  { key = '9', mods = 'ALT', action = act{ActivateTab=8} },
-
-  -- Tmux like binds using a leader key
-  { key = '"', mods = 'LEADER|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
-  { key = '%', mods = 'LEADER|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
-  { key = 'c', mods = 'LEADER', action = act.SpawnTab 'CurrentPaneDomain' },
-  { key = '1', mods = 'LEADER', action = act{ActivateTab=0} },
-  { key = '2', mods = 'LEADER', action = act{ActivateTab=1} },
-  { key = '3', mods = 'LEADER', action = act{ActivateTab=2} },
-  { key = '4', mods = 'LEADER', action = act{ActivateTab=3} },
-  { key = '5', mods = 'LEADER', action = act{ActivateTab=4} },
-  { key = '6', mods = 'LEADER', action = act{ActivateTab=5} },
-  { key = '7', mods = 'LEADER', action = act{ActivateTab=6} },
-  { key = '8', mods = 'LEADER', action = act{ActivateTab=7} },
-  { key = '9', mods = 'LEADER', action = act{ActivateTab=8} },
-  { key = 'x', mods = 'LEADER', action = act.CloseCurrentPane { confirm = false } },
-  { key = 'h', mods = 'LEADER', action = act{ActivatePaneDirection="Left"} },
-  { key = 'j', mods = 'LEADER', action = act{ActivatePaneDirection="Down"} },
-  { key = 'k', mods = 'LEADER', action = act{ActivatePaneDirection="Up"} },
-  { key = 'l', mods = 'LEADER', action = act{ActivatePaneDirection="Right"} },
 }
 
 -- Tab bar style
