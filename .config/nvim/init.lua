@@ -36,7 +36,7 @@ vim.keymap.set("i", "jj", "<ESC>", { silent = true })
 vim.g.clipboard = "tmux"
 vim.g.autoformat = false
 vim.o.relativenumber = true
-vim.o.colorcolumn = "80"
+vim.o.colorcolumn = "81"
 vim.o.mouse = "nvi"
 vim.o.autoindent = true
 vim.o.number = true
@@ -48,6 +48,7 @@ vim.o.scrolloff = 10
 vim.o.ignorecase = true
 vim.o.signcolumn = "yes:1"
 vim.o.list = true
+vim.o.winborder = "rounded"
 
 -- Setup lazy.nvim
 require("lazy").setup({
