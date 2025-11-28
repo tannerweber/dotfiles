@@ -219,7 +219,6 @@ require("lazy").setup({
       "folke/snacks.nvim",
       priority = 1000,
       lazy = false,
-      ---@type snacks.config
       opts = {
         animate = { duration = 10, fps = 144 },
         bigfile = { enabled = true },
