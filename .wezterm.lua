@@ -38,6 +38,7 @@ config.font = wezterm.font 'Hack Nerd Font'
 config.window_decorations = 'RESIZE'
 config.use_fancy_tab_bar = true
 config.enable_tab_bar = true
+config.scrollback_lines = 5000
 
 -- Keyboard Encoding
 config.allow_win32_input_mode = false
