@@ -43,3 +43,9 @@ keybinds clear-defaults=true {
         bind "Ctrl b" { SwitchToMode "Tmux"; }
     }
 }
+
+plugins {
+    tab-bar { path "tab-bar"; }
+    strider { path "strider"; }
+    compact-bar { path "compact-bar"; }
+}
