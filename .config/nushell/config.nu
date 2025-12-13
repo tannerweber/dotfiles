@@ -1,16 +1,21 @@
 # config.nu
 #
-# Installed by:
-# version = "0.108.0"
-#
-# See https://www.nushell.sh/book/configuration.html
-#
-# You can also pretty-print and page through the documentation for configuration
-# options using:
+# pretty-print and page through the documentation
 #     config nu --doc | nu-highlight | less -R
 
+# Aliases
+alias la = ls -a
+alias gs = git status
+alias gd = git diff
+alias gl = git log
+alias gc = git commit -m
+
+# Preferences
 $env.config.buffer_editor = "nvim"
-$env.config.use_kitty_protocol = false
+$env.config.show_banner = false
+
+# Terminal compatability
+$env.config.use_kitty_protocol = true
 $env.config.shell_integration.osc133 = false
 $env.config.shell_integration.osc633 = false
 
