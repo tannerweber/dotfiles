@@ -155,8 +155,6 @@ config.keys = {
   { key = 'DownArrow', action = act.SendString '\x1b[B' },
   { key = 'RightArrow', action = act.SendString '\x1b[C' },
   { key = 'LeftArrow', action = act.SendString '\x1b[D' },
-  { key = 'Enter', action = act.SendString '\x0A[D' },
-  { key = 'Backspace', action = act.SendString '\x08[D' },
 }
 
 -- Tab bar style
