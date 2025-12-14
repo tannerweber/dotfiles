@@ -113,6 +113,7 @@ config.keys = {
   { key = '%', mods = 'ALT|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
   { key = '"', mods = 'ALT|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
   { key = 'p', mods = 'ALT', action = act.ActivateCommandPalette },
+  { key = 'f', mods = 'ALT', action = act.Search 'CurrentSelectionOrEmptyString' },
 
   { key = 'h', mods = 'ALT', action = act{ActivatePaneDirection="Left"} },
   { key = 'j', mods = 'ALT', action = act{ActivatePaneDirection="Down"} },
