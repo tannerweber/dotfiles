@@ -68,12 +68,14 @@ config.allow_win32_input_mode = false
 config.enable_kitty_keyboard = true
 
 -- Start in fullscreen
+--[[
 local mux = wezterm.mux
 wezterm.on('gui-startup', function(window)
   local tab, pane, window = mux.spawn_window(cmd or {})
   local gui_window = window:gui_window();
   gui_window:perform_action(wezterm.action.ToggleFullScreen, pane)
 end)
+--]]
 
 -- Binds
 local act = wezterm.action
