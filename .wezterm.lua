@@ -278,7 +278,7 @@ end
 
 wezterm.on('update-right-status', function(window, pane)
   local date = wezterm.strftime '%a %b %-d %I:%M %p'
-  local hostname = wezterm.hostname()
+  local domain= pane:get_domain_name()
   local cwd = get_cwd(pane)
   window:set_right_status(wezterm.format {
     -- Current Working Directory
@@ -307,16 +307,16 @@ wezterm.on('update-right-status', function(window, pane)
     { Foreground = { Color = col_crust } },
     { Background = { Color = col_mantle } },
     { Text = ' ' },
-    -- Hostname
+    -- Domain
     { Foreground = { Color = '#b4befe' } },
     { Background = { Color = col_mantle } },
     { Text = '' },
     { Foreground = { Color = 'black' } },
     { Background = { Color = '#b4befe' } },
-    { Text = '󰪫 ' },
+    { Text = '󰇗 ' },
     { Foreground = { Color = 'white' } },
     { Background = { Color = col_crust } },
-    { Text = ' ' .. hostname .. ' ' },
+    { Text = ' ' .. domain .. ' ' },
     { Foreground = { Color = col_crust } },
     { Background = { Color = col_mantle } },
     { Text = ' ' },
