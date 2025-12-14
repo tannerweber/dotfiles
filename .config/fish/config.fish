@@ -30,7 +30,7 @@ if status is-interactive
     set fish_cursor_external line
 
     # bat
-    set -x MANPAGER "sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
+    set -x MANPAGER "bat -plman"
 
     # yazi
     function y
