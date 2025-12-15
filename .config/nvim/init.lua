@@ -58,14 +58,6 @@ vim.o.winborder = 'rounded'
 require('lazy').setup({
   spec = {
     {
-      'Saghen/blink.cmp',
-      dependencies = { 'rafamadriz/friendly-snippets' },
-    },
-    {
-      'akinsho/bufferline.nvim',
-      lazy = true,
-    },
-    {
       'nvim-mini/mini.pairs',
       version = '*',
       config = function()
