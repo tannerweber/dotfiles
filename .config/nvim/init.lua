@@ -176,12 +176,14 @@ require("lazy").setup({
         severity_sort = true,
       },
       config = function()
-        vim.lsp.enable("lua_ls")
-        vim.lsp.enable("clangd")
-        vim.lsp.enable("pyright")
-        vim.lsp.enable("rust_analyzer")
-        vim.lsp.enable("fish_lsp")
-        vim.lsp.enable("bashls")
+        vim.lsp.enable({
+          'lua_ls',
+          'clangd',
+          'pyright',
+          'rust_analyzer',
+          'fish_lsp',
+          'bashls',
+        })
         vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP definition" })
         vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "Format code with LSP" })
       end,
