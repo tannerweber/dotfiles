@@ -353,9 +353,11 @@ require("lazy").setup({
         ensure_installed = {
           "bash",
           "c",
+          "fish",
           "lua",
           "luadoc",
           "luap",
+          "nu",
           "python",
           "rust",
           "toml",
