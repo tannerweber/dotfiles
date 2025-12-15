@@ -29,16 +29,17 @@ config.unix_domains = {
 }
 --config.default_gui_startup_args = { 'connect', 'my_unix_domain' }
 
--- Windows Powershell 7
+-- Windows Settings
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
   --config.default_prog = { 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' }
   config.default_prog = { 'C:\\Program Files\\nu\\bin\\nu.exe' }
+  --config.win32_system_backdrop = 'Tabbed'
 end
 
 -- Appearance
 config.max_fps = 255
 config.color_scheme = 'Paul Millr (Gogh)'
-config.window_background_opacity = 0.90
+config.window_background_opacity = 1.0
 config.font_size = 12
 config.font = wezterm.font 'Hack Nerd Font'
 config.window_decorations = 'RESIZE'
@@ -59,6 +60,16 @@ config.colors = {
       bg_color = col_mantle,
       fg_color = 'white',
       intensity = 'Bold',
+    },
+  },
+}
+config.window_background_gradient = {
+  colors = { '#100000', '#0a0040', '#110022' },
+  orientation = {
+    Radial = {
+      cx = 0.0,
+      cy = 0.0,
+      radius = 1.0,
     },
   },
 }
