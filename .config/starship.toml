@@ -247,6 +247,16 @@ symbol = " "
 style = "fg:#FFFFFF bg:#86BBD8"
 format = '[ $symbol$state( \($name\)) ]($style)'
 
+[ocaml]
+symbol = " "
+style = "fg:#FFFFFF bg:#86BBD8"
+format = '[ $symbol($version )(\($switch_indicator$switch_name\) )]($style)'
+
+[odin]
+symbol = "Ø "
+style = "fg:#FFFFFF bg:#86BBD8"
+format = '[ $symbol($version )]($style)'
+
 [package]
 style = "fg:#FFFFFF bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
