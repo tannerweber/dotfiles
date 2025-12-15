@@ -224,29 +224,7 @@ require("lazy").setup({
       opts = {
         animate = { duration = 10, fps = 144 },
         bigfile = { enabled = true },
-        dashboard = {
-          enabled = true,
-          preset = {
-            keys = {
-              { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.smart()" },
-              {
-                icon = " ",
-                key = "g",
-                desc = "Find Text",
-                action = ":lua Snacks.dashboard.pick('live_grep')",
-              },
-              {
-                icon = " ",
-                key = "c",
-                desc = "Config",
-                action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
-              },
-              { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
-              { icon = " ", key = "u", desc = "Help poor children in Uganda!", action = ":help iccf" },
-              { icon = " ", key = "q", desc = "Quit", action = ":qa" },
-            },
-          },
-        },
+        dashboard = { enabled = false },
         explorer = { enabled = false },
         indent = { enabled = true },
         input = { enabled = true },
