@@ -32,9 +32,14 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = false
 
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
+vim.keymap.set("n", "<leader>e", function()
+    vim.cmd("20Lexplore")
+  end,
+  { desc = "Lexplore" })
 
 vim.g.clipboard = "tmux"
 vim.g.autoformat = false
+vim.g.netrw_banner = 0
 vim.o.relativenumber = true
 vim.o.colorcolumn = "81"
 vim.o.mouse = "nvi"
@@ -235,6 +240,7 @@ require("lazy").setup({
         scroll = { enabled = true },
         statuscolumn = { enabled = true },
         words = { enabled = true },
+        zen = { enabled = false },
       },
       keys = {
         {
@@ -252,20 +258,6 @@ require("lazy").setup({
           desc = "Grep",
         },
         {
-          "<leader>e",
-          function()
-            Snacks.explorer()
-          end,
-          desc = "File Explorer",
-        },
-        {
-          "<leader>z",
-          function()
-            Snacks.zen()
-          end,
-          desc = "Toggle Zen Mode",
-        },
-        {
           "gd",
           function()
             Snacks.picker.lsp_definitions()
@@ -279,7 +271,6 @@ require("lazy").setup({
           end,
           desc = "Goto Declaration",
         },
-        --{ "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
         {
           "gI",
           function()
@@ -293,20 +284,6 @@ require("lazy").setup({
             Snacks.picker.lsp_type_definitions()
           end,
           desc = "Goto T[y]pe Definition",
-        },
-        {
-          "<leader>ss",
-          function()
-            Snacks.picker.lsp_symbols()
-          end,
-          desc = "LSP Symbols",
-        },
-        {
-          "<leader>sS",
-          function()
-            Snacks.picker.lsp_workspace_symbols()
-          end,
-          desc = "LSP Workspace Symbols",
         },
       },
     },
