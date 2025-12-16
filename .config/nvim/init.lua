@@ -198,10 +198,6 @@ require('lazy').setup({
         })
       end,
     },
-    {
-      'nvim-lua/plenary.nvim',
-      lazy = true,
-    },
     --------------------------------------------- Snacks ----------------------
     {
       'folke/snacks.nvim',
