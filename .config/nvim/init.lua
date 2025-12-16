@@ -72,17 +72,30 @@ require('lazy').setup({
       config = function()
         local harpoon = require('harpoon')
         harpoon:setup() -- Required
+
+        vim.keymap.set('n', '<C-a>', function()
+          harpoon:list():add()
+        end, { desc = 'Harpoon add' })
         vim.keymap.set('n', '<leader>a', function()
           harpoon:list():add()
         end, { desc = 'Harpoon add' })
+
+        vim.keymap.set('n', '<C-h>', function()
+          harpoon.ui:toggle_quick_menu(harpoon:list())
+        end, { desc = 'Harpoon list' })
         vim.keymap.set('n', '<leader>h', function()
           harpoon.ui:toggle_quick_menu(harpoon:list())
         end, { desc = 'Harpoon list' })
+
         for i = 1, 9 do
           local ctrl = string.format('<C-%d>', i)
           local leader = string.format('<leader>%d', i)
-          vim.keymap.set({ 'n', 'i', 'v' }, ctrl, function() harpoon:list():select(i) end, { desc = '󱡅 Harpoon to ' .. i })
-          vim.keymap.set({ 'n', 'v' }, leader, function() harpoon:list():select(i) end, { desc = '󱡅 Harpoon to ' .. i })
+          vim.keymap.set({ 'n', 'i', 'v' }, ctrl, function()
+            harpoon:list():select(i)
+          end, { desc = '󱡅 Harpoon to ' .. i })
+          vim.keymap.set({ 'n', 'v' }, leader, function()
+            harpoon:list():select(i)
+          end, { desc = '󱡅 Harpoon to ' .. i })
         end
       end,
     },
