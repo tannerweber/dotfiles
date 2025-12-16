@@ -161,7 +161,6 @@ require('lazy').setup({
           'fish_lsp',
           'bashls',
         })
-        vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, { desc = 'Format code with LSP' })
       end,
     },
     --------------------------------------------- Lua Line --------------------
@@ -390,5 +389,11 @@ vim.cmd.colorscheme('tokyonight-night')
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
+  end,
+})
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, { desc = 'Format code with LSP' })
   end,
 })
