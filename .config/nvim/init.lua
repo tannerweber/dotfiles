@@ -393,7 +393,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(args)
+  callback = function()
     vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, { desc = 'Format code with LSP' })
   end,
 })
