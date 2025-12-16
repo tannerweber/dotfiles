@@ -8,6 +8,9 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = false
 
+vim.keymap.set('n', '<leader>pu', function()
+  vim.pack.update()
+end, { desc = 'Update plugins' })
 vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
 vim.keymap.set('n', '<leader>e', function()
   vim.cmd('20Lexplore')
@@ -63,33 +66,33 @@ vim.pack.add({
 --------------------------------------------- Mini Pairs -----------------------
 require('mini.pairs').setup()
 --------------------------------------------- Harpoon --------------------------
--- local harpoon = require('harpoon')
--- harpoon:setup() -- Required
---
--- vim.keymap.set('n', '<C-a>', function()
---   harpoon:list():add()
--- end, { desc = 'Harpoon add' })
--- vim.keymap.set('n', '<leader>a', function()
---   harpoon:list():add()
--- end, { desc = 'Harpoon add' })
---
--- vim.keymap.set('n', '<C-h>', function()
---   harpoon.ui:toggle_quick_menu(harpoon:list())
--- end, { desc = 'Harpoon list' })
--- vim.keymap.set('n', '<leader>h', function()
---   harpoon.ui:toggle_quick_menu(harpoon:list())
--- end, { desc = 'Harpoon list' })
---
--- for i = 1, 9 do
---   local ctrl = string.format('<C-%d>', i)
---   local leader = string.format('<leader>%d', i)
---   vim.keymap.set({ 'n', 'i', 'v' }, ctrl, function()
---     harpoon.list():select(i)
---   end, { desc = '󱡅 Harpoon to ' .. i })
---   vim.keymap.set({ 'n', 'v' }, leader, function()
---     harpoon.list():select(i)
---   end, { desc = '󱡅 Harpoon to ' .. i })
--- end
+local harpoon = require('harpoon')
+harpoon:setup() -- Required
+
+vim.keymap.set('n', '<C-a>', function()
+  harpoon:list():add()
+end, { desc = 'Harpoon add' })
+vim.keymap.set('n', '<leader>a', function()
+  harpoon:list():add()
+end, { desc = 'Harpoon add' })
+
+vim.keymap.set('n', '<C-h>', function()
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = 'Harpoon list' })
+vim.keymap.set('n', '<leader>h', function()
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = 'Harpoon list' })
+
+for i = 1, 9 do
+  local ctrl = string.format('<C-%d>', i)
+  local leader = string.format('<leader>%d', i)
+  vim.keymap.set({ 'n', 'i', 'v' }, ctrl, function()
+    harpoon.list():select(i)
+  end, { desc = '󱡅 Harpoon to ' .. i })
+  vim.keymap.set({ 'n', 'v' }, leader, function()
+    harpoon.list():select(i)
+  end, { desc = '󱡅 Harpoon to ' .. i })
+end
 --------------------------------------------- Git Signs ------------------------
 require('gitsigns').setup()
 --------------------------------------------- LSP ------------------------------
@@ -198,28 +201,23 @@ require('tokyonight').setup({
 vim.cmd.colorscheme('tokyonight-night')
 --------------------------------------------- Treesitter -----------------------
 require('nvim-treesitter').setup({
-  lazy = false,
-  branch = 'main',
-  build = ':TSUpdate',
-  opts = {
-    highlight = { enable = true },
-    indent = { enable = true },
-    ensure_installed = {
-      'bash',
-      'c',
-      'fish',
-      'lua',
-      'luadoc',
-      'luap',
-      'nu',
-      'python',
-      'rust',
-      'toml',
-      'yaml',
-      'xml',
-      'vim',
-      'vimdoc',
-    },
+  highlight = { enable = true },
+  indent = { enable = true },
+  ensure_installed = {
+    'bash',
+    'c',
+    'fish',
+    'lua',
+    'luadoc',
+    'luap',
+    'nu',
+    'python',
+    'rust',
+    'toml',
+    'yaml',
+    'xml',
+    'vim',
+    'vimdoc',
   },
 })
 --------------------------------------------- Trouble --------------------------
