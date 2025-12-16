@@ -211,11 +211,26 @@ require('lazy').setup({
       },
       keys = {
         {
-          '<leader>ff',
+          '<leader>fa',
           function()
             Snacks.picker.smart()
           end,
-          desc = 'Smart Find Files',
+          desc = 'Find All Files',
+        },
+        {
+          '<leader>fb',
+          function()
+            Snacks.picker.buffers()
+          end,
+          desc = 'Buffers',
+        },
+        {
+          '<leader>ff',
+          function()
+            local cwd = vim.fn.getcwd()
+            Snacks.picker.files({ cwd = cwd })
+          end,
+          desc = 'Find Project Files',
         },
         {
           '<leader>fg',
@@ -251,6 +266,27 @@ require('lazy').setup({
             Snacks.picker.lsp_type_definitions()
           end,
           desc = 'Goto T[y]pe Definition',
+        },
+        {
+          '<leader>fd',
+          function()
+            Snacks.picker.diagnostics()
+          end,
+          desc = 'Diagnostics',
+        },
+        {
+          '<leader>fD',
+          function()
+            Snacks.picker.diagnostics_buffer()
+          end,
+          desc = 'Buffer Diagnostics',
+        },
+        {
+          '<leader>fh',
+          function()
+            Snacks.picker.help()
+          end,
+          desc = 'Help Pages',
         },
       },
     },
