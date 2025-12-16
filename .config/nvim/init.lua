@@ -161,7 +161,6 @@ require('lazy').setup({
           'fish_lsp',
           'bashls',
         })
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'LSP definition' })
         vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, { desc = 'Format code with LSP' })
       end,
     },
