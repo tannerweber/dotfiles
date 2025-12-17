@@ -119,12 +119,10 @@ require('lazy').setup({
           'saghen/blink.cmp',
           dependences = {
             'rafamadriz/friendly-snippets',
-            'folke/lazydev.nvim',
           },
           version = '1.6',
           opts = {
             keymap = {
-              preset = 'default',
               ['<C-l>'] = { 'accept' },
             },
             fuzzy = {
@@ -134,26 +132,6 @@ require('lazy').setup({
                 'sort_text',
                 'label',
               },
-            },
-            sources = {
-              default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
-              providers = {
-                lazydev = {
-                  name = 'LazyDev',
-                  module = 'lazydev.integrations.blink',
-                  -- make lazydev completions top priority (see `:h blink.cmp`)
-                  score_offset = 100,
-                },
-              },
-            },
-          },
-        },
-        {
-          'folke/lazydev.nvim',
-          ft = 'lua', -- only load on lua files
-          opts = {
-            library = {
-              { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
             },
           },
         },
@@ -167,6 +145,18 @@ require('lazy').setup({
           'rust_analyzer',
           'fish_lsp',
           'bashls',
+        })
+        vim.lsp.config('lua_ls', {
+          settings = {
+            Lua = {
+              workspace = {
+                checkThirdParty = false,
+                library = {
+                  vim.env.VIMRUNTIME,
+                },
+              },
+            },
+          },
         })
       end,
     },
