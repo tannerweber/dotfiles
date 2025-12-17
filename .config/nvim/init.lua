@@ -8,7 +8,14 @@
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-  local out = vim.fn.system({ 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath })
+  local out = vim.fn.system({
+    'git',
+    'clone',
+    '--filter=blob:none',
+    '--branch=stable',
+    lazyrepo,
+    lazypath,
+  })
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
@@ -45,7 +52,8 @@ vim.o.mouse = 'nvi'
 vim.o.autoindent = true
 vim.o.number = true
 vim.o.cursorline = true
-vim.o.guicursor = 'n-v-c-sm:block-blinkwait1000-blinkon1000-blinkoff1,i-ci-ve:ver25-Cursor,r-cr-o:hor20'
+vim.o.guicursor =
+  'n-v-c-sm:block-blinkwait1000-blinkon1000-blinkoff1,i-ci-ve:ver25-Cursor,r-cr-o:hor20'
 vim.o.completeopt = 'fuzzy,menu,menuone,noinsert,noselect,popup,preview'
 vim.o.termguicolors = true
 vim.o.scrolloff = 10
@@ -394,6 +402,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function()
-    vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, { desc = 'Format code with LSP' })
+    vim.keymap.set(
+      'n',
+      '<leader>cf',
+      vim.lsp.buf.format,
+      { desc = 'Format code with LSP' }
+    )
   end,
 })
