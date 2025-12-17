@@ -33,19 +33,13 @@ vim.opt.rtp:prepend(lazypath)
 -- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = ' ' -- Space leader
 vim.g.maplocalleader = '\\'
+vim.g.clipboard = 'tmux'
+vim.g.autoformat = false
+vim.g.netrw_banner = 0
 
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = false
-
-vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
-vim.keymap.set('n', '<leader>e', function()
-  vim.cmd('20Lexplore')
-end, { desc = 'Lexplore' })
-
-vim.g.clipboard = 'tmux'
-vim.g.autoformat = false
-vim.g.netrw_banner = 0
 vim.o.relativenumber = true
 vim.o.colorcolumn = '81'
 vim.o.mouse = 'nvi'
@@ -61,6 +55,11 @@ vim.o.ignorecase = true
 vim.o.signcolumn = 'yes:1'
 vim.o.list = true
 vim.o.winborder = 'rounded'
+
+vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
+vim.keymap.set('n', '<leader>e', function()
+  vim.cmd('20Lexplore')
+end, { desc = 'Lexplore' })
 
 -- Setup lazy.nvim
 require('lazy').setup({
