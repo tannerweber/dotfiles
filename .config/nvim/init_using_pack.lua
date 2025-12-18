@@ -1,29 +1,16 @@
 -- Tanner Weber
 -- ~/.config/nvim/init.lua
 
-vim.g.mapleader = ' ' -- Space leader
+vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
-
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.expandtab = false
-
-vim.keymap.set('n', '<leader>pu', function()
-  vim.pack.update()
-end, { desc = 'Update plugins' })
-vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
-vim.keymap.set('n', '<leader>e', function()
-  vim.cmd('20Lexplore')
-end, { desc = 'Lexplore' })
-
 vim.g.clipboard = 'tmux'
 vim.g.autoformat = false
 vim.g.netrw_banner = 0
+
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 vim.o.relativenumber = true
 vim.o.colorcolumn = '81'
-vim.o.mouse = 'nvi'
-vim.o.autoindent = true
-vim.o.number = true
 vim.o.cursorline = true
 vim.o.guicursor =
   'n-v-c-sm:block-blinkwait1000-blinkon1000-blinkoff1,i-ci-ve:ver25-Cursor,r-cr-o:hor20'
@@ -35,6 +22,20 @@ vim.o.signcolumn = 'yes:1'
 vim.o.list = true
 vim.o.winborder = 'rounded'
 
+local function map(keys, command, desc)
+  vim.keymap.set('n', keys, command, { desc = desc })
+end
+local function map_func(keys, func, desc)
+  vim.keymap.set('n', keys, function()
+    func()
+  end, { desc = desc })
+end
+
+map_func('<leader>pu', vim.pack.update, 'Update plugins')
+vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
+vim.keymap.set('n', '<leader>e', function()
+  vim.cmd('20Lexplore')
+end, { desc = 'Lexplore' })
 --------------------------------------------- Plugins --------------------------
 vim.pack.add({
   {
@@ -138,6 +139,18 @@ vim.lsp.enable({
   'fish_lsp',
   'bashls',
 })
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME,
+        },
+      },
+    },
+  },
+})
 --------------------------------------------- Lua Line -------------------------
 require('lualine').setup({
   options = {
@@ -156,12 +169,12 @@ require('lualine').setup({
 })
 --------------------------------------------- Snacks ---------------------------
 require('snacks').setup({
-  animate = { enabled = false },
-  bigfile = { enabled = false },
+  animate = { duration = 10, fps = 144 },
+  bigfile = { enabled = true },
   dashboard = { enabled = false },
   explorer = { enabled = false },
   indent = { enabled = true },
-  input = { enabled = false },
+  input = { enabled = true },
   picker = { enabled = true },
   notifier = { enabled = true, timeout = 10000 },
   quickfile = { enabled = true },
@@ -171,25 +184,14 @@ require('snacks').setup({
   words = { enabled = true },
   zen = { enabled = false },
 })
-vim.keymap.set('n', '<leader>ff', function()
-  Snacks.picker.smart()
-end, { desc = 'Smart Find Files' })
-vim.keymap.set('n', '<leader>fg', function()
-  Snacks.picker.grep()
-end, { desc = 'Grep' })
-vim.keymap.set('n', 'gd', function()
-  Snacks.picker.lsp_definitions()
-end, { desc = 'Goto Definition' })
-vim.keymap.set('n', 'gD', function()
-  Snacks.picker.lsp_declarations()
-end, { desc = 'Goto Declaration' })
-vim.keymap.set('n', 'gI', function()
-  Snacks.picker.lsp_implementations()
-end, { desc = 'Goto Implementation' })
-vim.keymap.set('n', 'gy', function()
-  Snacks.picker.lsp_type_definitions()
-end, { desc = 'Goto T[y]pe Definition' })
-
+map_func('<leader>fa', Snacks.picker.smart, 'Find All Files')
+map_func('<leader>fb', Snacks.picker.buffers, 'Find Buffer Files')
+map_func('<leader>ff', Snacks.picker.files, 'Find Project Files')
+map_func('<leader>fg', Snacks.picker.grep, 'Grep')
+map_func('gd', Snacks.picker.lsp_definitions, 'Goto Definition')
+map_func('gD', Snacks.picker.lsp_declarations, 'Goto Declaration')
+map_func('gI', Snacks.picker.lsp_implementations, 'Goto Implementation')
+map_func('gy', Snacks.picker.lsp_type_definitions, 'Goto T[y]pe Definition')
 --------------------------------------------- Colorscheme ----------------------
 require('tokyonight').setup({
   transparent = true,
@@ -222,42 +224,24 @@ require('nvim-treesitter').setup({
 })
 --------------------------------------------- Trouble --------------------------
 require('trouble').setup()
-vim.keymap.set(
-  'n',
-  '<leader>xx',
-  '<cmd>Trouble diagnostics toggle<cr>',
-  { desc = 'Diagnostics (Trouble)' }
-)
-vim.keymap.set(
-  'n',
+map('<leader>xx', ':Trouble diagnostics toggle<cr>', 'Diagnostics (Trouble)')
+map(
   '<leader>xX',
   ':Trouble diagnostics toggle filter.buf=0<cr>',
-  { desc = 'Buffer Diagnostics (Trouble)' }
+  'Buf Diagnostics (Trouble)'
 )
-vim.keymap.set(
-  'n',
+map(
   '<leader>cs',
   ':Trouble symbols toggle focus=false<cr>',
-  { desc = 'Symbols (Trouble)' }
+  'Symbols (Trouble)'
 )
-vim.keymap.set(
-  'n',
+map(
   '<leader>cl',
   ':Trouble lsp toggle focus=false win.position=right<cr>',
-  { desc = 'LSP Definitions / references / ... (Trouble)' }
+  'LSP Definitions / references / ... (Trouble)'
 )
-vim.keymap.set(
-  'n',
-  '<leader>xL',
-  ':Trouble loclist toggle<cr>',
-  { desc = 'Location List (Trouble)' }
-)
-vim.keymap.set(
-  'n',
-  '<leader>xQ',
-  ':Trouble qflist toggle<cr>',
-  { desc = 'Quickfix List (Trouble)' }
-)
+map('<leader>xL', ':Trouble loclist toggle<cr>', 'Location List (Trouble)')
+map('<leader>xQ', ':Trouble qflist toggle<cr>', 'Quickfix List (Trouble)')
 --------------------------------------------- Which Key ------------------------
 require('which-key').setup({
   preset = 'helix',
