@@ -39,12 +39,8 @@ vim.g.netrw_banner = 0
 
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
-vim.o.expandtab = false
 vim.o.relativenumber = true
 vim.o.colorcolumn = '81'
-vim.o.mouse = 'nvi'
-vim.o.autoindent = true
-vim.o.number = true
 vim.o.cursorline = true
 vim.o.guicursor =
   'n-v-c-sm:block-blinkwait1000-blinkon1000-blinkoff1,i-ci-ve:ver25-Cursor,r-cr-o:hor20'
