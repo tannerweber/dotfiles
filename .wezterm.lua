@@ -194,7 +194,7 @@ config.keys = {
 }
 
 -- Tab bar style
-function remove_exe(text)
+local function remove_exe(text)
   if text:sub(-4) == '.exe' then
     text = wezterm.truncate_right(text, #text - 4)
   end
@@ -202,7 +202,7 @@ function remove_exe(text)
   return text
 end
 
-function tab_title(tab_info)
+local function tab_title(tab_info)
   local title = tab_info.tab_title
   -- if the tab title is explicitly set, take that
   if title and #title > 0 then
@@ -273,14 +273,14 @@ wezterm.on('update-status', function(window, pane)
   })
 end)
 
-function basename(path)
+local function basename(path)
   path = path:gsub('/+$', '')
   local name = path:match("([^/]+)$")
   name = name .. '/'
   return name or ''
 end
 
-function get_cwd(pane)
+local function get_cwd(pane)
   local cwd_uri = pane:get_current_working_dir()
   local cwd = 'undefined'
   if cwd_uri then
