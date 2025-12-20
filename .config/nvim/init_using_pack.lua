@@ -1,6 +1,9 @@
 -- Tanner Weber
 -- ~/.config/nvim/init.lua
 
+vim.lsp.document_color.enable()
+
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 vim.g.clipboard = 'tmux'
