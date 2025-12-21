@@ -38,6 +38,7 @@ vim.g.netrw_banner = 0
 
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
+vim.o.number = true
 vim.o.relativenumber = true
 vim.o.colorcolumn = '81'
 vim.o.cursorline = true
