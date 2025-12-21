@@ -282,6 +282,15 @@ time_format = "%r" # Hour:Minute Format
 style = "fg:#FFFFFF bg:#33658A"
 format = '[ $time ]($style)'
 
+[typst]
+style = "fg:#FFFFFF bg:#86BBD8"
+format = '[ $symbol($version )]($style)'
+
+[zig]
+symbol = '[Z]'
+style = "fg:#FFFFFF bg:#86BBD8"
+format = '[ $symbol($version )]($style)'
+
 [shell]
 disabled = false
 style = 'fg:#000000 bg:#FDFD96'
