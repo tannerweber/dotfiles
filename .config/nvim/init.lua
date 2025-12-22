@@ -282,6 +282,7 @@ require('lazy').setup({
         },
       },
     },
+    --------------------------------------------- Tokyonight -------------------
     {
       'folke/tokyonight.nvim',
       lazy = false,
@@ -294,6 +295,7 @@ require('lazy').setup({
         },
       },
     },
+    --------------------------------------------- Treesitter -------------------
     {
       'nvim-treesitter/nvim-treesitter',
       lazy = false,
@@ -320,6 +322,7 @@ require('lazy').setup({
         },
       },
     },
+    --------------------------------------------- Trouble ----------------------
     {
       'folke/trouble.nvim',
       dependencies = { 'nvim-tree/nvim-web-devicons' },
