@@ -35,6 +35,7 @@ vim.g.maplocalleader = '\\'
 vim.g.clipboard = 'tmux'
 vim.g.autoformat = false
 vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 3
 
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
