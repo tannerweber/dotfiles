@@ -1,14 +1,13 @@
 #!/usr/bin/env fish
 # Tanner Weber
 
-set src_repo '~/.dotfiles' # Where the cloned git repo is
+set src_repo $HOME'/.dotfiles' # Where the cloned git repo is
 
 function symlink -a src dest
 	set overwrite 'n'
 	ln -s $src $dest
 	if test $status -ne 0
-		echo 'File already exists at destination'
-		echo 'Overwrite? (y/n)'
+		echo 'Overwrite destination? (y/n)'
 		read overwrite
 		if test $overwrite = 'y'
 			echo 'Overwriting'
@@ -17,7 +16,9 @@ function symlink -a src dest
 				echo 'Linked successfully'
 			end
 		else
+			set_color red
 			echo 'Not overwriting'
+			set_color normal
 		end
 	else
 		echo 'Linked successfully'
@@ -26,15 +27,12 @@ end
 
 # fish
 symlink $src_repo/.config/fish/config.fish	~/.config/fish/config.fish
-symlink $src_repo/.config/fish/fish_variables	~/.config/fish/fish_variables
 
 # bash
-symlink $src_repo/.bash_profile		~/.bash_profile
 symlink $src_repo/.bashrc			~/.bashrc
 
 # zsh
 symlink $src_repo/.zshrc			~/.zshrc
-symlink $src_repo/.zsh_profile		~/.zsh_profile
 
 # starship
 symlink $src_repo/.config/starship.toml		~/.config/starship.toml
