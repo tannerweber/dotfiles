@@ -323,6 +323,10 @@ require('lazy').setup({
         },
       },
     },
+    {
+      'nvim-treesitter/nvim-treesitter-context',
+      lazy = false,
+    },
     --------------------------------------------- Trouble ----------------------
     {
       'folke/trouble.nvim',
