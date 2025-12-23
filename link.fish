@@ -21,7 +21,10 @@ function symlink -a src dest
 			set_color normal
 		end
 	else
-		echo 'Linked successfully'
+		set_color green
+		echo -n 'Linked successfully: '
+		echo $dest
+		set_color normal
 	end
 end
 
