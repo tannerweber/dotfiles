@@ -188,6 +188,11 @@ symbol = " "
 style = "fg:#FFFFFF bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
+[fennel]
+symbol = " "
+style = "fg:#FFFFFF bg:#86BBD8"
+format = '[ $symbol($version) ]($style)'
+
 [git_branch]
 symbol = ""
 style = "fg:#FFFFFF bg:#FCA17D"
@@ -250,12 +255,12 @@ format = '[ $symbol$state( \($name\)) ]($style)'
 [ocaml]
 symbol = " "
 style = "fg:#FFFFFF bg:#86BBD8"
-format = '[ $symbol($version )(\($switch_indicator$switch_name\) )]($style)'
+format = '[ $symbol($version )(\($switch_indicator$switch_name\)) ]($style)'
 
 [odin]
 symbol = "Ø "
 style = "fg:#FFFFFF bg:#86BBD8"
-format = '[ $symbol($version )]($style)'
+format = '[ $symbol($version) ]($style)'
 
 [package]
 style = "fg:#FFFFFF bg:#86BBD8"
@@ -284,12 +289,12 @@ format = '[ $time ]($style)'
 
 [typst]
 style = "fg:#FFFFFF bg:#86BBD8"
-format = '[ $symbol($version )]($style)'
+format = '[ $symbol($version) ]($style)'
 
 [zig]
 symbol = '[Z]'
 style = "fg:#FFFFFF bg:#86BBD8"
-format = '[ $symbol($version )]($style)'
+format = '[ $symbol($version) ]($style)'
 
 [shell]
 disabled = false
