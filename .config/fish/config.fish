@@ -12,6 +12,7 @@ if status is-interactive
     set -x LS_COLORS "di=1;33:*.o=0;34:*.txt=01;31"
 
     # Abbreviations
+	abbr --add ... cd .. \&\& cd ..
     abbr --add la "eza -al --icons"
 	abbr --add gs git status
 	abbr --add gd git diff
