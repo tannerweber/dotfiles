@@ -49,7 +49,7 @@ vim.o.completeopt = 'fuzzy,menu,menuone,noinsert,noselect,popup,preview'
 vim.o.termguicolors = true
 vim.o.scrolloff = 10
 vim.o.ignorecase = true
-vim.o.signcolumn = 'yes:1'
+vim.o.signcolumn = 'yes'
 vim.o.list = true
 vim.o.winborder = 'rounded'
 
@@ -142,6 +142,7 @@ require('lazy').setup({
           'rust_analyzer',
           'fish_lsp',
           'bashls',
+          'clojure_lsp',
         })
         vim.lsp.config('lua_ls', {
           settings = {
@@ -154,6 +155,20 @@ require('lazy').setup({
               },
             },
           },
+        })
+        vim.diagnostic.config({
+          underline = true,
+          update_in_insert = false,
+          severity_sort = true,
+          signs = {
+            text = {
+              [vim.diagnostic.severity.ERROR] = ' ',
+              [vim.diagnostic.severity.WARN] = ' ',
+              [vim.diagnostic.severity.HINT] = ' ',
+              [vim.diagnostic.severity.INFO] = ' ',
+            },
+          },
+          virtual_lines = {},
         })
       end,
     },
