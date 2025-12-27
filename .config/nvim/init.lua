@@ -168,7 +168,6 @@ require('lazy').setup({
               [vim.diagnostic.severity.INFO] = ' ',
             },
           },
-          virtual_lines = {},
         })
       end,
     },
@@ -416,5 +415,22 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.buf.format,
       { desc = 'Format code with LSP' }
     )
+    vim.keymap.set('n', '<leader>dl', function()
+      local new_config = not vim.diagnostic.config().virtual_lines
+      vim.diagnostic.config({ virtual_lines = new_config })
+    end, { desc = 'Toggle virtual lines' })
+    vim.keymap.set('n', '<leader>dt', function()
+      if vim.diagnostic.config().virtual_text == true then
+        vim.diagnostic.config({ virtual_text = false })
+      else
+        vim.diagnostic.config({
+          virtual_text = {
+            spacing = 4,
+            source = 'if_many',
+            prefix = '●',
+          },
+        })
+      end
+    end, { desc = 'Toggle virtual text' })
   end,
 })
