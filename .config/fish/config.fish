@@ -6,6 +6,7 @@ if status is-interactive
     fish_add_path $HOME/.local/nvim-linux-x86_64/bin/
     fish_add_path $HOME/.local/lua-language-server-3.15.0-linux-x64/bin/
     fish_add_path $HOME/.local/clangd_21.1.0/bin/
+	fish_add_path $HOME/.opencode/bin
 
 	# Environment Variables
 	set -x EDITOR "nvim"
