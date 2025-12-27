@@ -420,7 +420,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.diagnostic.config({ virtual_lines = new_config })
     end, { desc = 'Toggle virtual lines' })
     vim.keymap.set('n', '<leader>dt', function()
-      if vim.diagnostic.config().virtual_text == true then
+      if vim.diagnostic.config().virtual_text ~= false then
         vim.diagnostic.config({ virtual_text = false })
       else
         vim.diagnostic.config({
