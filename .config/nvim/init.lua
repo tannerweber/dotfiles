@@ -341,6 +341,10 @@ require('lazy').setup({
       'nvim-treesitter/nvim-treesitter-context',
       lazy = false,
     },
+    {
+      'HiPhish/rainbow-delimiters.nvim',
+      submodules = false,
+    },
     --------------------------------------------- Trouble ----------------------
     {
       'folke/trouble.nvim',
