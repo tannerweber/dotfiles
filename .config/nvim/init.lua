@@ -323,6 +323,7 @@ require('lazy').setup({
           'bash',
           'c',
           'fish',
+          'kdl',
           'lua',
           'luadoc',
           'luap',
