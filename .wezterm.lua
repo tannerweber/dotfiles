@@ -64,7 +64,7 @@ config.colors = {
   },
 }
 config.window_background_gradient = {
-  colors = { '#100000', '#0a0040', '#110022' },
+  colors = { '#000010', '#0a0020', '#220011' },
   orientation = {
     Radial = {
       cx = 0.0,
