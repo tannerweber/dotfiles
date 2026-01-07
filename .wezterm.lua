@@ -30,9 +30,10 @@ config.unix_domains = {
 --config.default_gui_startup_args = { 'connect', 'my_unix_domain' }
 
 -- Windows Settings
-if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+local function windows_settings(config)
   --config.default_prog = { 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' }
   config.default_prog = { 'C:\\Program Files\\nu\\bin\\nu.exe' }
+  config.window_decorations = 'TITLE | RESIZE'
   --config.win32_system_backdrop = 'Tabbed'
 end
 
@@ -42,7 +43,7 @@ config.color_scheme = 'Paul Millr (Gogh)'
 config.window_background_opacity = 1.0
 config.font_size = 12
 config.font = wezterm.font 'Hack Nerd Font'
-config.window_decorations = 'RESIZE'
+config.window_decorations = 'NONE'
 config.tab_bar_at_bottom = false
 config.use_fancy_tab_bar = false
 config.enable_tab_bar = true
@@ -64,7 +65,7 @@ config.colors = {
   },
 }
 config.window_background_gradient = {
-  colors = { '#100000', '#0a0040', '#110022' },
+  colors = { '#000010', '#0a0020', '#220011' },
   orientation = {
     Radial = {
       cx = 0.0,
@@ -357,6 +358,11 @@ wezterm.on('update-right-status', function(window, pane)
     { Text = ' ' },
   })
 end)
+
+-- Apply operating specific settings
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+  windows_settings(config)
+end
 
 -- Return the configuration to wezterm
 return config

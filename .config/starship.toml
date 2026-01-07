@@ -314,9 +314,9 @@ format = '[ $symbol$shlvl]($style)'
 
 [sudo]
 disabled = false
-symbol = ' '
+symbol = ''
 style = 'fg:#FF0000'
-format = '[$symbol SUDO]($style)'
+format = '[ $symbol SUDO]($style)'
 
 [jobs]
 number_threshold = 1

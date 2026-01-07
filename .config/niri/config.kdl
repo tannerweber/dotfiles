@@ -63,6 +63,7 @@ input {
 }
 
 layout { // Settings that influence how windows are positioned and sized.
+	background-color "transparent"
     gaps 10
     center-focused-column "on-overflow"
     preset-column-widths {
@@ -95,8 +96,14 @@ layout { // Settings that influence how windows are positioned and sized.
     }
 }
 
-spawn-at-startup "waybar"
-spawn-at-startup "swww-daemon"
+layer-rule {
+	match namespace="^wallpaper$"
+	place-within-backdrop true
+}
+
+// spawn-at-startup "waybar"
+// spawn-at-startup "swww-daemon"
+spawn-sh-at-startup "swaybg -i ~/Pictures/wallpaper.png"
 
 hotkey-overlay {
     //skip-at-startup
