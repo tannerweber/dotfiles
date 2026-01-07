@@ -2,23 +2,20 @@
 	font-size: 12px;
 }
 window#waybar {
-	background: rgba(250, 250, 255, 0.1);
-	border: 1px solid rgba(255, 255, 255, 0.8);
+	background: rgba(255, 255, 255, 0);
 	border-radius: 3rem;
-	box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2),
-		inset 0 4px 20px rgba(255, 255, 255, 0.3);
-	border-bottom: 3px solid rgba(100, 114, 125, 0.3);
-	transition-property: background-color;
-	transition-duration: .5s;
+}
+#workspaces {
+	background: rgba(7, 7, 11, 1);
+	border-radius: 3rem;
+}
+#tray {
+	padding: 5px 15px;
+	background: rgba(7, 7, 11, 1);
+	border-radius: 3rem;
 }
 label.module {
 	padding: 5px 15px;
-	background: rgba(250, 250, 255, 0.4);
-	border: 1px solid rgba(255, 255, 255, 0.8);
+	background: rgba(7, 7, 11, 1);
 	border-radius: 3rem;
-	box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2),
-		inset 0 4px 20px rgba(255, 255, 255, 0.3);
-	border-bottom: 3px solid rgba(100, 114, 125, 0.3);
-	transition-property: background-color;
-	transition-duration: .5s;
 }
