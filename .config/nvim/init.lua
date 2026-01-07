@@ -139,6 +139,7 @@ require('lazy').setup({
           'stylua',
           'clangd',
           'pyright',
+          'pylsp',
           'rust_analyzer',
           'fish_lsp',
           'bashls',
