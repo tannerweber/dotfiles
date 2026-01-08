@@ -313,7 +313,7 @@ local function get_cwd(pane)
 end
 
 wezterm.on('update-right-status', function(window, pane)
-  local date = wezterm.strftime '%a %b %-d %I:%M %p'
+  local date = wezterm.strftime '%I:%M %p - %a %b %-d'
   local domain= pane:get_domain_name()
   local cwd = get_cwd(pane)
   window:set_right_status(wezterm.format {
