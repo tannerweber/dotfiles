@@ -116,7 +116,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {
     //off
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    slowdown 0.75
+    slowdown 0.25
 }
 
 // Work around WezTerm's initial configure bug
