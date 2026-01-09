@@ -423,6 +423,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function()
     vim.keymap.set(
       'n',
+      '<leader>q',
+      vim.diagnostic.setloclist,
+      { desc = 'Quickfix list' }
+    )
+    vim.keymap.set(
+      'n',
+      '<leader>df',
+      vim.diagnostic.open_float,
+      { desc = 'Open floating diagnostics' }
+    )
+    vim.keymap.set(
+      'n',
       '<leader>cf',
       vim.lsp.buf.format,
       { desc = 'Format code with LSP' }
