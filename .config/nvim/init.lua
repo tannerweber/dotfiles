@@ -37,11 +37,15 @@ vim.g.autoformat = false
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 
+vim.o.confirm = true
+vim.o.colorcolumn = '81'
+vim.o.showmode = false
+vim.o.shell = 'fish'
+vim.o.mouse = 'a'
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.colorcolumn = '81'
 vim.o.cursorline = true
 vim.o.guicursor =
   'n-v-c-sm:block-blinkwait1000-blinkon1000-blinkoff1,i-ci-ve:ver25-Cursor,r-cr-o:hor20'
@@ -49,8 +53,10 @@ vim.o.completeopt = 'fuzzy,menu,menuone,noinsert,noselect,popup,preview'
 vim.o.termguicolors = true
 vim.o.scrolloff = 10
 vim.o.ignorecase = true
+vim.o.smartcase = true
 vim.o.signcolumn = 'yes'
 vim.o.list = true
+vim.opt.listchars = { tab = '» ', trail = '.', nbsp = '␣' }
 vim.o.winborder = 'rounded'
 
 vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
