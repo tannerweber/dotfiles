@@ -26,7 +26,7 @@ if status is-interactive
 	abbr --add n nvim
 
 	# Completions source
-	source ~/.config/fish/completions/git_custom.fish
+	source ~/.config/fish/my_completions.fish
 
     # fzf
     fzf --fish | source
