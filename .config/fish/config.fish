@@ -19,6 +19,7 @@ if status is-interactive
 	abbr --add gd git diff
 	abbr --add gl git log
 	abbr --add gc git commit -m
+	abbr --add n neovim
 
     # fzf
     fzf --fish | source
