@@ -93,7 +93,7 @@ require('lazy').setup({
         vim.keymap.set('n', '<C-h>', function()
           harpoon.ui:toggle_quick_menu(harpoon:list())
         end, { desc = 'Harpoon list' })
-        vim.keymap.set('n', '<leader>h', function()
+        vim.keymap.set('n', '<leader>H', function()
           harpoon.ui:toggle_quick_menu(harpoon:list())
         end, { desc = 'Harpoon list' })
 
