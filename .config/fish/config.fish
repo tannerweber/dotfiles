@@ -19,7 +19,13 @@ if status is-interactive
 	abbr --add gd git diff
 	abbr --add gl git log
 	abbr --add gc git commit -m
-	abbr --add n neovim
+	abbr --add gb git branch
+	abbr --add grv git remote -v
+	abbr --add gpom git push origin main
+	abbr --add n nvim
+
+	# Completions source
+	source ~/.config/fish/completions/git_custom.fish
 
     # fzf
     fzf --fish | source
@@ -33,7 +39,7 @@ if status is-interactive
     set fish_cursor_external line
 
     # bat
-    set -x MANPAGER "bat -plman"
+	set -x MANPAGER "sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
 
     # yazi
     function y
