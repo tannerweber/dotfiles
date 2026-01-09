@@ -32,7 +32,6 @@ vim.opt.rtp:prepend(lazypath)
 -- loading lazy.nvim so that mappings are correct.
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
-vim.g.clipboard = 'tmux'
 vim.g.autoformat = false
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
@@ -63,6 +62,21 @@ vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
 vim.keymap.set('n', '<leader>e', function()
   vim.cmd('20Lexplore')
 end, { desc = 'Lexplore' })
+
+-- Clipboard
+vim.o.clipboard = 'unnamedplus'
+
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = vim.fn.getreg('+'),
+    ['*'] = vim.fn.getreg('*'),
+  },
+}
 
 -- Setup lazy.nvim
 require('lazy').setup({
