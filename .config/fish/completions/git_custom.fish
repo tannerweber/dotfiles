@@ -40,13 +40,3 @@ complete -c gh -n __fish_use_subcommand -a codespace -d ' Manage GitHub Codes
 complete -c gh -n __fish_use_subcommand -a gists -d ' Manage gists'
 complete -c gh -n __fish_use_subcommand -a search -d ' Search GitHub'
 complete -c gh -n __fish_use_subcommand -a api -d ' Make API requests'
-
-# Branch completions for push/pull
-# complete -c git -n '__fish_git_is_dir_repo' -n '__fish_seen_subcommand_from push' -a $(git branch --format='%(refname:short)') -d ' Local branches'
-# complete -c git -n '__fish_git_is_dir_repo' -n '__fish_seen_subcommand_from pull' -a (git branch --format='%(refname:short)') -d ' Local branches'
-# complete -c git -n '__fish_git_is_dir_repo' -n '__fish_seen_subcommand_from fetch' -a (git branch --format='%(refname:short)') -d ' Local branches'
-#
-# # Remote
-# complete -c git -n '__fish_git_is_dir_repo' -n '__fish_seen_subcommand_from push' -a (git remote) -d ' Remote repositories'
-# complete -c git -n '__fish_git_is_dir_repo' -n '__fish_seen_subcommand_from pull' -a (git remote) -d ' Remote repositories'
-# complete -c git -n '__fish_git_is_dir_repo' -n '__fish_seen_subcommand_from fetch' -a (git remote) -d ' Remote repositories'
