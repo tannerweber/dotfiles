@@ -30,6 +30,7 @@ end
 
 # fish
 symlink $src_repo/.config/fish/config.fish	~/.config/fish/config.fish
+symlink $src_repo/.config/fish/my_completions.fish	~/.config/fish/my_completions.fish
 
 # bash
 symlink $src_repo/.bashrc			~/.bashrc
