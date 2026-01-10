@@ -40,3 +40,10 @@ complete -c gh -n __fish_use_subcommand -a codespace -d ' Manage GitHub Codes
 complete -c gh -n __fish_use_subcommand -a gists -d ' Manage gists'
 complete -c gh -n __fish_use_subcommand -a search -d ' Search GitHub'
 complete -c gh -n __fish_use_subcommand -a api -d ' Make API requests'
+
+# Conventional commits
+# https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13
+complete -c git -n '__fish_git_using_command commit' -l message -s m -r \
+	-a "$(echo -n "\'feat")" -d '  Commits that add, adjust or remove a new feature to the API or UI'
+complete -c git -n '__fish_git_using_command commit' -l message -s m -r \
+	-a 'fix' -d '  Commits that fix an API or UI bug of a preceded feat commit'
