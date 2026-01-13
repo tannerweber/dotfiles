@@ -103,7 +103,7 @@ config.keys = {
     key = 'r',
     mods = 'ALT',
     action = act.PromptInputLine {
-      description = 'Rename Session',
+      description = 'Rename Workspace',
       action = wezterm.action_callback(
         function(window, pane, line)
           if line then
