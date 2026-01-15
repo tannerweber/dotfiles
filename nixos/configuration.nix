@@ -45,6 +45,16 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # UDEV
+  services.udev.enable = true;
+  services.udev.extraRules =
+  ''
+    # CMSIS-DAP for microbit
+    ACTION!="add|change", GOTO="microbit_rules_end"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="0d28", ATTR{idProduct}=="0204", TAG+="uaccess"
+    LABEL="microbit_rules_end"
+  '';
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -113,30 +123,43 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # Desktop Environment
     brightnessctl
-    btop
-    curl
-    dbeaver-bin
-    eza
-    fastfetch
     fuzzel
-    fzf
-    gcc
-    ghostty
-    htop
     mako
-    opencode
-    ripgrep
-    rustup
-    rust-analyzer
-    starship
     swaylock
     swayidle
     swaybg
-    wezterm
-    wget
     xdg-desktop-portal-gnome
     xdg-desktop-portal-gtk
+
+    # Interactive CLI Programs
+    eza
+    fzf
+    btop
+    htop
+    starship
+    fastfetch
+    opencode
+
+    # CLI Utils
+    curl
+    wget
+    ripgrep
+
+    # Rust
+    rustup
+    gdb
+    gcc
+    gcc-arm-embedded
+    usbutils
+    probe-rs-tools
+
+    # Other GUI Programs
+    dbeaver-bin
+    filezilla
+    ghostty
+    wezterm
   ];
 
   fonts.packages = with pkgs; [
