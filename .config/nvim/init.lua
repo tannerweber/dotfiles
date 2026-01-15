@@ -59,6 +59,8 @@ vim.opt.listchars = { tab = '» ', trail = '.', nbsp = '␣' }
 vim.o.winborder = 'rounded'
 
 vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
+vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
+vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
 vim.keymap.set('n', '<leader>e', function()
   vim.cmd('20Lexplore')
 end, { desc = 'Lexplore' })
