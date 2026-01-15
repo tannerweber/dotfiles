@@ -10,6 +10,9 @@
       ./hardware-configuration.nix
     ];
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Flakes Enable
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -45,52 +48,54 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # UDEV
-  services.udev.enable = true;
-  services.udev.extraRules =
-  ''
-    # CMSIS-DAP for microbit
-    ACTION!="add|change", GOTO="microbit_rules_end"
-    SUBSYSTEM=="usb", ATTR{idVendor}=="0d28", ATTR{idProduct}=="0204", TAG+="uaccess"
-    LABEL="microbit_rules_end"
-  '';
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the Desktop Environment.
-  services.displayManager.cosmic-greeter.enable = true;
-  services.desktopManager.cosmic.enable = true;
-  services.system76-scheduler.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  security = {
+    pam.services.swaylock = {};
+    rtkit.enable = true;
+    polkit.enable = true;
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.pulseaudio.enable = false;
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.swaylock = {};
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+  services = {
+    # UDEV
+    udev = {
+      enable = true;
+      extraRules =
+      ''
+        # CMSIS-DAP for microbit
+	ACTION!="add|change", GOTO="microbit_rules_end"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="0d28", ATTR{idProduct}=="0204", TAG+="uaccess"
+        LABEL="microbit_rules_end"
+      '';
+    };
+  
+    # X11 windowing system.
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+      # Enable touchpad support (enabled default in most desktopManager).
+      # libinput.enable = true;
+    };
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    # Desktop Environment.
+    displayManager.cosmic-greeter.enable = true;
+    desktopManager.cosmic.enable = true;
+    system76-scheduler.enable = true;
+
+    # Enable CUPS to print documents.
+    printing.enable = true;
+    pulseaudio.enable = false;
+    gnome.gnome-keyring.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      #jack.enable = true;
+      #media-session.enable = true;
+    };
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tannerw = {
@@ -117,9 +122,6 @@
     waybar.enable = true;
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -138,9 +140,9 @@
     fzf
     btop
     htop
-    starship
     fastfetch
     opencode
+    starship
 
     # CLI Utils
     curl
