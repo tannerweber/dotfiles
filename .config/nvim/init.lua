@@ -58,12 +58,27 @@ vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '.', nbsp = '␣' }
 vim.o.winborder = 'rounded'
 
+local function mf(keys, func, desc)
+  vim.keymap.set('n', keys, function()
+    func()
+  end, { desc = desc })
+end
+
+local function ml(keys, command, desc)
+  vim.keymap.set('n', '<leader>' .. keys, command, { desc = desc })
+end
+
+local function mlf(keys, func, desc)
+  vim.keymap.set('n', '<leader>' .. keys, function()
+    func()
+  end, { desc = desc })
+end
+
 vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
-vim.keymap.set('n', '<leader>e', function()
-  vim.cmd('20Lexplore')
-end, { desc = 'Lexplore' })
+vim.keymap.set('i', 'kk', '<ESC>', { silent = true })
+ml('e', ':20Lexplore<cr>', 'Lexplore')
 
 -- Clipboard
 vim.o.clipboard = 'unnamedplus'
@@ -132,74 +147,21 @@ require('lazy').setup({
         local gitsigns = require('gitsigns')
         vim.keymap.set('v', '<leader>hs', function()
           gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-        end, { desc = 'git [s]tage hunk' })
+        end, { desc = 'git stage hunk' })
         vim.keymap.set('v', '<leader>hr', function()
           gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-        end, { desc = 'git [r]eset hunk' })
-        vim.keymap.set(
-          'n',
-          '<leader>hs',
-          gitsigns.stage_hunk,
-          { desc = 'git [s]tage hunk' }
-        )
-        vim.keymap.set(
-          'n',
-          '<leader>hr',
-          gitsigns.reset_hunk,
-          { desc = 'git [r]eset hunk' }
-        )
-        vim.keymap.set(
-          'n',
-          '<leader>hS',
-          gitsigns.stage_buffer,
-          { desc = 'git [S]tage buffer' }
-        )
-        vim.keymap.set(
-          'n',
-          '<leader>hu',
-          gitsigns.stage_hunk,
-          { desc = 'git [u]ndo stage hunk' }
-        )
-        vim.keymap.set(
-          'n',
-          '<leader>hR',
-          gitsigns.reset_buffer,
-          { desc = 'git [R]eset buffer' }
-        )
-        vim.keymap.set(
-          'n',
-          '<leader>hp',
-          gitsigns.preview_hunk,
-          { desc = 'git [p]review hunk' }
-        )
-        vim.keymap.set(
-          'n',
-          '<leader>hb',
-          gitsigns.blame_line,
-          { desc = 'git [b]lame line' }
-        )
-        vim.keymap.set(
-          'n',
-          '<leader>hd',
-          gitsigns.diffthis,
-          { desc = 'git [d]iff against index' }
-        )
-        vim.keymap.set('n', '<leader>hD', function()
-          gitsigns.diffthis('@')
-        end, { desc = 'git [D]iff against last commit' })
-        -- Toggles
-        vim.keymap.set(
-          'n',
-          '<leader>tb',
-          gitsigns.toggle_current_line_blame,
-          { desc = '[T]oggle git show [b]lame line' }
-        )
-        vim.keymap.set(
-          'n',
-          '<leader>tD',
-          gitsigns.preview_hunk_inline,
-          { desc = '[T]oggle git show [D]eleted' }
-        )
+        end, { desc = 'git reset hunk' })
+        mlf('hs', gitsigns.stage_hunk, 'git stage hunk')
+        mlf('hr', gitsigns.reset_hunk, 'git reset hunk')
+        mlf('hS', gitsigns.stage_buffer, 'git Stage buffer')
+        mlf('hu', gitsigns.stage_hunk, 'git undo stage hunk')
+        mlf('hR', gitsigns.reset_buffer, 'git Reset buffer')
+        mlf('hp', gitsigns.preview_hunk, 'git preview hunk')
+        mlf('hb', gitsigns.blame_line, 'git blame line')
+        mlf('hd', gitsigns.diffthis, 'git diff against index')
+        ml('hD', ":lua require('gitsigns').diffthis('@')<cr>", 'Diff commit')
+        mlf('gb', gitsigns.toggle_current_line_blame, 'git show blame line')
+        mlf('gD', gitsigns.preview_hunk_inline, 'git show Deleted')
       end,
     },
     --------------------------------------------- LSP -------------------------
@@ -312,86 +274,19 @@ require('lazy').setup({
         words = { enabled = true },
         zen = { enabled = false },
       },
-      keys = {
-        {
-          '<leader>fa',
-          function()
-            Snacks.picker.smart()
-          end,
-          desc = 'Find All Files',
-        },
-        {
-          '<leader>fb',
-          function()
-            Snacks.picker.buffers()
-          end,
-          desc = 'Buffers',
-        },
-        {
-          '<leader>ff',
-          function()
-            local cwd = vim.fn.getcwd()
-            Snacks.picker.files({ cwd = cwd })
-          end,
-          desc = 'Find Project Files',
-        },
-        {
-          '<leader>fg',
-          function()
-            Snacks.picker.grep()
-          end,
-          desc = 'Grep',
-        },
-        {
-          'gd',
-          function()
-            Snacks.picker.lsp_definitions()
-          end,
-          desc = 'Goto Definition',
-        },
-        {
-          'gD',
-          function()
-            Snacks.picker.lsp_declarations()
-          end,
-          desc = 'Goto Declaration',
-        },
-        {
-          'gI',
-          function()
-            Snacks.picker.lsp_implementations()
-          end,
-          desc = 'Goto Implementation',
-        },
-        {
-          'gy',
-          function()
-            Snacks.picker.lsp_type_definitions()
-          end,
-          desc = 'Goto T[y]pe Definition',
-        },
-        {
-          '<leader>fd',
-          function()
-            Snacks.picker.diagnostics()
-          end,
-          desc = 'Diagnostics',
-        },
-        {
-          '<leader>fD',
-          function()
-            Snacks.picker.diagnostics_buffer()
-          end,
-          desc = 'Buffer Diagnostics',
-        },
-        {
-          '<leader>fh',
-          function()
-            Snacks.picker.help()
-          end,
-          desc = 'Help Pages',
-        },
-      },
+      config = function()
+        mlf('fa', Snacks.picker.smart, 'Find All Files')
+        mlf('fb', Snacks.picker.buffers, 'Buffers')
+        mlf('ff', Snacks.picker.files, 'Find Project Files')
+        mlf('fg', Snacks.picker.grep, 'Grep')
+        mlf('fd', Snacks.picker.diagnostics, 'Diagnostics')
+        mlf('fD', Snacks.picker.diagnostics_buffer, 'Buffer Diagnostics')
+        mlf('fh', Snacks.picker.help, 'Help Pages')
+        mf('gd', Snacks.picker.lsp_definitions, 'Goto Definition')
+        mf('gD', Snacks.picker.lsp_declarations, 'Goto Declaration')
+        mf('gI', Snacks.picker.lsp_implementations, 'Goto Implementation')
+        mf('gy', Snacks.picker.lsp_type_definitions, 'Goto T[y]pe Definition')
+      end
     },
     --------------------------------------------- Tokyonight -------------------
     {
