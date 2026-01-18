@@ -256,8 +256,6 @@ require('lazy').setup({
     --------------------------------------------- Snacks ----------------------
     {
       'folke/snacks.nvim',
-      priority = 1000,
-      lazy = false,
       opts = {
         animate = { duration = 10, fps = 144 },
         bigfile = { enabled = true },
@@ -274,7 +272,8 @@ require('lazy').setup({
         words = { enabled = true },
         zen = { enabled = false },
       },
-      config = function()
+      init = function()
+        require('snacks')
         mlf('fa', Snacks.picker.smart, 'Find All Files')
         mlf('fb', Snacks.picker.buffers, 'Buffers')
         mlf('ff', Snacks.picker.files, 'Find Project Files')
@@ -286,7 +285,7 @@ require('lazy').setup({
         mf('gD', Snacks.picker.lsp_declarations, 'Goto Declaration')
         mf('gI', Snacks.picker.lsp_implementations, 'Goto Implementation')
         mf('gy', Snacks.picker.lsp_type_definitions, 'Goto T[y]pe Definition')
-      end
+      end,
     },
     --------------------------------------------- Tokyonight -------------------
     {
