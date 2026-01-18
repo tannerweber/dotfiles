@@ -5,8 +5,8 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 -- Colors
---local col_mantle = '#181825'
-local col_mantle = 'rgba(0, 0, 0, 0.90)'
+local col_mantle = '#181825' -- Set for solid background
+--local col_mantle = 'rgba(0, 0, 0, 0.90)' -- Set for transparent background
 local col_crust = '#11111b'
 
 -- Domains
@@ -47,7 +47,7 @@ config.window_decorations = 'NONE'
 config.tab_bar_at_bottom = false
 config.use_fancy_tab_bar = false
 config.enable_tab_bar = true
-config.tab_max_width = 32
+config.tab_max_width = 24
 config.scrollback_lines = 5000
 config.enable_scroll_bar = false
 config.colors = {
