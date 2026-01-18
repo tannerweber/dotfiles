@@ -22,6 +22,8 @@ if status is-interactive
 	abbr --add gb git branch
 	abbr --add grv git remote -v
 	abbr --add gad git add .
+	abbr --add gau git add -u
+	abbr --add gaa git add -A
 	abbr --add gpom git push origin main
 	abbr --add n nvim
 
