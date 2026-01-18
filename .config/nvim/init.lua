@@ -80,7 +80,7 @@ vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kk', '<ESC>', { silent = true })
 ml('e', ':20Lexplore<cr>', 'Lexplore')
 
--- Clipboard
+---------------------------------------- Clipboard -----------------------------
 vim.o.clipboard = 'unnamedplus'
 
 vim.g.clipboard = {
@@ -95,7 +95,6 @@ vim.g.clipboard = {
   },
 }
 
--- Setup lazy.nvim
 require('lazy').setup({
   spec = {
     {
@@ -105,7 +104,7 @@ require('lazy').setup({
         require('mini.pairs').setup()
       end,
     },
-    --------------------------------------------- Harpoon ---------------------
+    ---------------------------------------- Harpoon ---------------------------
     {
       'ThePrimeagen/harpoon',
       branch = 'harpoon2',
@@ -140,7 +139,7 @@ require('lazy').setup({
         end
       end,
     },
-    --------------------------------------------- Git Signs -------------------
+    ---------------------------------------- Git Signs -------------------------
     {
       'lewis6991/gitsigns.nvim',
       config = function()
@@ -164,7 +163,7 @@ require('lazy').setup({
         mlf('gD', gitsigns.preview_hunk_inline, 'git show Deleted')
       end,
     },
-    --------------------------------------------- LSP -------------------------
+    ---------------------------------------- LSP -------------------------------
     {
       'neovim/nvim-lspconfig',
       lazy = false,
@@ -229,7 +228,7 @@ require('lazy').setup({
         })
       end,
     },
-    --------------------------------------------- Lua Line --------------------
+    ---------------------------------------- Lua Line --------------------------
     {
       'nvim-lualine/lualine.nvim',
       dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -253,7 +252,7 @@ require('lazy').setup({
         })
       end,
     },
-    --------------------------------------------- Snacks ----------------------
+    ---------------------------------------- Snacks ----------------------------
     {
       'folke/snacks.nvim',
       opts = {
@@ -287,7 +286,7 @@ require('lazy').setup({
         mf('gy', Snacks.picker.lsp_type_definitions, 'Goto T[y]pe Definition')
       end,
     },
-    --------------------------------------------- Tokyonight -------------------
+    ---------------------------------------- Tokyonight ------------------------
     {
       'folke/tokyonight.nvim',
       lazy = false,
@@ -300,7 +299,7 @@ require('lazy').setup({
         },
       },
     },
-    --------------------------------------------- Treesitter -------------------
+    ---------------------------------------- Treesitter ------------------------
     {
       'nvim-treesitter/nvim-treesitter',
       lazy = false,
@@ -336,45 +335,22 @@ require('lazy').setup({
       'HiPhish/rainbow-delimiters.nvim',
       submodules = false,
     },
-    --------------------------------------------- Trouble ----------------------
+    ---------------------------------------- Trouble ---------------------------
     {
       'folke/trouble.nvim',
       dependencies = { 'nvim-tree/nvim-web-devicons' },
       opts = {},
       cmd = 'Trouble',
-      keys = {
-        {
-          '<leader>xx',
-          '<cmd>Trouble diagnostics toggle<cr>',
-          desc = 'Diagnostics (Trouble)',
-        },
-        {
-          '<leader>xX',
-          '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
-          desc = 'Buffer Diagnostics (Trouble)',
-        },
-        {
-          '<leader>cs',
-          '<cmd>Trouble symbols toggle focus=false<cr>',
-          desc = 'Symbols (Trouble)',
-        },
-        {
-          '<leader>cl',
-          '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
-          desc = 'LSP Definitions / references / ... (Trouble)',
-        },
-        {
-          '<leader>xL',
-          '<cmd>Trouble loclist toggle<cr>',
-          desc = 'Location List (Trouble)',
-        },
-        {
-          '<leader>xQ',
-          '<cmd>Trouble qflist toggle<cr>',
-          desc = 'Quickfix List (Trouble)',
-        },
-      },
+      init = function()
+        ml('xx', ':Trouble diagnostics toggle<cr>', 'Diagnostics (Trouble)')
+        ml('xX', ':Trouble diagnostics toggle filter.buf=0<cr>', 'Buf Diagnost')
+        ml('xL', ':Trouble loclist toggle<cr>', 'Location List (Trouble)')
+        ml('xQ', ':Trouble qflist toggle<cr>', 'Quickfix List (Trouble)')
+        ml('cs', ':Trouble symbols toggle focus=false<cr>', 'Symbols (Trouble)')
+        ml('cl', ':Trouble lsp toggle focus=false win.position=right<cr>', 'LS')
+      end,
     },
+    ---------------------------------------- Which Key -------------------------
     {
       'folke/which-key.nvim',
       lazy = false,
@@ -391,10 +367,10 @@ require('lazy').setup({
   checker = { enabled = true },
 })
 
-------------------------------------------------- Colorscheme -----------------
+---------------------------------------- Colorscheme ---------------------------
 vim.cmd.colorscheme('tokyonight-night')
 
-------------------------------------------------- Auto Commands ---------------
+---------------------------------------- Auto Commands -------------------------
 -- Highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
@@ -404,24 +380,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function()
-    vim.keymap.set(
-      'n',
-      '<leader>q',
-      vim.diagnostic.setloclist,
-      { desc = 'Quickfix list' }
-    )
-    vim.keymap.set(
-      'n',
-      '<leader>df',
-      vim.diagnostic.open_float,
-      { desc = 'Open floating diagnostics' }
-    )
-    vim.keymap.set(
-      'n',
-      '<leader>cf',
-      vim.lsp.buf.format,
-      { desc = 'Format code with LSP' }
-    )
+    mlf('q', vim.diagnostic.setloclist, 'Quickfix list')
+    mlf('df', vim.diagnostic.open_float, 'Open floating diagnostics')
+    mlf('cf', vim.lsp.buf.format, 'Format code with LSP')
     vim.keymap.set('n', '<leader>dl', function()
       local new_config = not vim.diagnostic.config().virtual_lines
       vim.diagnostic.config({ virtual_lines = new_config })
