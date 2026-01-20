@@ -326,6 +326,14 @@ require('lazy').setup({
           'vimdoc',
         },
       },
+      config = function()
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = { 'bash', 'c', 'fish', 'kdl', 'lua', 'python', 'rust' },
+          callback = function()
+            vim.treesitter.start()
+          end,
+        })
+      end,
     },
     {
       'nvim-treesitter/nvim-treesitter-context',
@@ -333,6 +341,7 @@ require('lazy').setup({
     },
     {
       'HiPhish/rainbow-delimiters.nvim',
+      lazy = false,
       submodules = false,
     },
     ---------------------------------------- Trouble ---------------------------
