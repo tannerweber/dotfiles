@@ -104,6 +104,23 @@ require('lazy').setup({
         require('mini.pairs').setup()
       end,
     },
+    ---------------------------------------- Database --------------------------
+    {
+      'kristijanhusak/vim-dadbod-ui',
+      dependencies = {
+        { 'tpope/vim-dadbod' },
+        {
+          'kristijanhusak/vim-dadbod-completion',
+          ft = { 'sql', 'mysql', 'plsql' },
+        },
+      },
+      cmd = {
+        'DBUI',
+      },
+      init = function()
+        vim.g.db_ui_use_nerd_fonts = 1
+      end,
+    },
     ---------------------------------------- Harpoon ---------------------------
     {
       'ThePrimeagen/harpoon',
@@ -173,10 +190,21 @@ require('lazy').setup({
           dependences = {
             'rafamadriz/friendly-snippets',
           },
-          version = '1.6',
+          version = '1.8',
           opts = {
             keymap = {
               ['<C-l>'] = { 'accept' },
+            },
+            sources = {
+              per_filetype = {
+                sql = { 'snippets', 'dadbod', 'buffer' },
+              },
+              providers = {
+                dadbod = {
+                  name = 'Dadbod',
+                  module = 'vim_dadbod_completion.blink',
+                },
+              },
             },
             fuzzy = {
               implementation = 'lua',
