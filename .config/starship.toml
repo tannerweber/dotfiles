@@ -92,6 +92,7 @@ $container\
 [](fg:#FDFD96)\
 $sudo\
 $jobs\
+$status\
 $fill\
 [](fg:#DA627D)\
 $directory\
@@ -321,7 +322,13 @@ format = '[ $symbol SUDO]($style)'
 number_threshold = 1
 style = "bold fg:#FFFFFF"
 symbol = ' '
-format = '[ $symbol$number ]($style)'
+format = '[ $symbol$number]($style)'
+
+[status]
+disabled = false
+style = "bold fg:#FFFFFF"
+failure_style = "bold fg:#FF0000"
+format = '[ $status]($style)'
 
 [character]
 success_symbol = '[╰─](#FFFFFF)[](#D7AFFF)[I](fg:#FFFFFF bg:#D7AFFF)[](#D7AFFF)[─](#FFFFFF)'
