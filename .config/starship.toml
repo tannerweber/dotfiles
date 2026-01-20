@@ -68,7 +68,6 @@ $vlang\
 $vagrant\
 $zig\
 $buf\
-$nix_shell\
 $conda\
 $meson\
 $spack\
@@ -85,6 +84,7 @@ $crystal\
 [](fg:#86BBD8 bg:#06969A)\
 $docker_context\
 [](fg:#06969A bg:#33658A)\
+$nix_shell\
 [](fg:#33658A bg:#FDFD96)\
 $shell\
 $shlvl\
