@@ -4,16 +4,19 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Flakes Enable
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -22,18 +25,17 @@
   networking = {
     hostName = "nixos"; # Define your hostname.
     networkmanager.enable = true;
-    
+
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-    
+
     # Open ports in the firewall.
     # firewall.allowedTCPPorts = [ ... ];
     # firewall.allowedUDPPorts = [ ... ];
   };
-
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -54,7 +56,7 @@
   };
 
   security = {
-    pam.services.swaylock = {};
+    pam.services.swaylock = { };
     rtkit.enable = true;
     polkit.enable = true;
   };
@@ -63,15 +65,14 @@
     # UDEV
     udev = {
       enable = true;
-      extraRules =
-      ''
+      extraRules = ''
         # CMSIS-DAP for microbit
         ACTION!="add|change", GOTO="microbit_rules_end"
         SUBSYSTEM=="usb", ATTR{idVendor}=="0d28", ATTR{idProduct}=="0204", TAG+="uaccess"
         LABEL="microbit_rules_end"
       '';
     };
-  
+
     # X11 windowing system.
     xserver = {
       enable = true;
@@ -106,9 +107,12 @@
   users.users.tannerw = {
     isNormalUser = true;
     description = "Tanner Weber";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
     shell = pkgs.fish;
   };
