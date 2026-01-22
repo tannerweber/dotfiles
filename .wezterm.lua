@@ -162,6 +162,7 @@ config.keys = {
   { key = 'l', mods = 'LEADER', action = act{ActivatePaneDirection="Right"} },
 
   -- Fix key encoding for ANSI sequences
+  { key = 'Enter', mods = 'SHIFT', action = act.SendString '\x0A' },
   { key = 'a', mods = 'CTRL', action = act.SendString '\x01' },
   { key = 'b', mods = 'CTRL', action = act.SendString '\x02' },
   { key = 'c', mods = 'CTRL', action = act.SendString '\x03' },
