@@ -1,7 +1,7 @@
 -- Tanner Weber
 -- .wezterm.lua
 
-local wezterm = require 'wezterm'
+local wezterm = require('wezterm')
 local config = wezterm.config_builder()
 
 -- Colors
@@ -29,8 +29,18 @@ config.unix_domains = {
 }
 --config.default_gui_startup_args = { 'connect', 'my_unix_domain' }
 
+-- Start in fullscreen
+local function start_fullscreen()
+  wezterm.on('gui-startup', function(window)
+    local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+    local gui_window = window:gui_window();
+    gui_window:perform_action(wezterm.action.ToggleFullScreen, pane)
+  end)
+end
+
 -- Windows Settings
-local function windows_settings(config)
+local function windows_settings()
+  start_fullscreen()
   --config.default_prog = { 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' }
   config.default_prog = { 'C:\\Program Files\\nu\\bin\\nu.exe' }
   config.window_decorations = 'TITLE | RESIZE'
@@ -79,16 +89,6 @@ config.window_background_gradient = {
 config.allow_win32_input_mode = false
 config.enable_kitty_keyboard = true
 
--- Start in fullscreen
---[[
-local mux = wezterm.mux
-wezterm.on('gui-startup', function(window)
-  local tab, pane, window = mux.spawn_window(cmd or {})
-  local gui_window = window:gui_window();
-  gui_window:perform_action(wezterm.action.ToggleFullScreen, pane)
-end)
---]]
-
 -- Binds
 local act = wezterm.action
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
@@ -107,7 +107,7 @@ config.keys = {
       action = wezterm.action_callback(
         function(window, pane, line)
           if line then
-            mux.rename_workspace(
+            wezterm.mux.rename_workspace(
               window:mux_window():get_workspace(),
               line
             )
@@ -273,7 +273,6 @@ wezterm.on(
         { Text = '' },
       }
     end
-    return title
   end
 )
 
@@ -362,7 +361,7 @@ end)
 
 -- Apply operating specific settings
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
-  windows_settings(config)
+  windows_settings()
 end
 
 -- Return the configuration to wezterm
