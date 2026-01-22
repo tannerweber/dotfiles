@@ -151,8 +151,9 @@
 
     # CLI Utils
     curl
-    wget
+    nixfmt
     ripgrep
+    wget
 
     # Rust
     rustup
