@@ -81,6 +81,7 @@ vim.keymap.set('i', 'kk', '<ESC>', { silent = true })
 ml('e', ':20Lexplore<cr>', 'Lexplore')
 
 ---------------------------------------- Clipboard -----------------------------
+--[[
 vim.o.clipboard = 'unnamedplus'
 
 vim.g.clipboard = {
@@ -94,6 +95,7 @@ vim.g.clipboard = {
     ['*'] = vim.fn.getreg('*'),
   },
 }
+--]]
 
 require('lazy').setup({
   spec = {
