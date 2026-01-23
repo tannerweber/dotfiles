@@ -57,6 +57,11 @@ vim.o.signcolumn = 'yes'
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '.', nbsp = '␣' }
 vim.o.winborder = 'rounded'
+vim.o.splitright = true
+vim.o.splitbelow = true
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
+vim.o.inccommand = 'split'
 
 local function mf(keys, func, desc)
   vim.keymap.set('n', keys, function()
@@ -78,6 +83,7 @@ vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kk', '<ESC>', { silent = true })
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 ml('e', ':20Lexplore<cr>', 'Lexplore')
 
 ---------------------------------------- Clipboard -----------------------------
