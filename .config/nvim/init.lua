@@ -85,6 +85,7 @@ vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kk', '<ESC>', { silent = true })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 ml('e', ':20Lexplore<cr>', 'Lexplore')
+-- ml('y', '<cmd>yank<cr>', 'Yank to system clipboard')
 
 ---------------------------------------- Clipboard -----------------------------
 --[[
