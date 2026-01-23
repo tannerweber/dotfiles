@@ -328,6 +328,9 @@ require('lazy').setup({
           floats = 'transparent',
         },
       },
+      init = function()
+        vim.cmd.colorscheme('tokyonight-night')
+      end,
     },
     ---------------------------------------- Treesitter ------------------------
     {
@@ -405,9 +408,6 @@ require('lazy').setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
-
----------------------------------------- Colorscheme ---------------------------
-vim.cmd.colorscheme('tokyonight-night')
 
 ---------------------------------------- Auto Commands -------------------------
 -- Highlight on yank
