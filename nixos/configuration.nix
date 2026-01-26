@@ -111,6 +111,7 @@
     firefox.enable = true;
     bat.enable = true;
     fish.enable = true;
+    lazygit.enable = true;
     neovim.enable = true;
     niri.enable = true;
     vim.enable = true;
