@@ -142,6 +142,16 @@ config.keys = {
   { key = '8', mods = 'ALT', action = act{ActivateTab=7} },
   { key = '9', mods = 'ALT', action = act{ActivateTab=8} },
 
+  { key = '1', mods = 'CTRL|ALT', action = act.MoveTab(0) },
+  { key = '2', mods = 'CTRL|ALT', action = act.MoveTab(1) },
+  { key = '3', mods = 'CTRL|ALT', action = act.MoveTab(2) },
+  { key = '4', mods = 'CTRL|ALT', action = act.MoveTab(3) },
+  { key = '5', mods = 'CTRL|ALT', action = act.MoveTab(4) },
+  { key = '6', mods = 'CTRL|ALT', action = act.MoveTab(5) },
+  { key = '7', mods = 'CTRL|ALT', action = act.MoveTab(6) },
+  { key = '8', mods = 'CTRL|ALT', action = act.MoveTab(7) },
+  { key = '9', mods = 'CTRL|ALT', action = act.MoveTab(8) },
+
   -- Tmux like binds using a leader key
   { key = '%', mods = 'LEADER|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
   { key = '"', mods = 'LEADER|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
