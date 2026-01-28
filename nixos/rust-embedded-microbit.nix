@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
   services.udev = {
     enable = true;
     extraRules = ''
