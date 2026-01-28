@@ -135,6 +135,10 @@
     xdg-desktop-portal-gnome
     xdg-desktop-portal-gtk
 
+    # Nix Utils
+    nixd
+    nixfmt
+
     # Interactive CLI Programs
     eza
     fzf
@@ -146,7 +150,6 @@
 
     # CLI Utils
     curl
-    nixfmt
     ripgrep
     wget
 
