@@ -236,6 +236,7 @@ require('lazy').setup({
           'lua_ls',
           'stylua',
           'clangd',
+          'nixd',
           'pyright',
           'pylsp',
           'rust_analyzer',
