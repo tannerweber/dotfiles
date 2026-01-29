@@ -139,6 +139,10 @@
     nixd
     nixfmt
 
+    # Language Servers
+    lua-language-server
+    stylua
+
     # Interactive CLI Programs
     eza
     fzf
