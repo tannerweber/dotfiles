@@ -460,6 +460,7 @@ function CustomStatusLine()
     blue = '#7aa2f7',
     blue7 = '#394b70',
     orange = '#ff9e64',
+    purple = '#9d7cd8',
     teal = '#1abc9c',
     yellow = '#e0af68',
     git_add = '#449dab',
