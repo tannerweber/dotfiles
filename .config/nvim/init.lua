@@ -545,6 +545,7 @@ function CustomStatusLine()
     git(),
     diagnostics(),
     vim.fn.expand('%:p:~'),
+    ' %m',
     '%=',
     lsp(),
     vim.bo.filetype,
