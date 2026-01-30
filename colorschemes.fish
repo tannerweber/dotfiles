@@ -3,7 +3,7 @@
 function f -a name hex
     set -l name_len $(string length $name)
 
-    set_color -b $hex
+    set_color "#ffffff" -b $hex
     echo -n $name
     for i in (seq 1 $(math 80 - $name_len))
         echo -n " "
