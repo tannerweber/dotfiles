@@ -505,15 +505,11 @@ function CustomStatusLine()
     })
   end
 
-  local function get_diag_symbol(type)
-    return vim.diagnostic.config().signs.text[vim.diagnostic.severity[type]]
-  end
-
   local function get_diag_text(type)
     local text = ''
     local count = vim.diagnostic.count(0)
     if count[vim.diagnostic.severity[type]] ~= nil then
-      text = get_diag_symbol(type)
+      text = vim.diagnostic.config().signs.text[vim.diagnostic.severity[type]]
         .. count[vim.diagnostic.severity[type]]
         .. ' '
     end
