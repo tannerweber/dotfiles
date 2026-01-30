@@ -173,6 +173,7 @@ require('lazy').setup({
     ---------------------------------------- Git Signs -------------------------
     {
       'lewis6991/gitsigns.nvim',
+      lazy = false,
       config = function()
         local gitsigns = require('gitsigns')
         vim.keymap.set('v', '<leader>hs', function()
@@ -272,29 +273,29 @@ require('lazy').setup({
       end,
     },
     ---------------------------------------- Lua Line --------------------------
-    {
-      'nvim-lualine/lualine.nvim',
-      dependencies = { 'nvim-tree/nvim-web-devicons' },
-      --event = "VeryLazy",
-      lazy = false,
-      options = {
-        theme = 'ayu_mirage',
-      },
-      config = function()
-        require('lualine').setup({
-          sections = {
-            lualine_a = { 'mode' },
-            lualine_b = { 'branch', 'diff', 'diagnostics' },
-            lualine_c = {
-              { 'filename', show_filename_only = false, path = 3 },
-            },
-            lualine_x = { 'lsp_status', 'encoding', 'fileformat', 'filetype' },
-            lualine_y = { 'progress' },
-            lualine_z = { 'location' },
-          },
-        })
-      end,
-    },
+    -- {
+    --   'nvim-lualine/lualine.nvim',
+    --   dependencies = { 'nvim-tree/nvim-web-devicons' },
+    --   --event = "VeryLazy",
+    --   lazy = false,
+    --   options = {
+    --     theme = 'ayu_mirage',
+    --   },
+    --   config = function()
+    --     require('lualine').setup({
+    --       sections = {
+    --         lualine_a = { 'mode' },
+    --         lualine_b = { 'branch', 'diff', 'diagnostics' },
+    --         lualine_c = {
+    --           { 'filename', show_filename_only = false, path = 3 },
+    --         },
+    --         lualine_x = { 'lsp_status', 'encoding', 'fileformat', 'filetype' },
+    --         lualine_y = { 'progress' },
+    --         lualine_z = { 'location' },
+    --       },
+    --     })
+    --   end,
+    -- },
     ---------------------------------------- Snacks ----------------------------
     {
       'folke/snacks.nvim',
@@ -452,5 +453,124 @@ vim.api.nvim_create_autocmd('LspAttach', {
         })
       end
     end, { desc = 'Toggle virtual text' })
+  end,
+})
+
+---------------------------------------- Status Line ---------------------------
+function CustomStatusLine()
+  local function mode()
+    local m = {
+      ['n'] = 'NORMAL',
+      ['i'] = 'INSERT',
+      ['v'] = 'VISUAL',
+    }
+    local mode_text = m[vim.fn.mode()]
+    return table.concat({
+      ' ',
+      mode_text,
+      ' ',
+    })
+  end
+
+  local function get_git_head()
+    if not vim.b.gitsigns_head then
+      return ''
+    else
+      return vim.b.gitsigns_head
+    end
+  end
+
+  local function get_git_text(type, symbol)
+    local g = vim.b.gitsigns_status_dict
+
+    if not g then
+      return ''
+    end
+
+    local text = ''
+    if g[type] ~= 0 then
+      text = symbol .. g[type] .. ' '
+    end
+
+    return text
+  end
+
+  local function git()
+    return table.concat({
+      ' ',
+      get_git_head(),
+      ' ',
+      get_git_text('added', '+'),
+      get_git_text('changed', '~'),
+      get_git_text('removed', '-'),
+    })
+  end
+
+  local function get_diag_symbol(type)
+    return vim.diagnostic.config().signs.text[vim.diagnostic.severity[type]]
+  end
+
+  local function get_diag_text(type)
+    local text = ''
+    local count = vim.diagnostic.count(0)
+    if count[vim.diagnostic.severity[type]] ~= nil then
+      text = get_diag_symbol(type)
+        .. count[vim.diagnostic.severity[type]]
+        .. ' '
+    end
+    return text
+  end
+
+  local function diagnostics()
+    return table.concat({
+      '[',
+      get_diag_text('ERROR'),
+      get_diag_text('WARN'),
+      get_diag_text('INFO'),
+      get_diag_text('HINT'),
+      ']',
+    })
+  end
+
+  local function lsp()
+    local clients = vim.lsp.get_clients({
+      bufnr = vim.api.nvim_get_current_buf(),
+    })
+    return table.concat({
+      ' ',
+    })
+  end
+
+  return table.concat({
+    mode(),
+    git(),
+    diagnostics(),
+    vim.fn.expand('%:p:~'),
+    '%=',
+    lsp(),
+    vim.bo.filetype,
+    ' ',
+    vim.opt.fileencoding:get(),
+    ' ',
+    vim.bo.fileformat,
+    ' %P %l:%c',
+  })
+end
+
+vim.api.nvim_create_autocmd({
+  'WinEnter',
+  'BufEnter',
+  'BufWritePost',
+  'SessionLoadPost',
+  'FileChangedShellPost',
+  'VimResized',
+  'Filetype',
+  'CursorMoved',
+  'CursorMovedI',
+  'ModeChanged',
+}, {
+  desc = 'CustomStatusline',
+  callback = function()
+    vim.opt_local.statusline = '%!v:lua.CustomStatusLine()'
   end,
 })
