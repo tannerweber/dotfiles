@@ -564,10 +564,10 @@ function CustomStatusLine()
   local function get_formatted_diagnostics()
     return table.concat({
       ' ',
-      get_diag_text('ERROR'),
-      get_diag_text('WARN'),
-      get_diag_text('INFO'),
-      get_diag_text('HINT'),
+      set_hl('DiagnosticError', get_diag_text('ERROR')),
+      set_hl('DiagnosticWarn', get_diag_text('WARN')),
+      set_hl('DiagnosticInfo', get_diag_text('INFO')),
+      set_hl('DiagnosticHint', get_diag_text('HINT')),
     })
   end
 
