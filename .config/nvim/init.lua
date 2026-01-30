@@ -547,6 +547,7 @@ function CustomStatusLine()
       set_hl('MyGitAdded', get_git_text('added', '+')),
       set_hl('MyGitChanged', get_git_text('changed', '~')),
       set_hl('MyGitRemoved', get_git_text('removed', '-')),
+      '',
     })
   end
 
@@ -568,6 +569,7 @@ function CustomStatusLine()
       set_hl('DiagnosticWarn', get_diag_text('WARN')),
       set_hl('DiagnosticInfo', get_diag_text('INFO')),
       set_hl('DiagnosticHint', get_diag_text('HINT')),
+      ' '
     })
   end
 
