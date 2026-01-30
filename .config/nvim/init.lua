@@ -456,16 +456,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 function CustomStatusLine()
   local colors = {
     black = '#000000',
-    white = '#ffffff',
     blue = '#7aa2f7',
-    blue0 = '#3d59a1',
-    blue1 = '#2ac3de',
-    blue2 = '#0db9d7',
-    blue5 = '#89ddff',
-    blue6 = '#b4f9f8',
     blue7 = '#394b70',
     orange = '#ff9e64',
-    purple = '#9d7cd8',
     teal = '#1abc9c',
     yellow = '#e0af68',
     git_add = '#449dab',
@@ -493,6 +486,11 @@ function CustomStatusLine()
     bg = colors.yellow,
     bold = true,
   })
+  vim.api.nvim_set_hl(0, 'MyModeOther', {
+    fg = colors.black,
+    bg = colors.teal,
+    bold = true,
+  })
   vim.api.nvim_set_hl(0, 'MyGitAdded', { fg = colors.git_add })
   vim.api.nvim_set_hl(0, 'MyGitChanged', { fg = colors.git_change })
   vim.api.nvim_set_hl(0, 'MyGitRemoved', { fg = colors.git_delete })
@@ -510,8 +508,10 @@ function CustomStatusLine()
       ['V'] = '%#MyModeVisual# V-LINE %*',
       ['\22'] = '%#MyModeVisual# V-BlOCK %*',
       ['c'] = '%#MyModeCommmand# COMMAND %*',
-      ['s'] = '%#MyModeVisual# COMMAND %*',
-      ['R'] = '%#MyModeVisual# COMMAND %*',
+      ['s'] = '%#MyModeOther# S-CHAR %*',
+      ['S'] = '%#MyModeOther# S-LINE %*',
+      ['R'] = '%#MyModeOther# REPLACE %*',
+      ['r'] = '%#MyModeOther# HIT-ENTER %*',
     }
     return m[vim.fn.mode()]
   end
@@ -569,7 +569,7 @@ function CustomStatusLine()
       set_hl('DiagnosticWarn', get_diag_text('WARN')),
       set_hl('DiagnosticInfo', get_diag_text('INFO')),
       set_hl('DiagnosticHint', get_diag_text('HINT')),
-      ' '
+      ' ',
     })
   end
 
