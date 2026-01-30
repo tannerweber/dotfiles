@@ -454,21 +454,63 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 ---------------------------------------- Status Line ---------------------------
 function CustomStatusLine()
-  local function mode()
+  local colors = {
+    black = '#000000',
+    white = '#ffffff',
+    blue = '#7aa2f7',
+    blue0 = '#3d59a1',
+    blue1 = '#2ac3de',
+    blue2 = '#0db9d7',
+    blue5 = '#89ddff',
+    blue6 = '#b4f9f8',
+    blue7 = '#394b70',
+    orange = '#ff9e64',
+    purple = '#9d7cd8',
+    teal = '#1abc9c',
+    yellow = '#e0af68',
+    git_add = '#449dab',
+    git_change = '#6183bb',
+    git_delete = '#914c54',
+  }
+
+  vim.api.nvim_set_hl(0, 'MyModeNormal', {
+    fg = colors.black,
+    bg = colors.blue,
+    bold = true,
+  })
+  vim.api.nvim_set_hl(0, 'MyModeInsert', {
+    fg = colors.black,
+    bg = colors.orange,
+    bold = true,
+  })
+  vim.api.nvim_set_hl(0, 'MyModeVisual', {
+    fg = colors.black,
+    bg = colors.purple,
+    bold = true,
+  })
+  vim.api.nvim_set_hl(0, 'MyModeCommmand', {
+    fg = colors.black,
+    bg = colors.yellow,
+    bold = true,
+  })
+  vim.api.nvim_set_hl(0, 'MyFileInfo', { bg = colors.blue7 })
+
+  local function hl(group, text)
+    return string.format('%%#%s#%s%%*', group, text)
+  end
+
+  local function get_formatted_mode()
     local m = {
-      ['n'] = 'NORMAL',
-      ['i'] = 'INSERT',
-      ['v'] = 'VISUAL',
-      ['V'] = 'V-LINE',
-      ['\22'] = 'V-BlOCK',
-      ['c'] = 'COMMAND',
+      ['n'] = '%#MyModeNormal# NORMAL %*',
+      ['i'] = '%#MyModeInsert# INSERT %*',
+      ['v'] = '%#MyModeVisual# VISUAL %*',
+      ['V'] = '%#MyModeVisual# V-LINE %*',
+      ['\22'] = '%#MyModeVisual# V-BlOCK %*',
+      ['c'] = '%#MyModeCommmand# COMMAND %*',
+      ['s'] = '%#MyModeVisual# COMMAND %*',
+      ['R'] = '%#MyModeVisual# COMMAND %*',
     }
-    local mode_text = m[vim.fn.mode()]
-    return table.concat({
-      ' ',
-      mode_text,
-      ' ',
-    })
+    return m[vim.fn.mode()]
   end
 
   local function get_git_head()
@@ -482,7 +524,7 @@ function CustomStatusLine()
   local function get_git_text(type, symbol)
     local g = vim.b.gitsigns_status_dict
 
-    if not g then
+    if not g or not symbol or not type or not g[type] then
       return ''
     end
 
@@ -494,9 +536,9 @@ function CustomStatusLine()
     return text
   end
 
-  local function git()
+  local function get_formatted_git()
     return table.concat({
-      ' ',
+      '  ',
       get_git_head(),
       ' ',
       get_git_text('added', '+'),
@@ -516,18 +558,17 @@ function CustomStatusLine()
     return text
   end
 
-  local function diagnostics()
+  local function get_formatted_diagnostics()
     return table.concat({
-      '[',
+      ' ',
       get_diag_text('ERROR'),
       get_diag_text('WARN'),
       get_diag_text('INFO'),
       get_diag_text('HINT'),
-      ']',
     })
   end
 
-  local function lsp()
+  local function get_formatted_lsp()
     local clients = vim.lsp.get_clients({
       bufnr = vim.api.nvim_get_current_buf(),
     })
@@ -542,19 +583,21 @@ function CustomStatusLine()
   end
 
   return table.concat({
-    mode(),
-    git(),
-    diagnostics(),
-    vim.fn.expand('%:p:~'),
-    ' %m',
-    '%=',
-    lsp(),
+    get_formatted_mode(),
+    get_formatted_git(),
+    get_formatted_diagnostics(),
+    vim.fn.expand('%:p:~'), -- File name and path
+    ' %m', -- File modified symbol
+    '%=', -- Separate left and right side
+    get_formatted_lsp(),
+    '%#MyFileInfo# ',
     vim.bo.filetype,
     ' ',
-    vim.opt.fileencoding:get(),
-    ' ',
     vim.bo.fileformat,
-    ' %P %l:%c',
+    ' ',
+    vim.opt.fileencoding:get(),
+    ' %*',
+    hl('MyModeNormal', ' %P %l:%c '),
   })
 end
 
