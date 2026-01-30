@@ -86,6 +86,28 @@ vim.keymap.set('i', 'kk', '<ESC>', { silent = true })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 ml('e', ':20Lexplore<cr>', 'Lexplore')
 -- ml('y', '<cmd>yank<cr>', 'Yank to system clipboard')
+mlf('q', vim.diagnostic.setloclist, 'Quickfix list')
+mlf('df', vim.diagnostic.open_float, 'Open floating diagnostics')
+mlf('cf', vim.lsp.buf.format, 'Format code with LSP')
+
+vim.keymap.set('n', '<leader>dl', function()
+  local new_config = not vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config({ virtual_lines = new_config })
+end, { desc = 'Toggle virtual lines' })
+
+vim.keymap.set('n', '<leader>dt', function()
+  if vim.diagnostic.config().virtual_text ~= false then
+    vim.diagnostic.config({ virtual_text = false })
+  else
+    vim.diagnostic.config({
+      virtual_text = {
+        spacing = 4,
+        source = 'if_many',
+        prefix = '●',
+      },
+    })
+  end
+end, { desc = 'Toggle virtual text' })
 
 ---------------------------------------- Clipboard -----------------------------
 --[[
@@ -430,32 +452,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
-
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function()
-    mlf('q', vim.diagnostic.setloclist, 'Quickfix list')
-    mlf('df', vim.diagnostic.open_float, 'Open floating diagnostics')
-    mlf('cf', vim.lsp.buf.format, 'Format code with LSP')
-    vim.keymap.set('n', '<leader>dl', function()
-      local new_config = not vim.diagnostic.config().virtual_lines
-      vim.diagnostic.config({ virtual_lines = new_config })
-    end, { desc = 'Toggle virtual lines' })
-    vim.keymap.set('n', '<leader>dt', function()
-      if vim.diagnostic.config().virtual_text ~= false then
-        vim.diagnostic.config({ virtual_text = false })
-      else
-        vim.diagnostic.config({
-          virtual_text = {
-            spacing = 4,
-            source = 'if_many',
-            prefix = '●',
-          },
-        })
-      end
-    end, { desc = 'Toggle virtual text' })
-  end,
-})
-
 ---------------------------------------- Status Line ---------------------------
 function CustomStatusLine()
   local function mode()
