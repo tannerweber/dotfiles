@@ -531,7 +531,12 @@ function CustomStatusLine()
     local clients = vim.lsp.get_clients({
       bufnr = vim.api.nvim_get_current_buf(),
     })
+    local client_names = ''
+    for _, client in ipairs(clients) do
+      client_names = client_names .. ' ' .. client.name
+    end
     return table.concat({
+      client_names,
       ' ',
     })
   end
