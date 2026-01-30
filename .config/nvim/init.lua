@@ -493,9 +493,12 @@ function CustomStatusLine()
     bg = colors.yellow,
     bold = true,
   })
+  vim.api.nvim_set_hl(0, 'MyGitAdded', { fg = colors.git_add })
+  vim.api.nvim_set_hl(0, 'MyGitChanged', { fg = colors.git_change })
+  vim.api.nvim_set_hl(0, 'MyGitRemoved', { fg = colors.git_delete })
   vim.api.nvim_set_hl(0, 'MyFileInfo', { bg = colors.blue7 })
 
-  local function hl(group, text)
+  local function set_hl(group, text)
     return string.format('%%#%s#%s%%*', group, text)
   end
 
@@ -541,9 +544,9 @@ function CustomStatusLine()
       '  ',
       get_git_head(),
       ' ',
-      get_git_text('added', '+'),
-      get_git_text('changed', '~'),
-      get_git_text('removed', '-'),
+      set_hl('MyGitAdded', get_git_text('added', '+')),
+      set_hl('MyGitChanged', get_git_text('changed', '~')),
+      set_hl('MyGitRemoved', get_git_text('removed', '-')),
     })
   end
 
@@ -597,7 +600,7 @@ function CustomStatusLine()
     ' ',
     vim.opt.fileencoding:get(),
     ' %*',
-    hl('MyModeNormal', ' %P %l:%c '),
+    set_hl('MyModeNormal', ' %P %l:%c '),
   })
 end
 
