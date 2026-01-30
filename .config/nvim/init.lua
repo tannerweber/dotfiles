@@ -294,30 +294,6 @@ require('lazy').setup({
         })
       end,
     },
-    ---------------------------------------- Lua Line --------------------------
-    -- {
-    --   'nvim-lualine/lualine.nvim',
-    --   dependencies = { 'nvim-tree/nvim-web-devicons' },
-    --   --event = "VeryLazy",
-    --   lazy = false,
-    --   options = {
-    --     theme = 'ayu_mirage',
-    --   },
-    --   config = function()
-    --     require('lualine').setup({
-    --       sections = {
-    --         lualine_a = { 'mode' },
-    --         lualine_b = { 'branch', 'diff', 'diagnostics' },
-    --         lualine_c = {
-    --           { 'filename', show_filename_only = false, path = 3 },
-    --         },
-    --         lualine_x = { 'lsp_status', 'encoding', 'fileformat', 'filetype' },
-    --         lualine_y = { 'progress' },
-    --         lualine_z = { 'location' },
-    --       },
-    --     })
-    --   end,
-    -- },
     ---------------------------------------- Snacks ----------------------------
     {
       'folke/snacks.nvim',
@@ -438,10 +414,7 @@ require('lazy').setup({
       },
     },
   },
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { 'tokyonight' } },
-  -- automatically check for plugin updates
   checker = { enabled = true },
 })
 
