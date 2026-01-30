@@ -463,6 +463,9 @@ function CustomStatusLine()
       ['n'] = 'NORMAL',
       ['i'] = 'INSERT',
       ['v'] = 'VISUAL',
+      ['V'] = 'V-LINE',
+      ['\22'] = 'V-BlOCK',
+      ['c'] = 'COMMAND',
     }
     local mode_text = m[vim.fn.mode()]
     return table.concat({
