@@ -585,6 +585,18 @@ function CustomStatusLine()
     })
   end
 
+  local function get_formatted_file_info()
+    return table.concat({
+      '%#MyFileInfo# ',
+      vim.bo.filetype,
+      ' ',
+      vim.bo.fileformat,
+      ' ',
+      vim.opt.fileencoding:get(),
+      ' %*',
+    })
+  end
+
   return table.concat({
     get_formatted_mode(),
     get_formatted_git(),
@@ -593,13 +605,7 @@ function CustomStatusLine()
     ' %m', -- File modified symbol
     '%=', -- Separate left and right side
     get_formatted_lsp(),
-    '%#MyFileInfo# ',
-    vim.bo.filetype,
-    ' ',
-    vim.bo.fileformat,
-    ' ',
-    vim.opt.fileencoding:get(),
-    ' %*',
+    get_formatted_file_info(),
     set_hl('MyModeNormal', ' %P %l:%c '),
   })
 end
