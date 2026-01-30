@@ -454,6 +454,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 ---------------------------------------- Status Line ---------------------------
 function CustomStatusLine()
+  -- Tokyonight colors
   local colors = {
     black = '#000000',
     blue = '#7aa2f7',
