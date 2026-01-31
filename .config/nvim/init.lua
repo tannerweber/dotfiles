@@ -469,7 +469,7 @@ function CustomStatusLine()
   vim.api.nvim_set_hl(0, 'MyGitAdded', { fg = colors.git_add })
   vim.api.nvim_set_hl(0, 'MyGitChanged', { fg = colors.git_change })
   vim.api.nvim_set_hl(0, 'MyGitRemoved', { fg = colors.git_delete })
-  vim.api.nvim_set_hl(0, 'MyFileInfo', { bg = colors.blue7 })
+  vim.api.nvim_set_hl(0, 'MyFileInfo', { fg = '#dddddd', bg = colors.blue7 })
 
   local function set_hl(group, text)
     return string.format('%%#%s#%s%%*', group, text)
