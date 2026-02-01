@@ -300,6 +300,7 @@ require('lazy').setup({
       opts = {
         animate = { duration = 10, fps = 144 },
         bigfile = { enabled = true },
+        image = { enabled = true },
         indent = { enabled = true },
         input = { enabled = true },
         picker = { enabled = true },
