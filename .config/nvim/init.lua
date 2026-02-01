@@ -300,8 +300,6 @@ require('lazy').setup({
       opts = {
         animate = { duration = 10, fps = 144 },
         bigfile = { enabled = true },
-        dashboard = { enabled = false },
-        explorer = { enabled = false },
         indent = { enabled = true },
         input = { enabled = true },
         picker = { enabled = true },
@@ -311,7 +309,6 @@ require('lazy').setup({
         scroll = { enabled = true },
         statuscolumn = { enabled = true },
         words = { enabled = true },
-        zen = { enabled = false },
       },
       init = function()
         require('snacks')
