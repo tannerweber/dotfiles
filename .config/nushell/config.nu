@@ -5,10 +5,19 @@
 
 # Aliases
 alias la = ls -a
+alias d = ls -a
+alias c = clear
 alias gs = git status
 alias gd = git diff
 alias gl = git log
 alias gc = git commit -m
+alias gb = git branch
+alias grv = git remote -v
+alias gad = git add .
+alias gau = git add -u
+alias gaa = git add -A
+alias gpom = git push origin main
+alias n = nvim
 
 # Preferences
 $env.config.buffer_editor = "nvim"
