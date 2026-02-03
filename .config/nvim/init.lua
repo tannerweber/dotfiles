@@ -363,6 +363,7 @@ require('lazy').setup({
           'python',
           'rust',
           'toml',
+          'typst',
           'yaml',
           'xml',
           'vim',
@@ -600,5 +601,17 @@ vim.api.nvim_create_autocmd({
   desc = 'CustomStatusline',
   callback = function()
     vim.opt_local.statusline = '%!v:lua.CustomStatusLine()'
+  end,
+})
+
+--------------------------------------- Filetype Fix ---------------------------
+vim.api.nvim_create_autocmd({
+  'BufNewFile',
+  'BufRead',
+}, {
+  desc = 'SetTypstFileType',
+  pattern = '*.typst',
+  callback = function()
+    vim.bo.filetype = 'typst'
   end,
 })
