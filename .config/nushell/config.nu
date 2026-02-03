@@ -23,8 +23,10 @@ $env.config.shell_integration.osc633 = false
 $env.MANPAGER = 'bat -plman'
 
 # Yazi
-if $env.windir != "" {
-	$env.YAZI_FILE_ONE = 'C:/Program Files/Git/usr/bin/file.exe'
+try {
+	if $env.windir {
+		$env.YAZI_FILE_ONE = 'C:/Program Files/Git/usr/bin/file.exe'
+	}
 }
 def --env y [...args] {
 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
