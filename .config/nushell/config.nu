@@ -24,7 +24,7 @@ $env.MANPAGER = 'bat -plman'
 
 # Yazi
 try {
-	if $env.windir {
+	if $env.windir != "" {
 		$env.YAZI_FILE_ONE = 'C:/Program Files/Git/usr/bin/file.exe'
 	}
 }
