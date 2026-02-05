@@ -1,6 +1,9 @@
 # Dotfiles
+
 These are my dotfiles.
+
 # Programs I Use
+
 * [Neovim](https://neovim.io/)
 * [WezTerm](https://wezterm.org/)
 * [Fish](https://fishshell.com/)
@@ -13,6 +16,7 @@ These are my dotfiles.
 * [Fzf](https://github.com/junegunn/fzf)
 
 # License
+
 Copyright (C) 2025 Tanner Weber
 
 This program is free software: you can redistribute it and/or modify
