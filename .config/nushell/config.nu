@@ -22,6 +22,10 @@ alias n = nvim
 # Preferences
 $env.config.buffer_editor = "nvim"
 $env.config.show_banner = false
+$env.config.table.mode = "none"
+$env.config.table.index_mode = "never"
+$env.config.table.padding.left = 0
+$env.config.table.padding.right = 0
 
 # Terminal compatability
 $env.config.use_kitty_protocol = false
