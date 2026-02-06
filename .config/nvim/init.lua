@@ -6,7 +6,7 @@
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   local out = vim.fn.system({
     'git',
@@ -85,7 +85,6 @@ vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kk', '<ESC>', { silent = true })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 ml('e', ':20Lexplore<cr>', 'Lexplore')
--- ml('y', '<cmd>yank<cr>', 'Yank to system clipboard')
 mlf('q', vim.diagnostic.setloclist, 'Quickfix list')
 mlf('df', vim.diagnostic.open_float, 'Open floating diagnostics')
 mlf('cf', vim.lsp.buf.format, 'Format code with LSP')
@@ -110,22 +109,28 @@ vim.keymap.set('n', '<leader>dt', function()
 end, { desc = 'Toggle virtual text' })
 
 ---------------------------------------- Clipboard -----------------------------
---[[
-vim.o.clipboard = 'unnamedplus'
+-- if vim.uv.os_uname().sysname == 'Linux' then
+if true then
+  vim.o.clipboard = 'unnamedplus'
 
-vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-  },
-  paste = {
-    ['+'] = vim.fn.getreg('+'),
-    ['*'] = vim.fn.getreg('*'),
-  },
-}
---]]
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    },
+    paste = {
+      ['+'] = vim.fn.getreg('+'),
+      ['*'] = vim.fn.getreg('*'),
+    },
+  }
+end
 
+vim.keymap.set({'n', 'v'}, 'y', '""y')
+vim.keymap.set({'n', 'v'}, 'p', '""p')
+ml('y', '"+y', 'Yank to + register')
+ml('p', '"+p', 'Paste from + register')
+---------------------------------------- Lazy ----------------------------------
 require('lazy').setup({
   spec = {
     {
