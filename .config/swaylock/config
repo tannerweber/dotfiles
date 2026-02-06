@@ -1,0 +1,17 @@
+indicator-idle-visible
+indicator-radius=125
+indicator-thickness=20
+
+inside-color=00000000
+inside-ver-color=9ece6a
+inside-wrong-color=db4b4b
+inside-clear-color=e0af68
+
+ring-color=7aa2f7
+ring-ver-color=9ece6a
+ring-wrong-color=db4b4b
+ring-clear-color=e0af68
+
+key-hl-color=3d59a1
+
+color=11111b
