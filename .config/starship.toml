@@ -288,6 +288,7 @@ style = "fg:#FFFFFF bg:#33658A"
 format = '[ $time ]($style)'
 
 [typst]
+symbol = ' '
 style = "fg:#FFFFFF bg:#86BBD8"
 format = '[ $symbol($version) ]($style)'
 
