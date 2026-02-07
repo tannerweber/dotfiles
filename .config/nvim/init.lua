@@ -616,9 +616,9 @@ vim.api.nvim_create_autocmd({
   'BufNewFile',
   'BufRead',
 }, {
-  desc = 'SetTypstFileType',
-  pattern = '*.typst',
+  desc = 'SetTPPFileType',
+  pattern = '*.tpp',
   callback = function()
-    vim.bo.filetype = 'typst'
+    vim.bo.filetype = 'cpp'
   end,
 })
