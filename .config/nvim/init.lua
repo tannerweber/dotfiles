@@ -124,14 +124,15 @@ if true then
       ['*'] = vim.fn.getreg('*'),
     },
   }
-end
 
-vim.keymap.set({ 'n', 'v' }, 'y', '""y')
-vim.keymap.set({ 'n', 'v' }, 'p', '""p')
-vim.keymap.set({ 'n', 'v' }, 'd', '""d')
-ml('y', '"+y', 'Yank to + register')
-ml('p', '"+p', 'Paste from + register')
-ml('d', '"+d', 'Delete to + register')
+  vim.keymap.set({ 'n', 'v' }, 'y', '""y')
+  vim.keymap.set({ 'n', 'v' }, 'p', '""p')
+  vim.keymap.set({ 'n', 'v' }, 'd', '""d')
+  vim.keymap.set({ 'n', 'v' }, 'c', '""c')
+  ml('y', '"+y', 'Yank to + register')
+  ml('p', '"+p', 'Paste from + register')
+  ml('d', '"+d', 'Delete to + register')
+end
 ---------------------------------------- Lazy ----------------------------------
 require('lazy').setup({
   spec = {
