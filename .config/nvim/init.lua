@@ -86,15 +86,15 @@ vim.keymap.set('i', 'kk', '<ESC>', { silent = true })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 ml('e', ':20Lexplore<cr>', 'Lexplore')
 mlf('q', vim.diagnostic.setloclist, 'Quickfix list')
-mlf('df', vim.diagnostic.open_float, 'Open floating diagnostics')
+mlf('ch', vim.diagnostic.open_float, 'Open floating diagnostics')
 mlf('cf', vim.lsp.buf.format, 'Format code with LSP')
 
-vim.keymap.set('n', '<leader>dl', function()
+vim.keymap.set('n', '<leader>cv', function()
   local new_config = not vim.diagnostic.config().virtual_lines
   vim.diagnostic.config({ virtual_lines = new_config })
 end, { desc = 'Toggle virtual lines' })
 
-vim.keymap.set('n', '<leader>dt', function()
+vim.keymap.set('n', '<leader>cd', function()
   if vim.diagnostic.config().virtual_text ~= false then
     vim.diagnostic.config({ virtual_text = false })
   else
