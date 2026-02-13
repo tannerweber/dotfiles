@@ -84,7 +84,7 @@ vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kk', '<ESC>', { silent = true })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-ml('e', ':20Lexplore<cr>', 'Lexplore')
+ml('E', ':20Lexplore<cr>', 'Lexplore')
 mlf('q', vim.diagnostic.setloclist, 'Quickfix list')
 mlf('ch', vim.diagnostic.open_float, 'Open floating diagnostics')
 mlf('cf', vim.lsp.buf.format, 'Format code with LSP')
@@ -137,6 +137,13 @@ end
 ---------------------------------------- Lazy ----------------------------------
 require('lazy').setup({
   spec = {
+    {
+      'nvim-mini/mini.files',
+      config = function()
+        require('mini.files').setup()
+        mlf('e', MiniFiles.open, 'Mini Files')
+      end,
+    },
     {
       'nvim-mini/mini.pairs',
       config = function()
