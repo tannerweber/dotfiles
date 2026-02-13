@@ -16,6 +16,6 @@ INPUT_MD_FILE=$1
 PDF_FILE="/tmp/mdat_temp.pdf"
 OUTPUT_FILE="/tmp/mdat_output.png"
 
-pandoc "$INPUT_MD_FILE" -o $PDF_FILE --pdf-engine=pdfroff \
+pandoc "$INPUT_MD_FILE" -o $PDF_FILE -V fontfamily=helvet -V colorlinks \
 && magick -background white $PDF_FILE -flatten $OUTPUT_FILE \
 && print_image $OUTPUT_FILE
