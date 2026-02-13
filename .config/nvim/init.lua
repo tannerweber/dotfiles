@@ -63,6 +63,7 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 vim.o.inccommand = 'split'
 
+---------------------------------------- Functions -----------------------------
 local function mf(keys, func, desc)
   vim.keymap.set('n', keys, function()
     func()
@@ -79,6 +80,7 @@ local function mlf(keys, func, desc)
   end, { desc = desc })
 end
 
+---------------------------------------- Keymaps -------------------------------
 vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
