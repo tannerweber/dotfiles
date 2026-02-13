@@ -129,6 +129,7 @@ if true then
   vim.keymap.set({ 'n', 'v' }, 'p', '""p')
   vim.keymap.set({ 'n', 'v' }, 'd', '""d')
   vim.keymap.set({ 'n', 'v' }, 'c', '""c')
+  vim.keymap.set({ 'n', 'v' }, 'x', '""x')
   ml('y', '"+y', 'Yank to + register')
   ml('p', '"+p', 'Paste from + register')
   ml('d', '"+d', 'Delete to + register')
