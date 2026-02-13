@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Outputs a markdown file as an image to the terminal.
+
+print_image() {
+    wezterm imgcat "$1"
+}
+
+if [ $# -eq 0 ]; then
+    echo "No file given"
+    echo "Usage: mdat <file>"
+    exit 1
+fi
+
+INPUT_MD_FILE=$1
+PDF_FILE="/tmp/mdat_temp.pdf"
+OUTPUT_FILE="/tmp/mdat_output.png"
+
+pandoc "$INPUT_MD_FILE" -o $PDF_FILE --pdf-engine=pdfroff \
+&& magick -background white $PDF_FILE -flatten $OUTPUT_FILE \
+&& print_image $OUTPUT_FILE
