@@ -85,11 +85,11 @@ config.window_background_gradient = {
   },
 }
 
--- Keyboard Encoding
+--============================ Keyboard Encoding =============================--
 config.allow_win32_input_mode = false
 config.enable_kitty_keyboard = true
 
--- Binds
+--============================ Binds =========================================--
 local act = wezterm.action
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
@@ -226,7 +226,7 @@ config.keys = {
   { key = '/', mods = 'SHIFT', action = act.SendString '?' },
 }
 
--- Tab bar style
+--============================ Tab bar style =================================--
 local function remove_exe(text)
   if text:sub(-4) == '.exe' then
     text = wezterm.truncate_right(text, #text - 4)
@@ -369,10 +369,10 @@ wezterm.on('update-right-status', function(window, pane)
   })
 end)
 
--- Apply operating specific settings
+--============================ Apply operating specific settings =============--
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
   windows_settings()
 end
 
--- Return the configuration to wezterm
+--============================ Return the configuration to wezterm ===========--
 return config
