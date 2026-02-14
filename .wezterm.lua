@@ -9,7 +9,7 @@ local col_mantle = '#181825' -- Set for solid background
 --local col_mantle = 'rgba(0, 0, 0, 0.90)' -- Set for transparent background
 local col_crust = '#11111b'
 
--- Domains
+--============================ Domains =======================================--
 config.ssh_domains = {
   {
     name = 'babbage',
@@ -29,7 +29,7 @@ config.unix_domains = {
 }
 --config.default_gui_startup_args = { 'connect', 'my_unix_domain' }
 
--- Start in fullscreen
+--============================ Start in fullscreen ===========================--
 local function start_fullscreen()
   wezterm.on('gui-startup', function(window)
     local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
@@ -38,7 +38,7 @@ local function start_fullscreen()
   end)
 end
 
--- Windows Settings
+--============================ Windows Settings ==============================--
 local function windows_settings()
   start_fullscreen()
   --config.default_prog = { 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' }
@@ -47,7 +47,7 @@ local function windows_settings()
   --config.win32_system_backdrop = 'Tabbed'
 end
 
--- Appearance
+--============================ Appearance ====================================--
 config.max_fps = 255
 config.color_scheme = 'Paul Millr (Gogh)'
 config.window_background_opacity = 1.0
