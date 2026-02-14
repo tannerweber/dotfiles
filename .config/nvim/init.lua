@@ -63,7 +63,7 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 vim.o.inccommand = 'split'
 
----------------------------------------- Functions -----------------------------
+--============================ Functions =====================================--
 local function mf(keys, func, desc)
   vim.keymap.set('n', keys, function()
     func()
@@ -80,7 +80,7 @@ local function mlf(keys, func, desc)
   end, { desc = desc })
 end
 
----------------------------------------- Keymaps -------------------------------
+--============================ Keymaps =======================================--
 vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
@@ -110,7 +110,7 @@ vim.keymap.set('n', '<leader>cd', function()
   end
 end, { desc = 'Toggle virtual text' })
 
----------------------------------------- Clipboard -----------------------------
+--============================ Clipboard =====================================--
 -- if vim.uv.os_uname().sysname == 'Linux' then
 if true then
   vim.o.clipboard = 'unnamedplus'
@@ -136,7 +136,7 @@ if true then
   ml('p', '"+p', 'Paste from + register')
   ml('d', '"+d', 'Delete to + register')
 end
----------------------------------------- Lazy ----------------------------------
+--============================ Lazy ==========================================--
 require('lazy').setup({
   spec = {
     {
@@ -158,7 +158,7 @@ require('lazy').setup({
         require('mini.ai').setup()
       end,
     },
-    ---------------------------------------- Database --------------------------
+    --======================== Database ======================================--
     {
       'kristijanhusak/vim-dadbod-ui',
       dependencies = {
@@ -175,7 +175,7 @@ require('lazy').setup({
         vim.g.db_ui_use_nerd_fonts = 1
       end,
     },
-    ---------------------------------------- Harpoon ---------------------------
+    --======================== Harpoon =======================================--
     {
       'ThePrimeagen/harpoon',
       branch = 'harpoon2',
@@ -210,7 +210,7 @@ require('lazy').setup({
         end
       end,
     },
-    ---------------------------------------- Git Signs -------------------------
+    --======================== Git Signs =====================================--
     {
       'lewis6991/gitsigns.nvim',
       lazy = false,
@@ -235,7 +235,7 @@ require('lazy').setup({
         mlf('gD', gitsigns.preview_hunk_inline, 'git show Deleted')
       end,
     },
-    ---------------------------------------- LSP -------------------------------
+    --======================== LSP ===========================================--
     {
       'neovim/nvim-lspconfig',
       lazy = false,
@@ -312,7 +312,7 @@ require('lazy').setup({
         })
       end,
     },
-    ---------------------------------------- Snacks ----------------------------
+    --======================== Snacks ========================================--
     {
       'folke/snacks.nvim',
       opts = {
@@ -344,7 +344,7 @@ require('lazy').setup({
         mf('gy', Snacks.picker.lsp_type_definitions, 'Goto T[y]pe Definition')
       end,
     },
-    ---------------------------------------- Tokyonight ------------------------
+    --======================== Tokyonight ====================================--
     {
       'folke/tokyonight.nvim',
       lazy = false,
@@ -360,7 +360,7 @@ require('lazy').setup({
         vim.cmd.colorscheme('tokyonight-night')
       end,
     },
-    ---------------------------------------- Treesitter ------------------------
+    --======================== Treesitter ====================================--
     {
       'nvim-treesitter/nvim-treesitter',
       lazy = false,
@@ -406,7 +406,7 @@ require('lazy').setup({
       lazy = false,
       submodules = false,
     },
-    ---------------------------------------- Trouble ---------------------------
+    --======================== Trouble =======================================--
     {
       'folke/trouble.nvim',
       dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -421,7 +421,7 @@ require('lazy').setup({
         ml('cl', ':Trouble lsp toggle focus=false win.position=right<cr>', 'LS')
       end,
     },
-    ---------------------------------------- Which Key -------------------------
+    --======================== Which Key =====================================--
     {
       'folke/which-key.nvim',
       lazy = false,
@@ -435,14 +435,14 @@ require('lazy').setup({
   checker = { enabled = true },
 })
 
----------------------------------------- Auto Commands -------------------------
+--============================ Auto Commands =================================--
 -- Highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
   end,
 })
----------------------------------------- Status Line ---------------------------
+--============================ Status Line ===================================--
 function CustomStatusLine()
   -- Tokyonight colors
   local colors = {
@@ -622,7 +622,7 @@ vim.api.nvim_create_autocmd({
   end,
 })
 
---------------------------------------- Filetype Fix ---------------------------
+--============================ Filetype Fix ==================================--
 vim.api.nvim_create_autocmd({
   'BufNewFile',
   'BufRead',
