@@ -143,7 +143,14 @@ require('lazy').setup({
       'nvim-mini/mini.files',
       config = function()
         require('mini.files').setup()
-        mlf('e', MiniFiles.open, 'Mini Files')
+
+        local function minifiles_toggle(...)
+          if not MiniFiles.close() then
+            MiniFiles.open(...)
+          end
+        end
+
+        mlf('e', minifiles_toggle, 'Mini Files')
       end,
     },
     {
