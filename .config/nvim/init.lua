@@ -90,6 +90,7 @@ ml('E', ':20Lexplore<cr>', 'Lexplore')
 mlf('q', vim.diagnostic.setloclist, 'Quickfix list')
 mlf('ch', vim.diagnostic.open_float, 'Open floating diagnostics')
 mlf('cf', vim.lsp.buf.format, 'Format code with LSP')
+mlf('ts', vim.treesitter.start, 'vim.treesitter.start()')
 
 vim.keymap.set('n', '<leader>cv', function()
   local new_config = not vim.diagnostic.config().virtual_lines
