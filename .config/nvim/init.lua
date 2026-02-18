@@ -28,6 +28,7 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+--============================ Basic options =================================--
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 vim.g.mapleader = ' '
@@ -140,6 +141,7 @@ end
 --============================ Lazy ==========================================--
 require('lazy').setup({
   spec = {
+    --======================== Mini ==========================================--
     {
       'nvim-mini/mini.files',
       config = function()
