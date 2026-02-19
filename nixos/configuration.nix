@@ -155,7 +155,8 @@
 
     # CLI Utils
     curl
-    lshw
+    # dmidecode
+    # lshw
     ripgrep
     wget
 
