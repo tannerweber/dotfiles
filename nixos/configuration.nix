@@ -155,6 +155,7 @@
 
     # CLI Utils
     curl
+    lshw
     ripgrep
     wget
 
