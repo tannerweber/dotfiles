@@ -64,7 +64,7 @@ input {
 
 layout { // Settings that influence how windows are positioned and sized.
 	background-color "transparent"
-    gaps 10
+    gaps 3
     center-focused-column "on-overflow"
     preset-column-widths {
         proportion 0.5
@@ -74,12 +74,21 @@ layout { // Settings that influence how windows are positioned and sized.
 
     focus-ring {
         //off
+		on
         width 2
-        active-color "#7fc8ff"
-        inactive-color "#505050"
-        active-gradient from="#80c8ff" to="#7fffe5" angle=45
-        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        active-color "#00ffff"
+        inactive-color "#cccccc"
+        urgent-color "#ff0000"
+        active-gradient from="#80c8ff" to="#7fffe5" angle=45 relative-to="workspace-view"
     }
+
+	border {
+        on
+		width 2
+        active-color "#000000"
+        inactive-color "#cccccc"
+        urgent-color "#ff0000"
+	}
 
     shadow { // Drop shadow for windows
 		on
