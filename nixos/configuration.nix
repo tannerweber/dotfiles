@@ -143,6 +143,7 @@
     lua-language-server
     stylua
     typst
+    tree-sitter
 
     # Interactive CLI Programs
     eza
