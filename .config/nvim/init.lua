@@ -38,7 +38,7 @@ vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 
 vim.o.confirm = true
-vim.o.colorcolumn = '80'
+vim.o.colorcolumn = '81'
 vim.o.showmode = false
 vim.o.shell = 'fish'
 vim.o.mouse = 'a'
