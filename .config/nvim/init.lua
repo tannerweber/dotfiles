@@ -632,6 +632,36 @@ vim.api.nvim_create_autocmd({
   end,
 })
 
+--============================ Tab Line ======================================--
+-- function CustomTabLine()
+--   local function get_harpooned_files()
+--     local tbl = require('harpoon'):list()
+--     return table.unpack(tbl)
+--   end
+--
+--   return table.concat({
+--     'hello',
+--     get_harpooned_files(),
+--   })
+-- end
+--
+-- vim.api.nvim_create_autocmd({
+--   'WinEnter',
+--   'BufEnter',
+--   'BufWritePost',
+--   'SessionLoadPost',
+--   'FileChangedShellPost',
+--   'VimResized',
+--   'Filetype',
+-- }, {
+--   desc = 'CustomTabline',
+--   callback = function()
+--     vim.o.tabline = '%!v:lua.CustomTabLine()'
+--   end,
+-- })
+--
+-- vim.o.showtabline = 2
+
 --============================ Filetype Fix ==================================--
 vim.api.nvim_create_autocmd({
   'BufNewFile',
