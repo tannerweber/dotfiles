@@ -52,9 +52,8 @@
 (global-display-line-numbers-mode 1)
 (global-hl-line-mode 1)
 
-(set-face-attribute 'default nil
-                    :family my-main-font
-                    :height 110)
+(add-to-list 'default-frame-alist
+             (cons 'font my-main-font))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
