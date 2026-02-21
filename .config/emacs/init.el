@@ -1,6 +1,6 @@
 ;; init.el
 
-(setopt my-font "Hack Nerd Font")
+(defvar my-main-font "Hack Nerd Font")
 
 ;; Set up package.el to work with MELPA
 (require 'package)
@@ -44,9 +44,6 @@
       backup-inhibited t
       pixel-scroll-precision-mode t)
 
-(add-to-list 'default-frame-alist
-	     '(font . my-font))
-
 (load-theme 'leuven-dark t)
 
 (tool-bar-mode -1)
@@ -55,21 +52,25 @@
 (global-display-line-numbers-mode 1)
 (global-hl-line-mode 1)
 
+(set-face-attribute 'default nil
+                    :family my-main-font
+                    :height 110)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cursor ((t (:background "#ffffff"))))
- '(org-document-title ((t (:inherit default :weight bold :foreground "#ffffff" :font "Verdana" :height 1.6 :underline nil))))
- '(org-level-1 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana" :height 1.5))))
- '(org-level-2 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana" :height 1.3))))
- '(org-level-3 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana" :height 1.2))))
- '(org-level-4 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana" :height 1.1))))
- '(org-level-5 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana"))))
- '(org-level-6 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana"))))
- '(org-level-7 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana"))))
- '(org-level-8 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana"))))
+ '(org-document-title ((t (:inherit default :weight bold :foreground "#ffffff" :font my-main-font :height 1.6 :underline nil))))
+ '(org-level-1 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font :height 1.5))))
+ '(org-level-2 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font :height 1.3))))
+ '(org-level-3 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font :height 1.2))))
+ '(org-level-4 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font :height 1.1))))
+ '(org-level-5 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font))))
+ '(org-level-6 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font))))
+ '(org-level-7 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font))))
+ '(org-level-8 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "red" :height 1.25))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "yellow"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "blue"))))
