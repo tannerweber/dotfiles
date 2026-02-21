@@ -143,6 +143,7 @@
     lua-language-server
     stylua
     typst
+    tree-sitter
 
     # Interactive CLI Programs
     eza
@@ -155,6 +156,8 @@
 
     # CLI Utils
     curl
+    # dmidecode
+    # lshw
     ripgrep
     wget
 

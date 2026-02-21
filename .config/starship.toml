@@ -250,7 +250,7 @@ format = '[ $symbol ($version) ]($style)'
 
 [nix_shell]
 symbol = " "
-style = "fg:#FFFFFF bg:#86BBD8"
+style = "fg:#FFFFFF bg:#33658A"
 format = '[ $symbol$state( \($name\)) ]($style)'
 
 [ocaml]
