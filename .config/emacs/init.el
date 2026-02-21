@@ -1,3 +1,7 @@
+;; init.el
+
+(setopt my-font "Hack Nerd Font")
+
 ;; Set up package.el to work with MELPA
 (require 'package)
 (add-to-list 'package-archives
@@ -23,14 +27,25 @@
 
 ;; Basic Settings
 (setq default-directory "~/"
+      completion-ignore-case t
+      completions-detailed t
+      completions-format 'one-column
+      delete-by-moving-to-trash t
+      delete-selection-mode nil
+      display-line-numbers-widen t
+      display-line-numbers-width 3
+      scroll-conservatively 101
+      scroll-margin 10
       inhibit-startup-message t
       initial-scratch-message nil
       visible-bell t
-      scroll-conservatively 101
-      scroll-margin 10)
+      create-lockfiles nil
+      make-backup-files nil
+      backup-inhibited t
+      pixel-scroll-precision-mode t)
 
 (add-to-list 'default-frame-alist
-	     '(font . "Hack Nerd Font"))
+	     '(font . my-font))
 
 (load-theme 'leuven-dark t)
 
@@ -38,31 +53,23 @@
 (menu-bar-mode -1)
 (scroll-bar-mode 1)
 (global-display-line-numbers-mode 1)
-
-;; Org Mode
-(let* ((variable-tuple
-        (cond ((x-list-fonts "ETBembo")         '(:font "ETBembo"))
-              ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
-              ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
-              ((x-list-fonts "Verdana")         '(:font "Verdana"))
-              ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
-              (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
-       (base-font-color     (face-foreground 'default nil 'default))
-       (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
-
-  (custom-theme-set-faces
-   'user
-   `(org-level-8 ((t (,@headline ,@variable-tuple))))
-   `(org-level-7 ((t (,@headline ,@variable-tuple))))
-   `(org-level-6 ((t (,@headline ,@variable-tuple))))
-   `(org-level-5 ((t (,@headline ,@variable-tuple))))
-   `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
-   `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.2))))
-   `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.3))))
-   `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.5))))
-   `(org-document-title ((t (,@headline ,@variable-tuple :height 1.6 :underline nil))))))
+(global-hl-line-mode 1)
 
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(cursor ((t (:background "#ffffff"))))
+ '(org-document-title ((t (:inherit default :weight bold :foreground "#ffffff" :font "Verdana" :height 1.6 :underline nil))))
+ '(org-level-1 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana" :height 1.5))))
+ '(org-level-2 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana" :height 1.3))))
+ '(org-level-3 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana" :height 1.2))))
+ '(org-level-4 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana" :height 1.1))))
+ '(org-level-5 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana"))))
+ '(org-level-6 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana"))))
+ '(org-level-7 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana"))))
+ '(org-level-8 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font "Verdana"))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "red" :height 1.25))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "yellow"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "blue"))))
@@ -72,5 +79,10 @@
  '(rainbow-delimiters-depth-7-face ((t (:foreground "lightblue"))))
  '(rainbow-delimiters-depth-8-face ((t (:foreground "red"))))
  '(rainbow-delimiters-depth-9-face ((t (:foreground "yellow"))))
- '(rainbow-delimiters-unmatched-face ((t (:background "blue"))))
+ '(rainbow-delimiters-unmatched-face ((t (:background "blue")))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
