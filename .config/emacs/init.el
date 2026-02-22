@@ -1,6 +1,6 @@
 ;; init.el
-
 (defvar my-main-font "Hack Nerd Font")
+(push '(fullscreen . maximized) default-frame-alist)
 
 ;; Set up package.el to work with MELPA
 (require 'package)
