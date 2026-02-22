@@ -61,15 +61,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cursor ((t (:background "#ffffff"))))
- '(org-document-title ((t (:inherit default :weight bold :foreground "#ffffff" :font my-main-font :height 1.6 :underline nil))))
- '(org-level-1 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font :height 1.5))))
- '(org-level-2 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font :height 1.3))))
- '(org-level-3 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font :height 1.2))))
- '(org-level-4 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font :height 1.1))))
- '(org-level-5 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font))))
- '(org-level-6 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font))))
- '(org-level-7 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font))))
- '(org-level-8 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :font my-main-font))))
+ '(org-document-title ((t (:weight bold :foreground "#ffffff" :height 1.6 :underline nil))))
+ '(org-level-1 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :height 1.5))))
+ '(org-level-2 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :height 1.3))))
+ '(org-level-3 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :height 1.2))))
+ '(org-level-4 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil :height 1.1))))
+ '(org-level-5 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil ))))
+ '(org-level-6 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil ))))
+ '(org-level-7 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil ))))
+ '(org-level-8 ((t (:weight bold :foreground "#ffffff" :background nil :overline nil ))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "red" :height 1.25))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "yellow"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "blue"))))
@@ -86,3 +86,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(setq-default mode-line-format
+	      '("%e" mode-line-front-space
+		(:propertize
+		  ("" mode-line-mule-info mode-line-client mode-line-modified
+		   mode-line-remote)
+		  display (min-width (5.0)))
+		 mode-line-frame-identification mode-line-buffer-identification "   "
+		 mode-line-position (vc-mode vc-mode) "  " mode-line-modes
+		 mode-line-misc-info mode-line-end-spaces))
+				 
