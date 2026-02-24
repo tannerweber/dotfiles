@@ -72,11 +72,11 @@ local function mf(keys, func, desc)
 end
 
 local function ml(keys, command, desc)
-  vim.keymap.set('n', '<leader>' .. keys, command, { desc = desc })
+  vim.keymap.set({ 'n', 'v' }, '<leader>' .. keys, command, { desc = desc })
 end
 
 local function mlf(keys, func, desc)
-  vim.keymap.set('n', '<leader>' .. keys, function()
+  vim.keymap.set({ 'n', 'v' }, '<leader>' .. keys, function()
     func()
   end, { desc = desc })
 end
@@ -226,12 +226,6 @@ require('lazy').setup({
       lazy = false,
       config = function()
         local gitsigns = require('gitsigns')
-        vim.keymap.set('v', '<leader>hs', function()
-          gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-        end, { desc = 'git stage hunk' })
-        vim.keymap.set('v', '<leader>hr', function()
-          gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-        end, { desc = 'git reset hunk' })
         mlf('hs', gitsigns.stage_hunk, 'git stage hunk')
         mlf('hr', gitsigns.reset_hunk, 'git reset hunk')
         mlf('hS', gitsigns.stage_buffer, 'git Stage buffer')
@@ -243,6 +237,12 @@ require('lazy').setup({
         ml('hD', ":lua require('gitsigns').diffthis('@')<cr>", 'Diff commit')
         mlf('gb', gitsigns.toggle_current_line_blame, 'git show blame line')
         mlf('gD', gitsigns.preview_hunk_inline, 'git show Deleted')
+        vim.keymap.set('v', '<leader>hs', function()
+          gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+        end, { desc = 'git stage hunk selection' })
+        vim.keymap.set('v', '<leader>hr', function()
+          gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+        end, { desc = 'git reset hunk selection' })
       end,
     },
     --======================== LSP ===========================================--
