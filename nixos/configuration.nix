@@ -10,8 +10,9 @@
     ./rust-embedded-microbit.nix
   ];
 
-  # Allow unfree packages
+  # FREEDOM
   nixpkgs.config.allowUnfree = true;
+  # boot.kernelPackages = pkgs.linuxPackages_latest-libre;
 
   # Flakes Enable
   nix.settings.experimental-features = [
