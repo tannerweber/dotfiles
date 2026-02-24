@@ -152,6 +152,30 @@ config.keys = {
   { key = '8', mods = 'CTRL|ALT', action = act.MoveTab(7) },
   { key = '9', mods = 'CTRL|ALT', action = act.MoveTab(8) },
 
+  { key = '-', mods = 'CTRL|ALT', action = wezterm.action_callback(
+    function(window, pane)
+      local overrides = window:get_config_overrides() or {}
+      if not overrides.window_background_opacity then
+        overrides.window_background_opacity = 1.0
+      else
+        overrides.window_background_opacity = overrides.window_background_opacity - 0.1
+      end
+      window:set_config_overrides(overrides)
+    end
+  )},
+
+  { key = '=', mods = 'CTRL|ALT', action = wezterm.action_callback(
+    function(window, pane)
+      local overrides = window:get_config_overrides() or {}
+      if not overrides.window_background_opacity then
+        overrides.window_background_opacity = 1.0
+      else
+        overrides.window_background_opacity = overrides.window_background_opacity + 0.1
+      end
+      window:set_config_overrides(overrides)
+    end
+  )},
+
   -- Tmux like binds using a leader key
   { key = '%', mods = 'LEADER|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
   { key = '"', mods = 'LEADER|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
