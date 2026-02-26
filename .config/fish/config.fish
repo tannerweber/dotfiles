@@ -14,8 +14,8 @@ if status is-interactive
 
     # Abbreviations
 	abbr --add ... cd .. \&\& cd ..
-    abbr --add la "eza -al --icons"
-    abbr --add d "eza -al --icons"
+    abbr --add la "eza -al --icons --total-size --git --group"
+    abbr --add d "eza -al --icons --total-size --git --group"
     abbr --add c clear
 	abbr --add gs git status
 	abbr --add gd git diff
