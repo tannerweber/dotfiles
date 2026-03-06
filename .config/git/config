@@ -1,0 +1,7 @@
+[user]
+	name = Tanner Weber
+	email = tannerw@pdx.edu
+	username = tannerw
+
+[init]
+	defaultBranch = main
