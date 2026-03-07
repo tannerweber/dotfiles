@@ -48,4 +48,8 @@
     "light": "Ayu Light",
     "dark": "Ayu Dark",
   },
+  "which_key": {
+    "delay_ms": 500,
+	"enabled": true,
+  },
 }
