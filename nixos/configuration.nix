@@ -109,7 +109,6 @@
   };
 
   programs = {
-    firefox.enable = true;
     bat.enable = true;
     fish.enable = true;
     lazygit.enable = true;
@@ -167,6 +166,7 @@
     filezilla
     ghostty
     wezterm
+    librewolf
   ];
 
   fonts.packages = with pkgs; [
