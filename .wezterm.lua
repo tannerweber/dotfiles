@@ -124,13 +124,16 @@ config.keys = {
   { key = 'f', mods = 'ALT', action = act.TogglePaneZoomState },
   { key = '%', mods = 'ALT|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
   { key = '"', mods = 'ALT|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
-  { key = 'p', mods = 'ALT', action = act.ActivateCommandPalette },
+  { key = 'm', mods = 'ALT', action = act.ActivateCommandPalette },
   { key = 'f', mods = 'ALT', action = act.Search 'CurrentSelectionOrEmptyString' },
 
   { key = 'h', mods = 'ALT', action = act{ActivatePaneDirection="Left"} },
   { key = 'j', mods = 'ALT', action = act{ActivatePaneDirection="Down"} },
   { key = 'k', mods = 'ALT', action = act{ActivatePaneDirection="Up"} },
   { key = 'l', mods = 'ALT', action = act{ActivatePaneDirection="Right"} },
+
+  { key = 'n', mods = 'ALT', action = act.ScrollByPage(1) },
+  { key = 'p', mods = 'ALT', action = act.ScrollByPage(-1) },
 
   { key = '1', mods = 'ALT', action = act{ActivateTab=0} },
   { key = '2', mods = 'ALT', action = act{ActivateTab=1} },
