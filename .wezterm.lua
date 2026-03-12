@@ -90,14 +90,20 @@ config.enable_kitty_keyboard = true
 
 --============================ Binds =========================================--
 local act = require('wezterm').action
+local function map_alt(key, action, mod)
+  mod = mod or nil
+  if mod == nil then
+    table.insert(config.keys, { key = key, mods = 'ALT', action = action })
+  else
+    local mods = 'ALT|' .. mod
+    table.insert(config.keys, { key = key, mods = mods, action = action })
+  end
+end
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
   { key = 'a', mods = 'LEADER|CTRL', action = act.SendKey { key = 'a', mods = 'CTRL' } },
 
   -- Domain bindings
-  { key = 'a', mods = 'ALT', action = act.ShowLauncherArgs { flags = 'DOMAINS' } },
-  { key = 'd', mods = 'ALT', action = act.DetachDomain 'CurrentPaneDomain' },
-  { key = 's', mods = 'ALT', action = act.ShowLauncherArgs { flags = 'WORKSPACES' } },
   {
     key = 'r',
     mods = 'ALT',
@@ -115,44 +121,6 @@ config.keys = {
       ),
     },
   },
-
-  -- Navigation bindings
-  { key = 'w', mods = 'ALT', action = act.CloseCurrentPane { confirm = false }, },
-  { key = 't', mods = 'ALT', action = act.SpawnTab 'CurrentPaneDomain' },
-  { key = 'c', mods = 'ALT', action = act.SpawnTab 'CurrentPaneDomain' },
-  { key = 'f', mods = 'ALT', action = act.TogglePaneZoomState },
-  { key = '%', mods = 'ALT|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
-  { key = '"', mods = 'ALT|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
-  { key = 'm', mods = 'ALT', action = act.ActivateCommandPalette },
-  { key = 'f', mods = 'ALT', action = act.Search 'CurrentSelectionOrEmptyString' },
-
-  { key = 'h', mods = 'ALT', action = act{ActivatePaneDirection="Left"} },
-  { key = 'j', mods = 'ALT', action = act{ActivatePaneDirection="Down"} },
-  { key = 'k', mods = 'ALT', action = act{ActivatePaneDirection="Up"} },
-  { key = 'l', mods = 'ALT', action = act{ActivatePaneDirection="Right"} },
-
-  { key = 'n', mods = 'ALT', action = act.ScrollByPage(1) },
-  { key = 'p', mods = 'ALT', action = act.ScrollByPage(-1) },
-
-  { key = '1', mods = 'ALT', action = act{ActivateTab=0} },
-  { key = '2', mods = 'ALT', action = act{ActivateTab=1} },
-  { key = '3', mods = 'ALT', action = act{ActivateTab=2} },
-  { key = '4', mods = 'ALT', action = act{ActivateTab=3} },
-  { key = '5', mods = 'ALT', action = act{ActivateTab=4} },
-  { key = '6', mods = 'ALT', action = act{ActivateTab=5} },
-  { key = '7', mods = 'ALT', action = act{ActivateTab=6} },
-  { key = '8', mods = 'ALT', action = act{ActivateTab=7} },
-  { key = '9', mods = 'ALT', action = act{ActivateTab=8} },
-
-  { key = '1', mods = 'CTRL|ALT', action = act.MoveTab(0) },
-  { key = '2', mods = 'CTRL|ALT', action = act.MoveTab(1) },
-  { key = '3', mods = 'CTRL|ALT', action = act.MoveTab(2) },
-  { key = '4', mods = 'CTRL|ALT', action = act.MoveTab(3) },
-  { key = '5', mods = 'CTRL|ALT', action = act.MoveTab(4) },
-  { key = '6', mods = 'CTRL|ALT', action = act.MoveTab(5) },
-  { key = '7', mods = 'CTRL|ALT', action = act.MoveTab(6) },
-  { key = '8', mods = 'CTRL|ALT', action = act.MoveTab(7) },
-  { key = '9', mods = 'CTRL|ALT', action = act.MoveTab(8) },
 
   { key = '-', mods = 'CTRL|ALT', action = require('wezterm').action_callback(
     function(window, pane)
@@ -251,6 +219,49 @@ config.keys = {
   { key = '.', mods = 'SHIFT', action = act.SendString '>' },
   { key = '/', mods = 'SHIFT', action = act.SendString '?' },
 }
+
+-- Domain bindings
+map_alt('a', act.ShowLauncherArgs { flags = 'DOMAINS' })
+map_alt('d', act.DetachDomain 'CurrentPaneDomain' )
+map_alt('s', act.ShowLauncherArgs { flags = 'WORKSPACES' })
+
+-- Navigation bindings
+map_alt('w', act.CloseCurrentPane { confirm = false })
+map_alt('t', act.SpawnTab 'CurrentPaneDomain')
+map_alt('c', act.SpawnTab 'CurrentPaneDomain')
+map_alt('z', act.TogglePaneZoomState)
+map_alt('m', act.ActivateCommandPalette)
+map_alt('f', act.Search 'CurrentSelectionOrEmptyString')
+map_alt('%', act.SplitHorizontal { domain = 'CurrentPaneDomain' }, 'SHIFT')
+map_alt('"', act.SplitVertical { domain = 'CurrentPaneDomain' }, 'SHIFT')
+
+map_alt('h', act{ActivatePaneDirection="Left"})
+map_alt('j', act{ActivatePaneDirection="Down"})
+map_alt('k', act{ActivatePaneDirection="Up"})
+map_alt('l', act{ActivatePaneDirection="Right"})
+
+map_alt('n', act.ScrollByPage(1))
+map_alt('p', act.ScrollByPage(-1))
+
+map_alt('1', act{ActivateTab=0})
+map_alt('2', act{ActivateTab=1})
+map_alt('3', act{ActivateTab=2})
+map_alt('4', act{ActivateTab=3})
+map_alt('5', act{ActivateTab=4})
+map_alt('6', act{ActivateTab=5})
+map_alt('7', act{ActivateTab=6})
+map_alt('8', act{ActivateTab=7})
+map_alt('9', act{ActivateTab=8})
+
+map_alt('1', act.MoveTab(0), 'CTRL')
+map_alt('2', act.MoveTab(1), 'CTRL')
+map_alt('3', act.MoveTab(2), 'CTRL')
+map_alt('4', act.MoveTab(3), 'CTRL')
+map_alt('5', act.MoveTab(4), 'CTRL')
+map_alt('6', act.MoveTab(5), 'CTRL')
+map_alt('7', act.MoveTab(6), 'CTRL')
+map_alt('8', act.MoveTab(7), 'CTRL')
+map_alt('9', act.MoveTab(8), 'CTRL')
 
 --============================ Tab bar style =================================--
 local function remove_exe(text)
