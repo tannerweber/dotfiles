@@ -1,8 +1,7 @@
 -- Tanner Weber
 -- .wezterm.lua
 
-local wezterm = require('wezterm')
-local config = wezterm.config_builder()
+local config = require('wezterm').config_builder()
 
 -- Colors
 local col_mantle = '#181825' -- Set for solid background
@@ -31,10 +30,10 @@ config.unix_domains = {
 
 --============================ Start in fullscreen ===========================--
 local function start_fullscreen()
-  wezterm.on('gui-startup', function(window)
-    local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+  require('wezterm').on('gui-startup', function(window)
+    local tab, pane, window = require('wezterm').mux.spawn_window(cmd or {})
     local gui_window = window:gui_window();
-    gui_window:perform_action(wezterm.action.ToggleFullScreen, pane)
+    gui_window:perform_action(require('wezterm').action.ToggleFullScreen, pane)
   end)
 end
 
@@ -52,7 +51,7 @@ config.max_fps = 255
 config.color_scheme = 'Paul Millr (Gogh)'
 config.window_background_opacity = 1.0
 config.font_size = 12
-config.font = wezterm.font 'Hack Nerd Font'
+config.font = require('wezterm').font 'Hack Nerd Font'
 config.window_decorations = 'NONE'
 config.tab_bar_at_bottom = false
 config.use_fancy_tab_bar = false
@@ -90,7 +89,7 @@ config.allow_win32_input_mode = false
 config.enable_kitty_keyboard = true
 
 --============================ Binds =========================================--
-local act = wezterm.action
+local act = require('wezterm').action
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
   { key = 'a', mods = 'LEADER|CTRL', action = act.SendKey { key = 'a', mods = 'CTRL' } },
@@ -104,10 +103,10 @@ config.keys = {
     mods = 'ALT',
     action = act.PromptInputLine {
       description = 'Rename Workspace',
-      action = wezterm.action_callback(
+      action = require('wezterm').action_callback(
         function(window, pane, line)
           if line then
-            wezterm.mux.rename_workspace(
+            require('wezterm').mux.rename_workspace(
               window:mux_window():get_workspace(),
               line
             )
@@ -155,7 +154,7 @@ config.keys = {
   { key = '8', mods = 'CTRL|ALT', action = act.MoveTab(7) },
   { key = '9', mods = 'CTRL|ALT', action = act.MoveTab(8) },
 
-  { key = '-', mods = 'CTRL|ALT', action = wezterm.action_callback(
+  { key = '-', mods = 'CTRL|ALT', action = require('wezterm').action_callback(
     function(window, pane)
       local overrides = window:get_config_overrides() or {}
       if not overrides.window_background_opacity then
@@ -167,7 +166,7 @@ config.keys = {
     end
   )},
 
-  { key = '=', mods = 'CTRL|ALT', action = wezterm.action_callback(
+  { key = '=', mods = 'CTRL|ALT', action = require('wezterm').action_callback(
     function(window, pane)
       local overrides = window:get_config_overrides() or {}
       if not overrides.window_background_opacity then
@@ -256,7 +255,7 @@ config.keys = {
 --============================ Tab bar style =================================--
 local function remove_exe(text)
   if text:sub(-4) == '.exe' then
-    text = wezterm.truncate_right(text, #text - 4)
+    text = require('wezterm').truncate_right(text, #text - 4)
   end
 
   return text
@@ -275,10 +274,10 @@ local function tab_title(tab_info)
   return remove_exe(title)
 end
 
-wezterm.on(
+require('wezterm').on(
   'format-tab-title',
   function(tab, tabs, panes, config, hover, max_width)
-    local title = wezterm.truncate_right(tab_title(tab), max_width - 7)
+    local title = require('wezterm').truncate_right(tab_title(tab), max_width - 7)
     if tab.is_active then
       return {
         { Foreground = { Color = '#303446' } },
@@ -313,9 +312,9 @@ wezterm.on(
   end
 )
 
-wezterm.on('update-status', function(window, pane)
+require('wezterm').on('update-status', function(window, pane)
   local workspace = window:active_workspace()
-  window:set_left_status(wezterm.format {
+  window:set_left_status(require('wezterm').format {
     -- Workspace Name
     { Foreground = { Color = '#fab387' } },
     { Background = { Color = col_mantle } },
@@ -349,11 +348,11 @@ local function get_cwd(pane)
   return cwd
 end
 
-wezterm.on('update-right-status', function(window, pane)
-  local date = wezterm.strftime '%I:%M %p - %a %b %-d'
+require('wezterm').on('update-right-status', function(window, pane)
+  local date = require('wezterm').strftime '%I:%M %p - %a %b %-d'
   local domain= pane:get_domain_name()
   local cwd = get_cwd(pane)
-  window:set_right_status(wezterm.format {
+  window:set_right_status(require('wezterm').format {
     -- Current Working Directory
     { Foreground = { Color = '#f9e2af' } },
     { Background = { Color = col_mantle } },
@@ -397,7 +396,7 @@ wezterm.on('update-right-status', function(window, pane)
 end)
 
 --============================ Apply operating specific settings =============--
-if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+if require('wezterm').target_triple == 'x86_64-pc-windows-msvc' then
   windows_settings()
 end
 
