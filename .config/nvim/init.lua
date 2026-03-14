@@ -354,7 +354,7 @@ require('lazy').setup({
         mf('gy', Snacks.picker.lsp_type_definitions, 'Goto T[y]pe Definition')
       end,
     },
-    --======================== Tokyonight ====================================--
+    --======================== Colorscheme ===================================--
     {
       'folke/tokyonight.nvim',
       lazy = false,
@@ -368,6 +368,22 @@ require('lazy').setup({
       },
       init = function()
         vim.cmd.colorscheme('tokyonight-night')
+        local function set_markdown_heading_color(level, color)
+          vim.cmd(
+            string.format(
+              'highlight @markup.heading.%s.markdown'
+                .. ' cterm=bold gui=bold guibg=%s guifg=#000000',
+              level,
+              color
+            )
+          )
+        end
+        set_markdown_heading_color(1, '#7dcfff')
+        set_markdown_heading_color(2, '#9efe6a')
+        set_markdown_heading_color(3, '#7aa2f7')
+        set_markdown_heading_color(4, '#db4b4b')
+        set_markdown_heading_color(5, '#3d59a1')
+        set_markdown_heading_color(6, '#3d59a1')
       end,
     },
     --======================== Treesitter ====================================--
