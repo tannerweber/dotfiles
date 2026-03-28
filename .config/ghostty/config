@@ -7,3 +7,7 @@ font-family = Hack Nerd Font
 window-padding-x = 10
 window-padding-y = 10
 custom-shader = ~/.config/ghostty/shaders/cursor_blaze.glsl
+keybind = alt+c=new_tab
+keybind = alt+t=new_tab
+keybind = alt+w=close_tab:this
+keybind = alt+%=new_split:right
