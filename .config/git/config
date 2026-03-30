@@ -5,3 +5,7 @@
 
 [init]
 	defaultBranch = main
+
+[core]
+	eol = lf
+	autocrlf = input
