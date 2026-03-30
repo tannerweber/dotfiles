@@ -171,7 +171,21 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: wezterm" { spawn "wezterm"; }
-    Mod+R hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+R hotkey-overlay-title="Run an Application: fuzzel" {
+        spawn "fuzzel" \
+	          "--text-color" "ffffffff"\
+              "--background-color" "25252bee" \
+              "--border-color" "00ffffff" \
+              "--border-width" "2" \
+              "--prompt" "" \
+              "--selection-color" "00ffffff" \
+              "--selection-text-color" "000000ff" \
+              "--selection-match-color" "111111ff" \
+              "--vertical-pad" "25" \
+              "--inner-pad" "15" \
+              "--line-height" "25" \
+              "--input-color" "ffffffff";
+    }
     Super+Shift+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
