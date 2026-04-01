@@ -128,7 +128,6 @@ vim.pack.add({
   },
   { src = 'https://github.com/rafamadriz/friendly-snippets.git' },
   { src = 'https://github.com/lewis6991/gitsigns.nvim.git' },
-  { src = 'https://github.com/folke/lazydev.nvim.git' },
   { src = 'https://github.com/folke/trouble.nvim.git' },
   { src = 'https://github.com/folke/which-key.nvim.git' },
   { src = 'https://github.com/folke/snacks.nvim.git' },
@@ -138,7 +137,6 @@ vim.pack.add({
     src = 'https://github.com/Saghen/blink.cmp.git',
     version = 'v1',
   },
-  { src = 'https://github.com/nvim-lualine/lualine.nvim.git' },
   { src = 'https://github.com/nvim-mini/mini.pairs.git' },
   { src = 'https://github.com/nvim-mini/mini.ai.git' },
   { src = 'https://github.com/nvim-mini/mini.files.git' },
@@ -150,20 +148,19 @@ vim.pack.add({
 
 --============================ Mini ==========================================--
 require('mini.files').setup()
-
 local function minifiles_toggle(...)
   if not MiniFiles.close() then
     MiniFiles.open(...)
   end
 end
-
 mlf('e', minifiles_toggle, 'Mini Files')
 require('mini.pairs').setup()
 require('mini.ai').setup()
+
 --============================ Database ======================================--
 vim.g.db_ui_use_nerd_fonts = 1
 -- 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' },
--- dadbod ui command: 'DBUI',
+
 --============================ Harpoon =======================================--
 do
   local harpoon = require('harpoon')
