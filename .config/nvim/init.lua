@@ -34,6 +34,7 @@ vim.o.splitbelow = true
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 vim.o.inccommand = 'split'
+vim.o.laststatus = 3
 
 vim.lsp.document_color.enable()
 
@@ -388,7 +389,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 --============================ Status Line ===================================--
-function CustomStatusLine()
+function MyStatusLine()
   -- Tokyonight colors
   local colors = {
     black = '#000000',
@@ -550,20 +551,33 @@ function CustomStatusLine()
 end
 
 vim.api.nvim_create_autocmd({
+  'LspAttach',
+  'LspDetach',
+  'DiagnosticChanged',
+  'ColorScheme',
   'WinEnter',
   'BufEnter',
   'BufWritePost',
   'SessionLoadPost',
   'FileChangedShellPost',
   'VimResized',
-  'Filetype',
   'CursorMoved',
   'CursorMovedI',
   'ModeChanged',
 }, {
-  desc = 'CustomStatusline',
+  desc = 'MyStatusLine',
   callback = function()
-    vim.opt_local.statusline = '%!v:lua.CustomStatusLine()'
+    vim.opt_local.statusline = '%!v:lua.MyStatusLine()'
+  end,
+})
+
+vim.api.nvim_create_autocmd({
+  'WinLeave',
+  'BufLeave',
+}, {
+  desc = 'MyStatusLineInactive',
+  callback = function()
+    vim.opt_local.statusline = ' %F'
   end,
 })
 
