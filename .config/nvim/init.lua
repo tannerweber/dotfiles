@@ -239,7 +239,7 @@ require('blink.cmp').setup({
       'sort_text',
       'label',
     },
-  }
+  },
 })
 vim.lsp.enable({
   'lua_ls',
@@ -308,7 +308,7 @@ mf('gy', Snacks.picker.lsp_type_definitions, 'Goto T[y]pe Definition')
 
 --============================ Colorscheme ===================================--
 require('tokyonight').setup({
-  style = "night",
+  style = 'night',
   transparent = true,
   styles = {
     sidebars = 'transparent',
@@ -379,7 +379,7 @@ ml('cl', ':Trouble lsp toggle focus=false win.position=right<cr>', 'LS')
 
 --============================ Which Key =====================================--
 require('which-key').setup({
-  preset = 'helix'
+  preset = 'helix',
 })
 
 --============================ Auto Commands =================================--
