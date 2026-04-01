@@ -335,8 +335,8 @@ set_markdown_heading_color(5, '#3d59a1')
 set_markdown_heading_color(6, '#3d59a1')
 
 --============================ Treesitter ====================================--
--- build = ':TSUpdate',
 require('nvim-treesitter').setup({
+  install_dir = vim.fn.stdpath('data') .. '/site',
   highlight = { enable = true },
   indent = { enable = true },
   ensure_installed = {
