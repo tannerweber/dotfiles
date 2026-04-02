@@ -115,6 +115,7 @@
     neovim.enable = true;
     niri.enable = true;
     vim.enable = true;
+    vim.defaultEditor = true;
     yazi.enable = true;
     zoxide.enable = true;
     git.enable = true;
@@ -162,9 +163,9 @@
     wget
 
     # Other GUI Programs
-    dbeaver-bin
+    # dbeaver-bin
     filezilla
-    ghostty
+    # ghostty
     wezterm
     librewolf
   ];
