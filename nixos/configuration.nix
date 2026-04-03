@@ -168,6 +168,13 @@
         set wildmode=list:longest
         colorscheme catppuccin
         set background=dark
+
+        let &t_SI = "\e[6 q"
+        let &t_EI = "\e[1 q"
+        augroup myCmds
+        au!
+        autocmd VimEnter * silent !echo -ne "\e[1 q"
+        augroup END
       '';
     };
   };
