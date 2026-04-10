@@ -230,7 +230,7 @@
     pkgs.filezilla
     # ghostty
     pkgs.wezterm
-    pkgs.librewolf
+    # pkgs.librewolf
   ];
 
   fonts.packages = with pkgs; [
