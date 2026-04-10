@@ -1,7 +1,12 @@
 # Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -102,8 +107,8 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [
-      #  thunderbird
+    packages = [
+      #  pkgs.thunderbird
     ];
     shell = pkgs.fish;
   };
@@ -181,49 +186,51 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+
     # Desktop Environment
-    brightnessctl
-    fuzzel
-    mako
-    swaylock
-    swayidle
-    swaybg
-    xdg-desktop-portal-gnome
-    xdg-desktop-portal-gtk
+    pkgs.brightnessctl
+    pkgs.fuzzel
+    pkgs.mako
+    pkgs.swaylock
+    pkgs.swayidle
+    pkgs.swaybg
+    pkgs.xdg-desktop-portal-gnome
+    pkgs.xdg-desktop-portal-gtk
 
     # Nix Utils
-    nixd
-    nixfmt
+    pkgs.nixd
+    pkgs.nixfmt
 
     # Language Stuff
-    lua-language-server
-    stylua
-    typst
-    tree-sitter
+    pkgs.lua-language-server
+    pkgs.stylua
+    pkgs.typst
+    pkgs.tree-sitter
 
     # Interactive CLI Programs
-    eza
-    fzf
-    btop
-    htop
-    fastfetch
-    opencode
-    starship
+    pkgs.eza
+    pkgs.fzf
+    pkgs.btop
+    pkgs.htop
+    pkgs.fastfetch
+    pkgs.opencode
+    pkgs.starship
 
     # CLI Utils
-    curl
+    pkgs.curl
     # dmidecode
     # lshw
-    ripgrep
-    wget
+    pkgs.ripgrep
+    pkgs.wget
 
     # Other GUI Programs
     # dbeaver-bin
-    filezilla
+    pkgs.filezilla
     # ghostty
-    wezterm
-    librewolf
+    pkgs.wezterm
+    pkgs.librewolf
   ];
 
   fonts.packages = with pkgs; [
