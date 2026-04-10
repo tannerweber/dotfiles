@@ -172,12 +172,13 @@ map_alt('d', act.DetachDomain 'CurrentPaneDomain' )
 map_alt('s', act.ShowLauncherArgs { flags = 'WORKSPACES' })
 
 -- Navigation bindings
-map_alt('w', act.CloseCurrentPane { confirm = false })
+map_alt('q', act.CloseCurrentPane { confirm = false })
 map_alt('t', act.SpawnTab 'CurrentPaneDomain')
 map_alt('c', act.SpawnTab 'CurrentPaneDomain')
 map_alt('z', act.TogglePaneZoomState)
 map_alt('m', act.ActivateCommandPalette)
 map_alt('f', act.Search 'CurrentSelectionOrEmptyString')
+map_alt('w', act.SplitHorizontal { domain = 'CurrentPaneDomain' })
 map_alt('%', act.SplitHorizontal { domain = 'CurrentPaneDomain' }, 'SHIFT')
 map_alt('"', act.SplitVertical { domain = 'CurrentPaneDomain' }, 'SHIFT')
 
