@@ -99,6 +99,51 @@
     };
   };
 
+  services.kanata = {
+    enable = true;
+    keyboards.internalKeyboard = {
+      extraDefCfg = "process-unmapped-keys yes";
+      config = ''
+        (defvar
+          tap-time 300
+          hold-time 300
+        )
+
+        (defsrc
+          caps a    s    d    f    g    h    j    k    l    ;
+          lsft
+          alt
+        )
+
+        (deflayer default
+          esc  @ha  @hs  @hd  @hf  _    _  @hj  @hk  @hl  @h;
+          bspc
+          @arr
+        )
+
+        (deflayer arrows
+          _    _    _    _    _    _   left down up   right _
+          _
+          _
+        )
+
+        (defalias
+          arr (tap-hold-press $tap-time $hold-time alt (layer-toggle arrows))
+
+          ha (tap-hold $tap-time $hold-time a lmet)
+          hs (tap-hold $tap-time $hold-time s alt)
+          hd (tap-hold $tap-time $hold-time d lctl)
+          hf (tap-hold $tap-time $hold-time f lsft)
+
+          hj (tap-hold $tap-time $hold-time j lsft)
+          hk (tap-hold $tap-time $hold-time k lctl)
+          hl (tap-hold $tap-time $hold-time l alt)
+          h; (tap-hold $tap-time $hold-time ; lmet)
+        )
+      '';
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tannerw = {
     isNormalUser = true;
