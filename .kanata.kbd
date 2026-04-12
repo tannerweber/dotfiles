@@ -1,8 +1,4 @@
-#|
-This minimal config changes Caps Lock to act as Caps Lock on quick tap, but
-if held, it will act as Left Ctrl. It also changes the backtick/grave key to
-act as backtick/grave on quick tap, but change ijkl keys to arrow keys on hold.
-|#
+#| .kanata.kbd |#
 
 (defvar
   tap-time 300
