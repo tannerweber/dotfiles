@@ -1,11 +1,11 @@
-(defvar
-  tap-time 200
-  hold-time 200
-)
-
 (defcfg
   process-unmapped-keys yes
   concurrent-tap-hold yes
+)
+
+(defvar
+  tap-time 200
+  hold-time 200
 )
 
 (defsrc

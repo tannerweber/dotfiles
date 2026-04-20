@@ -2,43 +2,79 @@
   services.kanata = {
     enable = true;
     keyboards.internalKeyboard = {
-      extraDefCfg = "process-unmapped-keys yes";
+      extraDefCfg = ''
+        process-unmapped-keys yes
+        concurrent-tap-hold yes
+      '';
       config = ''
         (defvar
-          tap-time 300
-          hold-time 300
+          tap-time 200
+          hold-time 200
         )
 
         (defsrc
-          caps a    s    d    f    g    h    j    k    l    ;
-          lsft
-          alt
+          grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+          tab  q    w    e    r    t    y    u    i    o    p    [
+          caps a    s    d    f    g    h    j    k    l    ;    '    ret
+          lsft z    x    c    v    b    n    m    ,    .    /
+          lctl lmet lalt spc  ralt
         )
 
         (deflayer default
-          esc  @ha  @hs  @hd  @hf  _    _  @hj  @hk  @hl  @h;
-          bspc
-          @arr
+          grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+          tab  q    w    e    r    t    y    u    i    o    p    [
+          esc  @ha  @hs  @hd  f    g    h    j    @hk  @hl  @h;  '    ret
+          lsft z    x    c    v    b    n    m    ,    .    /
+          lctl lmet @num spc  @pln
         )
 
-        (deflayer arrows
-          _    _    _    _    _    _   left down up   right _
-          _
-          _
+        (deflayer plain
+          grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+          tab  q    w    e    r    t    y    u    i    o    p    [
+          esc  a    s    d    f    g    h    j    k    l    ;    '    ret
+          lsft z    x    c    v    b    n    m    ,    .    /
+          lctl lmet lalt spc  @def
+        )
+
+        (deflayer nav
+          XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+          XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+          XX   XX   XX   XX   XX   XX   left down up  right XX   XX   XX
+          XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+          XX   XX   XX   XX   XX
+        )
+
+        #|
+          grv  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  XX
+          XX   1    2    3    4    5    6    7    8    9    0    XX
+          XX   $    +    (    )    @    |    -    =    _    *  ret  XX
+          lsft !    #    {    }    ~    &    [    ]    %    ^
+          XX   XX   XX   spc  XX
+        |#
+        (deflayer nums_and_more
+          grv  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  XX
+          XX   1    2    3    4    5    6    7    8    9    0    XX
+          XX   S-4  +    S-9  S-0  S-2  S-\  -    =    S--  S-8  ret  XX
+          lsft S-1  S-3  S-[  S-]  S-`  S-7  [    ]    S-5  S-6
+          XX   XX   XX   spc  XX
         )
 
         (defalias
-          arr (tap-hold-press $tap-time $hold-time alt (layer-toggle arrows))
+          num (layer-while-held nums_and_more)
+          pln (layer-switch plain)
+          def (layer-switch default)
 
           ha (tap-hold $tap-time $hold-time a lmet)
-          hs (tap-hold $tap-time $hold-time s alt)
+          hs (tap-hold $tap-time $hold-time s lalt)
           hd (tap-hold $tap-time $hold-time d lctl)
-          hf (tap-hold $tap-time $hold-time f lsft)
 
-          hj (tap-hold $tap-time $hold-time j lsft)
           hk (tap-hold $tap-time $hold-time k lctl)
-          hl (tap-hold $tap-time $hold-time l alt)
+          hl (tap-hold $tap-time $hold-time l lalt)
           h; (tap-hold $tap-time $hold-time ; lmet)
+        )
+
+        (defchordsv2
+          (s d) (layer-while-held nav) $hold-time first-release (plain)
         )
       '';
     };

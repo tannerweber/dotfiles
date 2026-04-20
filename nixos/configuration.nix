@@ -12,7 +12,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./rust-embedded-microbit.nix
+    ./kanata.nix
   ];
 
   # FREEDOM
