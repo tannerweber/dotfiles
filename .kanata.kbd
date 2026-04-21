@@ -33,24 +33,24 @@
 )
 
 (deflayer nav
-  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX   XX   XX   XX   XX   XX   left down up  right XX   XX   XX
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   bspc
+  tab  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  esc  XX   XX   XX   bspc XX   left down up  right ret  ret  ret
   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX   XX   XX   XX   XX
 )
 
 #|
-  grv  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  XX
+  grv  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  bspc
   XX   1    2    3    4    5    6    7    8    9    0    XX
-  XX   $    +    (    )    @    |    -    =    _    *  ret  XX
+  XX   $    +    (    )    @    |    -    =    _    *    ret  ret
   lsft !    #    {    }    ~    &    [    ]    %    ^
   XX   XX   XX   spc  XX
 |#
 (deflayer nums_and_more
-  grv  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  XX
+  grv  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  bspc
   XX   1    2    3    4    5    6    7    8    9    0    XX
-  XX   S-4  +    S-9  S-0  S-2  S-\  -    =    S--  S-8  ret  XX
+  XX   S-4  +    S-9  S-0  S-2  S-\  -    =    S--  S-8  ret  ret
   lsft S-1  S-3  S-[  S-]  S-`  S-7  [    ]    S-5  S-6
   XX   XX   XX   spc  XX
 )
