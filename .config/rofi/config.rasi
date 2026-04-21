@@ -1,0 +1,9 @@
+configuration {
+  modi: "window,drun,filebrowser,recursivebrowser";
+}
+
+window {
+    location:       center;
+    width:          640;
+    border-radius:  8;
+}
