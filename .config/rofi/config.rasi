@@ -1,19 +1,16 @@
 configuration {
-  modi:                         "window,drun,filebrowser,recursivebrowser";
-}
-
-@theme                          "/dev/null"
-
-configuration {
-    modi:                       "drun,run,filebrowser,window";
+    modi:                       "drun,filebrowser,recursivebrowser";
     show-icons:                 true;
-    display-drun:               " ";
+    display-drun:               " ";
     display-run:                " ";
     display-filebrowser:        " ";
     display-window:             " ";
+    display-recursivebrowser:   " ";
     drun-display-format:        "{name}";
     window-format:              "{w} · {c} · {t}";
 }
+
+@theme                          "/dev/null"
 
 * {
     font:                        "Hack Nerd Font 20";

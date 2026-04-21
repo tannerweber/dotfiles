@@ -169,9 +169,19 @@ switch-events {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open Terminal: wezterm" { spawn "wezterm"; }
-    Mod+R hotkey-overlay-title="Run App: rofi" {
+
+    Mod+B hotkey-overlay-title="Run App: rofi -show filebrowser" {
+        spawn "rofi" \
+              "-show" \
+              "filebrowser";
+    }
+    Mod+F hotkey-overlay-title="Run App: rofi -show recursivebrowser" {
+        spawn "rofi" \
+              "-show" \
+              "recursivebrowser";
+    }
+    Mod+R hotkey-overlay-title="Run App: rofi -show drun" {
         spawn "rofi" \
               "-show" \
               "drun";
@@ -335,7 +345,7 @@ binds {
     Mod+S { switch-preset-column-width; }
     // Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
-    Mod+F { maximize-column; }
+    // Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
 
     Mod+Ctrl+F { expand-column-to-available-width; }
