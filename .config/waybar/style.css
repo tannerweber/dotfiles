@@ -6,16 +6,16 @@ window#waybar {
 	border-radius: 3rem;
 }
 #workspaces {
-	background: rgba(7, 7, 11, 1);
-	border-radius: 3rem;
+	background: rgba(17, 17, 27, 1);
+	border-radius: 0.75rem;
 }
 #tray {
 	padding: 5px 15px;
-	background: rgba(7, 7, 11, 1);
-	border-radius: 3rem;
+	background: rgba(17, 17, 27, 1);
+	border-radius: 0.75rem;
 }
 label.module {
 	padding: 5px 15px;
-	background: rgba(7, 7, 11, 1);
-	border-radius: 3rem;
+	background: rgba(17, 17, 27, 1);
+	border-radius: 0.75rem;
 }
