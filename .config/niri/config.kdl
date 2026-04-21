@@ -170,10 +170,15 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="Open a Terminal: wezterm" { spawn "wezterm"; }
-    Mod+R hotkey-overlay-title="Run an Application: fuzzel" {
+    Mod+T hotkey-overlay-title="Open Terminal: wezterm" { spawn "wezterm"; }
+    Mod+R hotkey-overlay-title="Run App: rofi" {
+        spawn "rofi" \
+              "-show" \
+              "drun";
+    }
+    Mod+Shift+R hotkey-overlay-title="Run App: fuzzel" {
         spawn "fuzzel" \
-	          "--text-color" "ffffffff"\
+              "--text-color" "ffffffff"\
               "--background-color" "25252bee" \
               "--border-color" "00ffffff" \
               "--border-width" "2" \
@@ -328,7 +333,7 @@ binds {
     Mod+Period { expel-window-from-column; }
 
     Mod+S { switch-preset-column-width; }
-    Mod+Shift+R { switch-preset-window-height; }
+    // Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }

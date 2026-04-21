@@ -191,7 +191,7 @@
 
     # Desktop Environment
     pkgs.brightnessctl
-    pkgs.fuzzel
+    pkgs.rofi
     pkgs.mako
     pkgs.swaylock
     pkgs.swayidle
