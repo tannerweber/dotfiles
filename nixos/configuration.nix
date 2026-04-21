@@ -224,6 +224,7 @@
     pkgs.fastfetch
     pkgs.opencode
     pkgs.starship
+    pkgs.clock-rs
 
     # CLI Utils
     pkgs.curl
