@@ -80,12 +80,19 @@
       # libinput.enable = true;
     };
 
-    # Desktop Environment.
-    displayManager.cosmic-greeter.enable = true;
-    desktopManager.cosmic.enable = true;
+    # Display Manager
+    displayManager.ly = {
+      enable = true;
+      x11Support = false;
+    };
+
+    # Desktop Environment
+    desktopManager.plasma6.enable = true;
+
+    # Scheduling
     system76-scheduler.enable = true;
 
-    # Enable CUPS to print documents.
+    # Enable CUPS to print documents
     printing.enable = true;
     pulseaudio.enable = false;
     gnome.gnome-keyring.enable = true;
@@ -123,7 +130,6 @@
     zoxide.enable = true;
     git.enable = true;
     starship.enable = true;
-    waybar.enable = true;
   };
 
   programs.vim = {
@@ -190,6 +196,7 @@
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Desktop Environment
+    pkgs.waybar
     pkgs.brightnessctl
     pkgs.rofi
     pkgs.mako
