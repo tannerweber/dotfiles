@@ -17,9 +17,9 @@ configuration {
 	text-color:                  #ffffff;
 	background-color:            transparent;
 
-    background:                  #1e1d2f;
-    background-alt:              #282839;
-    foreground:                  #d9e0ee;
+    background:                  #11111b;
+    background-alt:              #181825;
+    foreground:                  #ffffff;
     selected:                    #7aa2f7;
     active:                      #abe9b3;
     urgent:                      #f28fad;
@@ -55,8 +55,9 @@ window {
     border:                      2px solid;
     border-radius:               25px;
     border-color:                @border-colour;
-    background-color:            @background-colour;
-    // background-image:          url("/path/to/image.png", none);
+    // background-color:            @background-colour;
+    background-color:            transparent;
+    // background-image:            url("/path/to/image.png", none);
 }
 
 mainbox {
