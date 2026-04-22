@@ -106,6 +106,11 @@
     };
   };
 
+  xdg.mime.defaultApplications = {
+    "application/pdf" = "zen.desktop";
+    "text/*" = "nvim.desktop";
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tannerw = {
     isNormalUser = true;
