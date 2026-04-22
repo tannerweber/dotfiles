@@ -207,7 +207,7 @@
     pkgs.mako
     pkgs.swaylock
     pkgs.swayidle
-    pkgs.swaybg
+    pkgs.awww
     pkgs.xdg-desktop-portal-gnome
     pkgs.xdg-desktop-portal-gtk
 
