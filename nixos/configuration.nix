@@ -210,6 +210,7 @@
     pkgs.awww
     pkgs.xdg-desktop-portal-gnome
     pkgs.xdg-desktop-portal-gtk
+    pkgs.banana-cursor
 
     # Nix Utils
     pkgs.nixd

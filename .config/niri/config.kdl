@@ -133,6 +133,11 @@ animations {
     slowdown 0.25
 }
 
+cursor {
+    xcursor-theme "Banana"
+    // xcursor-size 24
+}
+
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
 window-rule {
