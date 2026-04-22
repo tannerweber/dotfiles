@@ -201,6 +201,9 @@ binds {
               "--line-height" "25" \
               "--input-color" "ffffffff";
     }
+    Mod+P hotkey-overlay-title="Run power menu script ~/.rice/powermenu.sh" {
+        spawn "~/.rice/powermenu.sh"
+    }
     Super+Shift+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
