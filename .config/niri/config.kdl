@@ -106,8 +106,10 @@ layout { // Settings that influence how windows are positioned and sized.
     }
 }
 
+// Rule for making the wallpaper appear in the overview background
+// Use 'niri msg layers' to see namespaces
 layer-rule {
-	match namespace="^wallpaper$"
+	match namespace="^awww-daemon$"
 	place-within-backdrop true
 }
 
@@ -157,7 +159,6 @@ window-rule {
 }
 
 // Example: enable rounded corners for all windows.
-// (This example rule is commented out with a "/-" in front.)
 window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
