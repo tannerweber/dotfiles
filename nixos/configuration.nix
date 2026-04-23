@@ -244,6 +244,7 @@
     pkgs.filezilla
     # ghostty
     pkgs.wezterm
+    pkgs.kitty
     # pkgs.librewolf
   ];
 
