@@ -10,16 +10,16 @@ alias gd="git diff"
 alias gl="git log"
 
 # HISTORY
-HISTFILE=~/.config/bash/.bash_history
+HISTFILE=~/.local/state/bash_history
 
 # PROMPT
 PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'
 PS1=$'\n\[\e[38;5;244m\]\u256D\u2500\[\e[38;5;153m\] (\u@\H) \[\e[38;5;231m\]\w\[\e[38;5;244m\] (${PS1_CMD1}) \@ \s\n\u2570\u2500\u2500\u2192\[\e[0m\] '
 
 # NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # fzf
 eval "$(fzf --bash)"
@@ -39,7 +39,7 @@ if [ -n "$(which zoxide)" ]; then
 fi
 
 #eval "$(starship init bash)" # Starship doesn't work with ble.sh
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # https://github.com/akinomyoga/ble.sh
-source -- ~/.local/share/blesh/ble.sh
+# source -- ~/.local/share/blesh/ble.sh
