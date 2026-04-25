@@ -55,8 +55,8 @@ window {
     border:                      2px solid;
     border-radius:               25px;
     border-color:                @border-colour;
-    // background-color:            @background-colour;
-    background-color:            transparent;
+    background-color:            @background-colour;
+    // background-color:            transparent;
     // background-image:            url("/path/to/image.png", none);
 }
 
