@@ -60,13 +60,13 @@
   pln (layer-switch plain)
   def (layer-switch default)
 
-  ha (tap-hold $tap-time $hold-time a lmet)
-  hs (tap-hold $tap-time $hold-time s lalt)
-  hd (tap-hold $tap-time $hold-time d lctl)
+  ha (tap-hold-release $tap-time $hold-time a lmet)
+  hs (tap-hold-release $tap-time $hold-time s lalt)
+  hd (tap-hold-release $tap-time $hold-time d lctl)
 
-  hk (tap-hold $tap-time $hold-time k lctl)
-  hl (tap-hold $tap-time $hold-time l lalt)
-  h; (tap-hold $tap-time $hold-time ; lmet)
+  hk (tap-hold-release $tap-time $hold-time k lctl)
+  hl (tap-hold-release $tap-time $hold-time l lalt)
+  h; (tap-hold-release $tap-time $hold-time ; lmet)
 )
 
 (defchordsv2
