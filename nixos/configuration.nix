@@ -25,31 +25,18 @@
     "flakes"
   ];
 
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking = {
-    hostName = "nixos"; # Define your hostname.
+    hostName = "nixos";
     networkmanager.enable = true;
-
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-    # Configure network proxy if necessary
-    # proxy.default = "http://user:password@proxy:port/";
-    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-    # Open ports in the firewall.
-    # firewall.allowedTCPPorts = [ ... ];
-    # firewall.allowedUDPPorts = [ ... ];
   };
 
-  # Set your time zone.
+  ###################################### Locality ##############################
   time.timeZone = "America/Los_Angeles";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
@@ -69,15 +56,12 @@
   };
 
   services = {
-    # X11 windowing system.
     xserver = {
       enable = true;
       xkb = {
         layout = "us";
         variant = "";
       };
-      # Enable touchpad support (enabled default in most desktopManager).
-      # libinput.enable = true;
     };
 
     # Display Manager
@@ -92,8 +76,7 @@
     # Scheduling
     system76-scheduler.enable = true;
 
-    # Enable CUPS to print documents
-    printing.enable = true;
+    printing.enable = true; # Enable CUPS
     pulseaudio.enable = false;
     gnome.gnome-keyring.enable = true;
     pipewire = {
@@ -111,7 +94,8 @@
     "text/*" = "nvim.desktop";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  ###################################### Users #################################
+  # Don't forget to set a password with ‘passwd’.
   users.users.tannerw = {
     isNormalUser = true;
     description = "Tanner Weber";
@@ -119,12 +103,10 @@
       "networkmanager"
       "wheel"
     ];
-    packages = [
-      #  pkgs.thunderbird
-    ];
     shell = pkgs.fish;
   };
 
+  ###################################### Programs ##############################
   programs = {
     bat.enable = true;
     fish.enable = true;
@@ -137,6 +119,64 @@
     starship.enable = true;
   };
 
+  ###################################### Packages ##############################
+  # To search run: nix search wget
+  environment.systemPackages = [
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+
+    # Desktop Environment
+    pkgs.waybar
+    pkgs.brightnessctl
+    pkgs.rofi
+    pkgs.mako
+    pkgs.swaylock
+    pkgs.swayidle
+    pkgs.awww
+    pkgs.xdg-desktop-portal-gnome
+    pkgs.xdg-desktop-portal-gtk
+    pkgs.banana-cursor
+
+    # Nix Utils
+    pkgs.nixd
+    pkgs.nixfmt
+
+    # Language Stuff
+    pkgs.lua-language-server
+    pkgs.stylua
+    pkgs.typst
+    pkgs.tree-sitter
+
+    # Interactive CLI Programs
+    pkgs.eza
+    pkgs.fzf
+    pkgs.btop
+    pkgs.htop
+    pkgs.fastfetch
+    pkgs.opencode
+    pkgs.starship
+    pkgs.clock-rs
+
+    # CLI Utils
+    pkgs.curl
+    # dmidecode
+    # lshw
+    pkgs.ripgrep
+    pkgs.wget
+
+    # Other GUI Programs
+    # dbeaver-bin
+    pkgs.filezilla
+    # ghostty
+    pkgs.wezterm
+    pkgs.kitty
+    # pkgs.librewolf
+  ];
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.hack
+  ];
+
+  ###################################### Vim ###################################
   programs.vim = {
     enable = true;
     defaultEditor = true;
@@ -194,76 +234,6 @@
       '';
     };
   };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = [
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-
-    # Desktop Environment
-    pkgs.waybar
-    pkgs.brightnessctl
-    pkgs.rofi
-    pkgs.mako
-    pkgs.swaylock
-    pkgs.swayidle
-    pkgs.awww
-    pkgs.xdg-desktop-portal-gnome
-    pkgs.xdg-desktop-portal-gtk
-    pkgs.banana-cursor
-
-    # Nix Utils
-    pkgs.nixd
-    pkgs.nixfmt
-
-    # Language Stuff
-    pkgs.lua-language-server
-    pkgs.stylua
-    pkgs.typst
-    pkgs.tree-sitter
-
-    # Interactive CLI Programs
-    pkgs.eza
-    pkgs.fzf
-    pkgs.btop
-    pkgs.htop
-    pkgs.fastfetch
-    pkgs.opencode
-    pkgs.starship
-    pkgs.clock-rs
-
-    # CLI Utils
-    pkgs.curl
-    # dmidecode
-    # lshw
-    pkgs.ripgrep
-    pkgs.wget
-
-    # Other GUI Programs
-    # dbeaver-bin
-    pkgs.filezilla
-    # ghostty
-    pkgs.wezterm
-    pkgs.kitty
-    # pkgs.librewolf
-  ];
-
-  fonts.packages = with pkgs; [
-    nerd-fonts.hack
-  ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
