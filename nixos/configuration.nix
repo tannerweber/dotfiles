@@ -155,6 +155,7 @@
     pkgs.opencode
     pkgs.starship
     pkgs.clock-rs
+    pkgs.mdfried
 
     # CLI Utils
     pkgs.curl
@@ -182,12 +183,12 @@
     defaultEditor = true;
     package = (pkgs.vim-full.override { }).customize {
       name = "vim";
-      vimrcConfig.packages.myplugins = with pkgs.vimPlugins; {
-        start = [
-          vim-nix
-        ];
-        opt = [ ];
-      };
+      # vimrcConfig.packages.myplugins = with pkgs.vimPlugins; {
+      #   start = [
+      #     vim-nix
+      #   ];
+      #   opt = [ ];
+      # };
       vimrcConfig.customRC = ''
         let g:netrw_banner=0
         let g:netrw_liststyle=3
