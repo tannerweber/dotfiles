@@ -126,6 +126,7 @@
 
     # Desktop Environment
     pkgs.waybar
+    pkgs.quickshell
     pkgs.brightnessctl
     pkgs.rofi
     pkgs.mako

@@ -64,19 +64,18 @@ input {
 }
 
 layout { // Settings that influence how windows are positioned and sized.
-	background-color "transparent"
-    gaps 0
-	// gaps 3
+    background-color "transparent"
+    gaps 2
     center-focused-column "on-overflow"
     preset-column-widths {
         proportion 0.5
-		proportion 1.0
+        proportion 1.0
     }
     default-column-width { proportion 1.0; }
 
     focus-ring {
         off
-		// on
+        // on
         width 2
         active-color "#00ffff"
         inactive-color "#cccccc"
@@ -85,17 +84,16 @@ layout { // Settings that influence how windows are positioned and sized.
     }
 
 	border {
-		off
-        // on
-		width 2
-        active-color "#000000"
-        inactive-color "#cccccc"
+        on
+        width 3
+        active-color "#00ffff"
+        inactive-color "#999999"
         urgent-color "#ff0000"
 	}
 
     shadow { // Drop shadow for windows
-		off
-		// on
+        off
+        // on
         draw-behind-window false
         softness 10 // Softness controls the shadow blur radius.
         spread 10 // Spread expands the shadow.
@@ -118,7 +116,8 @@ layer-rule {
 	place-within-backdrop true
 }
 
-spawn-at-startup "waybar"
+spawn-at-startup "quickshell"
+// spawn-at-startup "waybar"
 // spawn-at-startup "swww-daemon"
 // spawn-sh-at-startup "swaybg -i ~/.rice/wallpaper.png"
 spawn-sh-at-startup "awww-daemon"
