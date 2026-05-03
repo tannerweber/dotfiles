@@ -65,7 +65,8 @@ input {
 
 layout { // Settings that influence how windows are positioned and sized.
 	background-color "transparent"
-    gaps 3
+    gaps 0
+	// gaps 3
     center-focused-column "on-overflow"
     preset-column-widths {
         proportion 0.5
@@ -74,8 +75,8 @@ layout { // Settings that influence how windows are positioned and sized.
     default-column-width { proportion 1.0; }
 
     focus-ring {
-        //off
-		on
+        off
+		// on
         width 2
         active-color "#00ffff"
         inactive-color "#cccccc"
@@ -84,7 +85,8 @@ layout { // Settings that influence how windows are positioned and sized.
     }
 
 	border {
-        on
+		off
+        // on
 		width 2
         active-color "#000000"
         inactive-color "#cccccc"
@@ -92,7 +94,8 @@ layout { // Settings that influence how windows are positioned and sized.
 	}
 
     shadow { // Drop shadow for windows
-		on
+		off
+		// on
         draw-behind-window false
         softness 10 // Softness controls the shadow blur radius.
         spread 10 // Spread expands the shadow.
@@ -101,8 +104,10 @@ layout { // Settings that influence how windows are positioned and sized.
     }
 
     struts {
-        left 16
-        right 16
+        left 0
+        right 0
+        // left 16
+        // right 16
     }
 }
 
@@ -164,7 +169,7 @@ window-rule {
 }
 
 // Example: enable rounded corners for all windows.
-window-rule {
+/-window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
