@@ -141,8 +141,6 @@
     pkgs.nixfmt
 
     # Language Stuff
-    pkgs.lua-language-server
-    pkgs.stylua
     pkgs.typst
     pkgs.tree-sitter
 
