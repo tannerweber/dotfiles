@@ -140,163 +140,178 @@ PanelWindow {
             Layout.fillWidth: true
         }
 
-        // Clock
-        Text {
-            id: clock
-            text: Qt.formatDateTime(new Date(), "HH:mm - ddd, MMM, dd")
-            color: root.colBlue
-            font {
-                family: root.fontFamily
-                pixelSize: root.fontSize
-                bold: true
-            }
-
-            Timer {
-                interval: 1000
-                running: true
-                repeat: true
-                onTriggered: clock.text = Qt.formatDateTime(new Date(), "hh:mm AP - ddd, MMM dd")
-            }
+        // Left Side
+        Row {
+            id: leftSection
+            anchors.left: parent.left
+            anchors.verticalCenter: parent.verticalCenter
+            spacing: 8
         }
 
+        // Center
         Item {
-            Layout.fillWidth: true
+            anchors.centerIn: parent
+            anchors.verticalCenter: parent.verticalCenter
+            height: parent.height
+
+            // Clock
+            Text {
+                id: clock
+                anchors.centerIn: parent
+
+                text: Qt.formatDateTime(new Date(), "HH:mm - ddd, MMM, dd")
+                color: root.colBlue
+                font {
+                    family: root.fontFamily
+                    pixelSize: root.fontSize
+                    bold: true
+                }
+
+                Timer {
+                    interval: 1000
+                    running: true
+                    repeat: true
+                    onTriggered: clock.text = Qt.formatDateTime(new Date(), "hh:mm AP - ddd, MMM dd")
+                }
+            }
         }
 
-        // System Tray
-        Repeater {
-            model: SystemTray.items
+        // Right Side
+        Row {
+            id: rightSection
+            anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
+            spacing: 8
 
-            MouseArea {
-                id: trayDelegate
-                required property SystemTrayItem modelData
+            // System Tray
+            Repeater {
+                model: SystemTray.items
 
-                Accessible.role: Accessible.Button
-                Accessible.name: modelData.tooltipTitle || modelData.title || "System tray item"
+                MouseArea {
+                    id: trayDelegate
+                    required property SystemTrayItem modelData
 
-                Layout.preferredWidth: 24
-                Layout.preferredHeight: 24
+                    Accessible.role: Accessible.Button
+                    Accessible.name: modelData.tooltipTitle || modelData.title || "System tray item"
 
-                acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
+                    Layout.preferredWidth: 24
+                    Layout.preferredHeight: 24
 
-                onClicked: mouse => {
-                    if (mouse.button === Qt.LeftButton) {
-                        modelData.activate();
-                    } else if (mouse.button === Qt.RightButton) {
-                        if (modelData.hasMenu) {
-                            menuAnchor.open();
+                    acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
+
+                    onClicked: mouse => {
+                        if (mouse.button === Qt.LeftButton) {
+                            modelData.activate();
+                        } else if (mouse.button === Qt.RightButton) {
+                            if (modelData.hasMenu) {
+                                menuAnchor.open();
+                            }
+                        } else if (mouse.button === Qt.MiddleButton) {
+                            modelData.secondaryActivate();
                         }
-                    } else if (mouse.button === Qt.MiddleButton) {
-                        modelData.secondaryActivate();
+                    }
+
+                    IconImage {
+                        anchors.centerIn: parent
+                        source: trayDelegate.modelData.icon
+                        implicitSize: 16
+                    }
+
+                    QsMenuAnchor {
+                        id: menuAnchor
+                        menu: trayDelegate.modelData.menu
+
+                        anchor.window: trayDelegate.QsWindow.window
+                        anchor.adjustment: PopupAdjustment.Flip
+                        anchor.onAnchoring: {
+                            const window = trayDelegate.QsWindow.window;
+                            const widgetRect = window.contentItem.mapFromItem(trayDelegate, 0, trayDelegate.height, trayDelegate.width, trayDelegate.height);
+                            menuAnchor.anchor.rect = widgetRect;
+                        }
                     }
                 }
+            }
 
-                IconImage {
-                    anchors.centerIn: parent
-                    source: trayDelegate.modelData.icon
-                    implicitSize: 16
-                }
-
-                QsMenuAnchor {
-                    id: menuAnchor
-                    menu: trayDelegate.modelData.menu
-
-                    anchor.window: trayDelegate.QsWindow.window
-                    anchor.adjustment: PopupAdjustment.Flip
-                    anchor.onAnchoring: {
-                        const window = trayDelegate.QsWindow.window;
-                        const widgetRect = window.contentItem.mapFromItem(trayDelegate, 0, trayDelegate.height, trayDelegate.width, trayDelegate.height);
-                        menuAnchor.anchor.rect = widgetRect;
-                    }
+            // Wifi
+            Text {
+                text: "  " + wifiNetwork
+                color: root.colBlue
+                font {
+                    family: root.fontFamily
+                    pixelSize: root.fontSize
+                    bold: true
                 }
             }
-        }
 
-        Rectangle {
-            width: 1
-            height: 16
-            color: root.colMuted
-        }
-
-        // Wifi
-        Text {
-            text: "  " + wifiNetwork
-            color: root.colBlue
-            font {
-                family: root.fontFamily
-                pixelSize: root.fontSize
-                bold: true
+            Rectangle {
+                width: 1
+                height: 16
+                color: root.colMuted
             }
-        }
 
-        Rectangle {
-            width: 1
-            height: 16
-            color: root.colMuted
-        }
-
-        // Sound
-        Text {
-            text: {
-                const sink = Pipewire.defaultAudioSink;
-                return "  " + Math.round(sink.audio.volume * 100) + "%";
+            // Sound
+            Text {
+                text: {
+                    const sink = Pipewire.defaultAudioSink;
+                    return "  " + Math.round(sink.audio.volume * 100) + "%";
+                }
+                color: root.colCyan
+                font {
+                    family: root.fontFamily
+                    pixelSize: root.fontSize
+                    bold: true
+                }
             }
-            color: root.colCyan
-            font {
-                family: root.fontFamily
-                pixelSize: root.fontSize
-                bold: true
+
+            Rectangle {
+                width: 1
+                height: 16
+                color: root.colMuted
             }
-        }
 
-        Rectangle {
-            width: 1
-            height: 16
-            color: root.colMuted
-        }
-
-        // Cpu
-        Text {
-            text: " " + cpuUsage + "%"
-            color: root.colYellow
-            font {
-                family: root.fontFamily
-                pixelSize: root.fontSize
-                bold: true
+            // Cpu
+            Text {
+                text: " " + cpuUsage + "%"
+                color: root.colYellow
+                font {
+                    family: root.fontFamily
+                    pixelSize: root.fontSize
+                    bold: true
+                }
             }
-        }
 
-        Rectangle {
-            width: 1
-            height: 16
-            color: root.colMuted
-        }
-
-        // Memory
-        Text {
-            text: " " + memUsage + "%"
-            color: root.colCyan
-            font {
-                family: root.fontFamily
-                pixelSize: root.fontSize
-                bold: true
+            Rectangle {
+                width: 1
+                height: 16
+                color: root.colMuted
             }
-        }
 
-        Rectangle {
-            width: 1
-            height: 16
-            color: root.colMuted
-        }
+            // Memory
+            Text {
+                text: " " + memUsage + "%"
+                color: root.colCyan
+                font {
+                    family: root.fontFamily
+                    pixelSize: root.fontSize
+                    bold: true
+                }
+            }
 
-        // Battery
-        Text {
-            text: " " + batLevel + "%"
-            color: root.colYellow
-            font {
-                family: root.fontFamily
-                pixelSize: root.fontSize
-                bold: true
+            Rectangle {
+                width: 1
+                height: 16
+                color: root.colMuted
+            }
+
+            // Battery
+            Text {
+                text: " " + batLevel + "%"
+                color: root.colYellow
+                font {
+                    family: root.fontFamily
+                    pixelSize: root.fontSize
+                    bold: true
+                }
             }
         }
     }
