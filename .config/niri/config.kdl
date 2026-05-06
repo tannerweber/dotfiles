@@ -65,7 +65,8 @@ input {
 
 layout { // Settings that influence how windows are positioned and sized.
     background-color "transparent"
-    gaps 2
+    gaps 0
+    // gaps 2
     center-focused-column "on-overflow"
     preset-column-widths {
         proportion 0.5
@@ -75,7 +76,6 @@ layout { // Settings that influence how windows are positioned and sized.
 
     focus-ring {
         off
-        // on
         width 2
         active-color "#00ffff"
         inactive-color "#cccccc"
@@ -85,7 +85,8 @@ layout { // Settings that influence how windows are positioned and sized.
 
 	border {
         on
-        width 3
+        width 0
+        // width 2
         active-color "#00ffff"
         inactive-color "#999999"
         urgent-color "#ff0000"
