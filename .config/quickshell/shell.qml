@@ -32,7 +32,8 @@ PanelWindow {
     // Uses NetworkManager
     Process {
         id: wifiProc
-        command: ["sh", "-c", "nmcli -c no -t -f NAME connection"]
+        // command: ["sh", "-c", "nmcli -c no -t -f NAME connection"]
+        command: ["sh", "-c", "nmcli"]
         stdout: StdioCollector {
             onStreamFinished: {
                 if (!text)
