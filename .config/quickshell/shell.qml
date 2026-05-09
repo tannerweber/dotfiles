@@ -22,11 +22,46 @@ PanelWindow {
 
     // System data
     property string wifiNetwork: "None"
+    property int niriWorkspaceNum: -1
+    property int niriWorkspaceCount: -1
     property int cpuUsage: 0
     property int memUsage: 0
     property int batLevel: 0
     property var lastCpuIdle: 0
     property var lastCpuTotal: 0
+
+    // Niri Current Workspace Num Process
+    Process {
+        id: niriWorkspaceNumProc
+        command: ["sh", "-c", "niri msg workspaces | grep \"*\" | cut -d \" \" -f 3"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                if (!text)
+                    return;
+                var lines = text.trim().split("\n");
+                var firstLine = lines[0]; // There should only be one line
+                niriWorkspaceNum = firstLine;
+            }
+        }
+        Component.onCompleted: running = true
+    }
+
+    // Niri Workspace Count Process
+    Process {
+        id: niriWorkspaceCountProc
+        command: ["sh", "-c", "niri msg workspaces | wc -l"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                if (!text)
+                    return;
+                var lines = text.trim().split("\n");
+                var firstLine = lines[0]; // There should only be one line
+                niriWorkspaceCount = firstLine;
+                niriWorkspaceCount = niriWorkspaceCount - 1;
+            }
+        }
+        Component.onCompleted: running = true
+    }
 
     // Wifi Process
     // Uses NetworkManager
@@ -97,6 +132,17 @@ PanelWindow {
         Component.onCompleted: running = true
     }
 
+    // Super Fast timer
+    Timer {
+        interval: 500
+        running: true
+        repeat: true
+        onTriggered: {
+            niriWorkspaceNumProc.running = true;
+            niriWorkspaceCountProc.running = true;
+        }
+    }
+
     // Faster timer
     Timer {
         interval: 2000
@@ -147,6 +193,17 @@ PanelWindow {
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
             spacing: 8
+
+            // Niri Workspaces
+            Text {
+                text: niriWorkspaceNum + " / " + niriWorkspaceCount
+                color: root.colBlue
+                font {
+                    family: root.fontFamily
+                    pixelSize: root.fontSize
+                    bold: true
+                }
+            }
         }
 
         // Center
@@ -160,7 +217,7 @@ PanelWindow {
                 id: clock
                 anchors.centerIn: parent
 
-                text: Qt.formatDateTime(new Date(), "HH:mm - ddd, MMM, dd")
+                text: Qt.formatDateTime(new Date(), "hh:mm AP - ddd MMM dd")
                 color: root.colBlue
                 font {
                     family: root.fontFamily
@@ -172,7 +229,7 @@ PanelWindow {
                     interval: 1000
                     running: true
                     repeat: true
-                    onTriggered: clock.text = Qt.formatDateTime(new Date(), "hh:mm AP - ddd, MMM dd")
+                    onTriggered: clock.text = Qt.formatDateTime(new Date(), "hh:mm AP - ddd MMM dd")
                 }
             }
         }
