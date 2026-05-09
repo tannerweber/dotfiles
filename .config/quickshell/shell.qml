@@ -24,6 +24,7 @@ PanelWindow {
     property string wifiNetwork: "None"
     property int niriWorkspaceNum: -1
     property int niriWorkspaceCount: -1
+    property string niriWindowName: "None"
     property int cpuUsage: 0
     property int memUsage: 0
     property int batLevel: 0
@@ -58,6 +59,22 @@ PanelWindow {
                 var firstLine = lines[0]; // There should only be one line
                 niriWorkspaceCount = firstLine;
                 niriWorkspaceCount = niriWorkspaceCount - 1;
+            }
+        }
+        Component.onCompleted: running = true
+    }
+
+    // Niri Window Name Process
+    Process {
+        id: niriWindowNameProc
+        command: ['sh', '-c', 'basename $(niri msg focused-window | grep "App ID:" | cut -d ":" -f 2 | tr -d \\" | tr . /)']
+        stdout: StdioCollector {
+            onStreamFinished: {
+                if (!text)
+                    return;
+                var lines = text.trim().split("\n");
+                var firstLine = lines[0]; // There should only be one line
+                niriWindowName = firstLine;
             }
         }
         Component.onCompleted: running = true
@@ -140,6 +157,7 @@ PanelWindow {
         onTriggered: {
             niriWorkspaceNumProc.running = true;
             niriWorkspaceCountProc.running = true;
+            niriWindowNameProc.running = true;
         }
     }
 
@@ -197,6 +215,23 @@ PanelWindow {
             // Niri Workspaces
             Text {
                 text: niriWorkspaceNum + " / " + niriWorkspaceCount
+                color: root.colCyan
+                font {
+                    family: root.fontFamily
+                    pixelSize: root.fontSize
+                    bold: true
+                }
+            }
+
+            Rectangle {
+                width: 1
+                height: 16
+                color: root.colMuted
+            }
+
+            // Niri Window Name
+            Text {
+                text: niriWindowName
                 color: root.colBlue
                 font {
                     family: root.fontFamily
