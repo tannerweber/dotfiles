@@ -250,6 +250,7 @@ vim.lsp.enable({
   'fish_lsp',
   'bashls',
   'clojure_lsp',
+  'qmlls',
 })
 vim.lsp.config('lua_ls', {
   settings = {
