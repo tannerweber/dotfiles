@@ -18,6 +18,7 @@ PanelWindow {
     property color colCyan: "#0db9d7"
     property color colBlue: "#7aa2f7"
     property color colYellow: "#e0af68"
+    property color colGreen: "#9ece6a"
     property string fontFamily: "Hack Nerd Font"
     property int fontSize: 16
 
@@ -136,20 +137,6 @@ PanelWindow {
         Component.onCompleted: running = true
     }
 
-    // Battery Process
-    Process {
-        id: batProc
-        command: ["sh", "-c", "cat /sys/class/power_supply/BAT0/capacity"]
-        stdout: SplitParser {
-            onRead: data => {
-                if (!data)
-                    return;
-                root.batLevel = data;
-            }
-        }
-        Component.onCompleted: running = true
-    }
-
     // Super Fast timer
     Timer {
         interval: 500
@@ -179,7 +166,6 @@ PanelWindow {
         running: true
         repeat: true
         onTriggered: {
-            batProc.running = true;
             wifiProc.running = true;
         }
     }
@@ -396,8 +382,28 @@ PanelWindow {
 
             // Battery
             Text {
-                text: " " + root.batLevel + "%"
-                color: root.colYellow
+                text: {
+                    let batPercent = UPower.displayDevice.percentage * 100;
+                    let chargingIcon = "";
+
+                    if (UPower.displayDevice.state == 4) {
+                        chargingIcon = " ";
+                    }
+
+                    if (batPercent < 5.0) {
+                        return chargingIcon + " " + batPercent + "%";
+                    } else if (batPercent < 25.0) {
+                        return chargingIcon + " " + batPercent + "%";
+                    } else if (batPercent < 50.0) {
+                        return chargingIcon + " " + batPercent + "%";
+                    } else if (batPercent < 75.0) {
+                        return chargingIcon + " " + batPercent + "%";
+                    } else {
+                        return chargingIcon + " " + batPercent + "%";
+                    }
+                }
+
+                color: root.colGreen
                 font {
                     family: root.fontFamily
                     pixelSize: root.fontSize
