@@ -183,6 +183,11 @@ PanelWindow {
         }
     }
 
+    SystemClock {
+        id: clock
+        precision: SystemClock.Minutes
+    }
+
     // Pipewire
     PwObjectTracker {
         objects: [Pipewire.defaultAudioSink]
@@ -249,22 +254,14 @@ PanelWindow {
 
             // Clock
             Text {
-                id: clock
                 anchors.centerIn: parent
 
-                text: Qt.formatDateTime(new Date(), "hh:mm AP - ddd MMM dd")
+                text: Qt.formatDateTime(clock.date, "hh:mm AP - ddd MMM dd")
                 color: root.colBlue
                 font {
                     family: root.fontFamily
                     pixelSize: root.fontSize
                     bold: true
-                }
-
-                Timer {
-                    interval: 1000
-                    running: true
-                    repeat: true
-                    onTriggered: clock.text = Qt.formatDateTime(new Date(), "hh:mm AP - ddd MMM dd")
                 }
             }
         }
