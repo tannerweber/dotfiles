@@ -3,6 +3,7 @@ import Quickshell.Wayland
 import Quickshell.Io
 import Quickshell.Services.Pipewire
 import Quickshell.Services.SystemTray
+import Quickshell.Services.UPower
 import Quickshell.Widgets
 import QtQuick
 import QtQuick.Layouts
@@ -41,7 +42,7 @@ PanelWindow {
                     return;
                 var lines = text.trim().split("\n");
                 var firstLine = lines[0]; // There should only be one line
-                niriWorkspaceNum = firstLine;
+                root.niriWorkspaceNum = firstLine;
             }
         }
         Component.onCompleted: running = true
@@ -57,8 +58,8 @@ PanelWindow {
                     return;
                 var lines = text.trim().split("\n");
                 var firstLine = lines[0]; // There should only be one line
-                niriWorkspaceCount = firstLine;
-                niriWorkspaceCount = niriWorkspaceCount - 1;
+                root.niriWorkspaceCount = firstLine;
+                root.niriWorkspaceCount = root.niriWorkspaceCount - 1;
             }
         }
         Component.onCompleted: running = true
@@ -74,7 +75,7 @@ PanelWindow {
                     return;
                 var lines = text.trim().split("\n");
                 var firstLine = lines[0]; // There should only be one line
-                niriWindowName = firstLine;
+                root.niriWindowName = firstLine;
             }
         }
         Component.onCompleted: running = true
@@ -91,7 +92,7 @@ PanelWindow {
                 if (!text)
                     return;
                 var lines = text.trim().split("\n");
-                wifiNetwork = lines[0];
+                root.wifiNetwork = lines[0];
             }
         }
         Component.onCompleted: running = true
@@ -108,11 +109,11 @@ PanelWindow {
                 var p = data.trim().split(/\s+/);
                 var idle = parseInt(p[4]) + parseInt(p[5]);
                 var total = p.slice(1, 8).reduce((a, b) => a + parseInt(b), 0);
-                if (lastCpuTotal > 0) {
-                    cpuUsage = Math.round(100 * (1 - (idle - lastCpuIdle) / (total - lastCpuTotal)));
+                if (root.lastCpuTotal > 0) {
+                    root.cpuUsage = Math.round(100 * (1 - (idle - root.lastCpuIdle) / (total - root.lastCpuTotal)));
                 }
-                lastCpuTotal = total;
-                lastCpuIdle = idle;
+                root.lastCpuTotal = total;
+                root.lastCpuIdle = idle;
             }
         }
         Component.onCompleted: running = true
@@ -129,7 +130,7 @@ PanelWindow {
                 var parts = data.trim().split(/\s+/);
                 var total = parseInt(parts[1]) || 1;
                 var used = parseInt(parts[2]) || 0;
-                memUsage = Math.round(100 * used / total);
+                root.memUsage = Math.round(100 * used / total);
             }
         }
         Component.onCompleted: running = true
@@ -143,7 +144,7 @@ PanelWindow {
             onRead: data => {
                 if (!data)
                     return;
-                batLevel = data;
+                root.batLevel = data;
             }
         }
         Component.onCompleted: running = true
@@ -211,7 +212,7 @@ PanelWindow {
         }
 
         // Left Side
-        Row {
+        RowLayout {
             id: leftSection
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
@@ -219,7 +220,7 @@ PanelWindow {
 
             // Niri Workspaces
             Text {
-                text: niriWorkspaceNum + " / " + niriWorkspaceCount
+                text: root.niriWorkspaceNum + " / " + root.niriWorkspaceCount
                 color: root.colCyan
                 font {
                     family: root.fontFamily
@@ -236,7 +237,7 @@ PanelWindow {
 
             // Niri Window Name
             Text {
-                text: niriWindowName
+                text: root.niriWindowName
                 color: root.colBlue
                 font {
                     family: root.fontFamily
@@ -267,7 +268,7 @@ PanelWindow {
         }
 
         // Right Side
-        Row {
+        RowLayout {
             id: rightSection
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
@@ -324,7 +325,7 @@ PanelWindow {
 
             // Wifi
             Text {
-                text: "  " + wifiNetwork
+                text: "  " + root.wifiNetwork
                 color: root.colBlue
                 font {
                     family: root.fontFamily
@@ -361,7 +362,7 @@ PanelWindow {
 
             // Cpu
             Text {
-                text: " " + cpuUsage + "%"
+                text: " " + root.cpuUsage + "%"
                 color: root.colYellow
                 font {
                     family: root.fontFamily
@@ -378,7 +379,7 @@ PanelWindow {
 
             // Memory
             Text {
-                text: " " + memUsage + "%"
+                text: " " + root.memUsage + "%"
                 color: root.colCyan
                 font {
                     family: root.fontFamily
@@ -395,7 +396,7 @@ PanelWindow {
 
             // Battery
             Text {
-                text: " " + batLevel + "%"
+                text: " " + root.batLevel + "%"
                 color: root.colYellow
                 font {
                     family: root.fontFamily
