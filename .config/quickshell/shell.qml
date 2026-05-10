@@ -230,8 +230,8 @@ PanelWindow {
             }
 
             Rectangle {
-                width: 1
-                height: 16
+                Layout.preferredWidth: 1
+                Layout.preferredHeight: 16
                 color: root.colMuted
             }
 
@@ -335,8 +335,8 @@ PanelWindow {
             }
 
             Rectangle {
-                width: 1
-                height: 16
+                Layout.preferredWidth: 1
+                Layout.preferredHeight: 16
                 color: root.colMuted
             }
 
@@ -355,8 +355,8 @@ PanelWindow {
             }
 
             Rectangle {
-                width: 1
-                height: 16
+                Layout.preferredWidth: 1
+                Layout.preferredHeight: 16
                 color: root.colMuted
             }
 
@@ -372,8 +372,8 @@ PanelWindow {
             }
 
             Rectangle {
-                width: 1
-                height: 16
+                Layout.preferredWidth: 1
+                Layout.preferredHeight: 16
                 color: root.colMuted
             }
 
@@ -389,8 +389,8 @@ PanelWindow {
             }
 
             Rectangle {
-                width: 1
-                height: 16
+                Layout.preferredWidth: 1
+                Layout.preferredHeight: 16
                 color: root.colMuted
             }
 
