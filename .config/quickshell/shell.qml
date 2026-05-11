@@ -33,6 +33,13 @@ PanelWindow {
     property var lastCpuIdle: 0
     property var lastCpuTotal: 0
 
+    anchors.top: true
+    anchors.left: true
+    anchors.right: true
+
+    implicitHeight: 30
+    color: root.colBg
+
     // Niri Current Workspace Num Process
     Process {
         id: niriWorkspaceNumProc
@@ -179,13 +186,6 @@ PanelWindow {
     PwObjectTracker {
         objects: [Pipewire.defaultAudioSink]
     }
-
-    anchors.top: true
-    anchors.left: true
-    anchors.right: true
-
-    implicitHeight: 30
-    color: root.colBg
 
     //////////////////////////// Bar elements layout ///////////////////////////
     RowLayout {
