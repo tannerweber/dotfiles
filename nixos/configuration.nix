@@ -125,7 +125,7 @@
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Desktop Environment
-    pkgs.waybar
+    # pkgs.waybar
     pkgs.quickshell
     pkgs.brightnessctl
     pkgs.rofi
