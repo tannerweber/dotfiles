@@ -405,4 +405,107 @@ ShellRoot {
             }
         }
     }
+
+    //////////////////////////////////// OSD ///////////////////////////////////
+    Scope {
+        id: rootOsd
+
+        // Bind the pipewire node so its volume will be tracked
+        PwObjectTracker {
+            objects: [Pipewire.defaultAudioSink]
+        }
+
+        Connections {
+            target: Pipewire.defaultAudioSink?.audio
+
+            function onVolumeChanged() {
+                rootOsd.shouldShowOsd = true;
+                hideTimer.restart();
+            }
+        }
+
+        property bool shouldShowOsd: false
+
+        Timer {
+            id: hideTimer
+            interval: 1000
+            onTriggered: rootOsd.shouldShowOsd = false
+        }
+
+        LazyLoader {
+            active: rootOsd.shouldShowOsd
+
+            PanelWindow {
+                anchors.bottom: true
+                margins.bottom: screen.height / 5
+                exclusiveZone: 0
+
+                implicitWidth: 400
+                implicitHeight: 50
+                color: "transparent"
+
+                // An empty click mask prevents the window from blocking mouse events.
+                mask: Region {}
+
+                Rectangle {
+                    anchors.fill: parent
+                    radius: height / 2
+                    color: Theme.colBg
+
+                    RowLayout {
+                        anchors {
+                            fill: parent
+                            leftMargin: 10
+                            rightMargin: 15
+                        }
+                        spacing: 15
+
+                        Text {
+                            text: " "
+                            font {
+                                family: Theme.fontFamily
+                                pixelSize: 24
+                                bold: true
+                            }
+                            color: Theme.colCyan
+                        }
+
+                        Rectangle {
+                            // Stretches to fill all left-over space
+                            Layout.fillWidth: true
+
+                            implicitHeight: 10
+                            radius: 20
+                            color: Theme.colMuted
+
+                            Rectangle {
+                                anchors {
+                                    left: parent.left
+                                    top: parent.top
+                                    bottom: parent.bottom
+                                }
+
+                                implicitWidth: parent.width * (Pipewire.defaultAudioSink?.audio.volume ?? 0)
+                                radius: parent.radius
+                                color: Theme.colCyan
+                            }
+                        }
+
+                        Text {
+                            text: {
+                                const sink = Pipewire.defaultAudioSink;
+                                return Math.round(sink.audio.volume * 100);
+                            }
+                            font {
+                                family: Theme.fontFamily
+                                pixelSize: 24
+                                bold: true
+                            }
+                            color: Theme.colCyan
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
