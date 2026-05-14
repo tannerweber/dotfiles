@@ -7,20 +7,10 @@ import Quickshell.Services.UPower
 import Quickshell.Widgets
 import QtQuick
 import QtQuick.Layouts
+import "./Theme.qml"
 
 PanelWindow {
     id: root
-
-    // Theme
-    property color colBg: "#181825"
-    property color colFg: "#a9b1d6"
-    property color colMuted: "#444b6a"
-    property color colCyan: "#0db9d7"
-    property color colBlue: "#7aa2f7"
-    property color colYellow: "#e0af68"
-    property color colGreen: "#9ece6a"
-    property string fontFamily: "Hack Nerd Font"
-    property int fontSize: 16
 
     // System data
     property string wifiNetwork: "None"
@@ -38,7 +28,7 @@ PanelWindow {
     anchors.right: true
 
     implicitHeight: 30
-    color: root.colBg
+    color: Theme.colBg
 
     // Niri Current Workspace Num Process
     Process {
@@ -207,10 +197,10 @@ PanelWindow {
             // Niri Workspaces
             Text {
                 text: root.niriWorkspaceNum + " / " + root.niriWorkspaceCount
-                color: root.colCyan
+                color: Theme.colCyan
                 font {
-                    family: root.fontFamily
-                    pixelSize: root.fontSize
+                    family: Theme.fontFamily
+                    pixelSize: Theme.fontSize
                     bold: true
                 }
             }
@@ -218,16 +208,16 @@ PanelWindow {
             Rectangle {
                 Layout.preferredWidth: 1
                 Layout.preferredHeight: 16
-                color: root.colMuted
+                color: Theme.colMuted
             }
 
             // Niri Window Name
             Text {
                 text: root.niriWindowName
-                color: root.colBlue
+                color: Theme.colBlue
                 font {
-                    family: root.fontFamily
-                    pixelSize: root.fontSize
+                    family: Theme.fontFamily
+                    pixelSize: Theme.fontSize
                     bold: true
                 }
             }
@@ -244,10 +234,10 @@ PanelWindow {
                 anchors.centerIn: parent
 
                 text: Qt.formatDateTime(clock.date, "hh:mm AP - ddd MMM dd")
-                color: root.colBlue
+                color: Theme.colBlue
                 font {
-                    family: root.fontFamily
-                    pixelSize: root.fontSize
+                    family: Theme.fontFamily
+                    pixelSize: Theme.fontSize
                     bold: true
                 }
             }
@@ -312,10 +302,10 @@ PanelWindow {
             // Wifi
             Text {
                 text: "  " + root.wifiNetwork
-                color: root.colBlue
+                color: Theme.colBlue
                 font {
-                    family: root.fontFamily
-                    pixelSize: root.fontSize
+                    family: Theme.fontFamily
+                    pixelSize: Theme.fontSize
                     bold: true
                 }
             }
@@ -323,7 +313,7 @@ PanelWindow {
             Rectangle {
                 Layout.preferredWidth: 1
                 Layout.preferredHeight: 16
-                color: root.colMuted
+                color: Theme.colMuted
             }
 
             // Sound
@@ -332,10 +322,10 @@ PanelWindow {
                     const sink = Pipewire.defaultAudioSink;
                     return "  " + Math.round(sink.audio.volume * 100) + "%";
                 }
-                color: root.colCyan
+                color: Theme.colCyan
                 font {
-                    family: root.fontFamily
-                    pixelSize: root.fontSize
+                    family: Theme.fontFamily
+                    pixelSize: Theme.fontSize
                     bold: true
                 }
             }
@@ -343,16 +333,16 @@ PanelWindow {
             Rectangle {
                 Layout.preferredWidth: 1
                 Layout.preferredHeight: 16
-                color: root.colMuted
+                color: Theme.colMuted
             }
 
             // Cpu
             Text {
                 text: " " + root.cpuUsage + "%"
-                color: root.colYellow
+                color: Theme.colYellow
                 font {
-                    family: root.fontFamily
-                    pixelSize: root.fontSize
+                    family: Theme.fontFamily
+                    pixelSize: Theme.fontSize
                     bold: true
                 }
             }
@@ -360,16 +350,16 @@ PanelWindow {
             Rectangle {
                 Layout.preferredWidth: 1
                 Layout.preferredHeight: 16
-                color: root.colMuted
+                color: Theme.colMuted
             }
 
             // Memory
             Text {
                 text: " " + root.memUsage + "%"
-                color: root.colCyan
+                color: Theme.colCyan
                 font {
-                    family: root.fontFamily
-                    pixelSize: root.fontSize
+                    family: Theme.fontFamily
+                    pixelSize: Theme.fontSize
                     bold: true
                 }
             }
@@ -377,7 +367,7 @@ PanelWindow {
             Rectangle {
                 Layout.preferredWidth: 1
                 Layout.preferredHeight: 16
-                color: root.colMuted
+                color: Theme.colMuted
             }
 
             // Battery
@@ -403,10 +393,10 @@ PanelWindow {
                     }
                 }
 
-                color: root.colGreen
+                color: Theme.colGreen
                 font {
-                    family: root.fontFamily
-                    pixelSize: root.fontSize
+                    family: Theme.fontFamily
+                    pixelSize: Theme.fontSize
                     bold: true
                 }
             }
