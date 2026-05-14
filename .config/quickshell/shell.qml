@@ -9,7 +9,7 @@ import QtQuick
 import QtQuick.Layouts
 import "./Theme.qml"
 
-PanelWindow {
+ShellRoot {
     id: root
 
     // System data
@@ -22,13 +22,6 @@ PanelWindow {
     property int batLevel: 0
     property var lastCpuIdle: 0
     property var lastCpuTotal: 0
-
-    anchors.top: true
-    anchors.left: true
-    anchors.right: true
-
-    implicitHeight: 30
-    color: Theme.colBg
 
     // Niri Current Workspace Num Process
     Process {
@@ -177,227 +170,237 @@ PanelWindow {
         objects: [Pipewire.defaultAudioSink]
     }
 
-    //////////////////////////// Bar elements layout ///////////////////////////
-    RowLayout {
-        anchors.fill: parent
-        anchors.margins: 8
-        spacing: 8
+    //////////////////////////////////// Status Bar ////////////////////////////
+    PanelWindow {
 
-        Item {
-            Layout.fillWidth: true
-        }
+        anchors.top: true
+        anchors.left: true
+        anchors.right: true
 
-        // Left Side
+        implicitHeight: 30
+        color: Theme.colBg
+
         RowLayout {
-            id: leftSection
-            anchors.left: parent.left
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.fill: parent
+            anchors.margins: 8
             spacing: 8
 
-            // Niri Workspaces
-            Text {
-                text: root.niriWorkspaceNum + " / " + root.niriWorkspaceCount
-                color: Theme.colCyan
-                font {
-                    family: Theme.fontFamily
-                    pixelSize: Theme.fontSize
-                    bold: true
+            Item {
+                Layout.fillWidth: true
+            }
+
+            // Left Side
+            RowLayout {
+                id: leftSection
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+                spacing: 8
+
+                // Niri Workspaces
+                Text {
+                    text: root.niriWorkspaceNum + " / " + root.niriWorkspaceCount
+                    color: Theme.colCyan
+                    font {
+                        family: Theme.fontFamily
+                        pixelSize: Theme.fontSize
+                        bold: true
+                    }
+                }
+
+                Rectangle {
+                    Layout.preferredWidth: 1
+                    Layout.preferredHeight: 16
+                    color: Theme.colMuted
+                }
+
+                // Niri Window Name
+                Text {
+                    text: root.niriWindowName
+                    color: Theme.colBlue
+                    font {
+                        family: Theme.fontFamily
+                        pixelSize: Theme.fontSize
+                        bold: true
+                    }
                 }
             }
 
-            Rectangle {
-                Layout.preferredWidth: 1
-                Layout.preferredHeight: 16
-                color: Theme.colMuted
-            }
-
-            // Niri Window Name
-            Text {
-                text: root.niriWindowName
-                color: Theme.colBlue
-                font {
-                    family: Theme.fontFamily
-                    pixelSize: Theme.fontSize
-                    bold: true
-                }
-            }
-        }
-
-        // Center
-        Item {
-            anchors.centerIn: parent
-            anchors.verticalCenter: parent.verticalCenter
-            height: parent.height
-
-            // Clock
-            Text {
+            // Center
+            Item {
                 anchors.centerIn: parent
+                anchors.verticalCenter: parent.verticalCenter
+                height: parent.height
 
-                text: Qt.formatDateTime(clock.date, "hh:mm AP - ddd MMM dd")
-                color: Theme.colBlue
-                font {
-                    family: Theme.fontFamily
-                    pixelSize: Theme.fontSize
-                    bold: true
+                // Clock
+                Text {
+                    anchors.centerIn: parent
+
+                    text: Qt.formatDateTime(clock.date, "hh:mm AP - ddd MMM dd")
+                    color: Theme.colBlue
+                    font {
+                        family: Theme.fontFamily
+                        pixelSize: Theme.fontSize
+                        bold: true
+                    }
                 }
             }
-        }
 
-        // Right Side
-        RowLayout {
-            id: rightSection
-            anchors.right: parent.right
-            anchors.verticalCenter: parent.verticalCenter
-            spacing: 8
+            // Right Side
+            RowLayout {
+                id: rightSection
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+                spacing: 8
 
-            // System Tray
-            Repeater {
-                model: SystemTray.items
+                // System Tray
+                Repeater {
+                    model: SystemTray.items
 
-                MouseArea {
-                    id: trayDelegate
-                    required property SystemTrayItem modelData
+                    MouseArea {
+                        id: trayDelegate
+                        required property SystemTrayItem modelData
 
-                    Accessible.role: Accessible.Button
-                    Accessible.name: modelData.tooltipTitle || modelData.title || "System tray item"
+                        Accessible.role: Accessible.Button
+                        Accessible.name: modelData.tooltipTitle || modelData.title || "System tray item"
 
-                    Layout.preferredWidth: 24
-                    Layout.preferredHeight: 24
+                        Layout.preferredWidth: 24
+                        Layout.preferredHeight: 24
 
-                    acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
+                        acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
 
-                    onClicked: mouse => {
-                        if (mouse.button === Qt.LeftButton) {
-                            modelData.activate();
-                        } else if (mouse.button === Qt.RightButton) {
-                            if (modelData.hasMenu) {
-                                menuAnchor.open();
+                        onClicked: mouse => {
+                            if (mouse.button === Qt.LeftButton) {
+                                modelData.activate();
+                            } else if (mouse.button === Qt.RightButton) {
+                                if (modelData.hasMenu) {
+                                    menuAnchor.open();
+                                }
+                            } else if (mouse.button === Qt.MiddleButton) {
+                                modelData.secondaryActivate();
                             }
-                        } else if (mouse.button === Qt.MiddleButton) {
-                            modelData.secondaryActivate();
+                        }
+
+                        IconImage {
+                            anchors.centerIn: parent
+                            source: trayDelegate.modelData.icon
+                            implicitSize: 16
+                        }
+
+                        QsMenuAnchor {
+                            id: menuAnchor
+                            menu: trayDelegate.modelData.menu
+
+                            anchor.window: trayDelegate.QsWindow.window
+                            anchor.adjustment: PopupAdjustment.Flip
+                            anchor.onAnchoring: {
+                                const window = trayDelegate.QsWindow.window;
+                                const widgetRect = window.contentItem.mapFromItem(trayDelegate, 0, trayDelegate.height, trayDelegate.width, trayDelegate.height);
+                                menuAnchor.anchor.rect = widgetRect;
+                            }
+                        }
+                    }
+                }
+
+                // Wifi
+                Text {
+                    text: "  " + root.wifiNetwork
+                    color: Theme.colBlue
+                    font {
+                        family: Theme.fontFamily
+                        pixelSize: Theme.fontSize
+                        bold: true
+                    }
+                }
+
+                Rectangle {
+                    Layout.preferredWidth: 1
+                    Layout.preferredHeight: 16
+                    color: Theme.colMuted
+                }
+
+                // Sound
+                Text {
+                    text: {
+                        const sink = Pipewire.defaultAudioSink;
+                        return "  " + Math.round(sink.audio.volume * 100) + "%";
+                    }
+                    color: Theme.colCyan
+                    font {
+                        family: Theme.fontFamily
+                        pixelSize: Theme.fontSize
+                        bold: true
+                    }
+                }
+
+                Rectangle {
+                    Layout.preferredWidth: 1
+                    Layout.preferredHeight: 16
+                    color: Theme.colMuted
+                }
+
+                // Cpu
+                Text {
+                    text: " " + root.cpuUsage + "%"
+                    color: Theme.colYellow
+                    font {
+                        family: Theme.fontFamily
+                        pixelSize: Theme.fontSize
+                        bold: true
+                    }
+                }
+
+                Rectangle {
+                    Layout.preferredWidth: 1
+                    Layout.preferredHeight: 16
+                    color: Theme.colMuted
+                }
+
+                // Memory
+                Text {
+                    text: " " + root.memUsage + "%"
+                    color: Theme.colCyan
+                    font {
+                        family: Theme.fontFamily
+                        pixelSize: Theme.fontSize
+                        bold: true
+                    }
+                }
+
+                Rectangle {
+                    Layout.preferredWidth: 1
+                    Layout.preferredHeight: 16
+                    color: Theme.colMuted
+                }
+
+                // Battery
+                Text {
+                    text: {
+                        let batPercent = UPower.displayDevice.percentage * 100;
+                        let chargingIcon = "";
+
+                        if (UPower.displayDevice.state == 4) {
+                            chargingIcon = " ";
+                        }
+
+                        if (batPercent < 5.0) {
+                            return chargingIcon + " " + batPercent + "%";
+                        } else if (batPercent < 25.0) {
+                            return chargingIcon + " " + batPercent + "%";
+                        } else if (batPercent < 50.0) {
+                            return chargingIcon + " " + batPercent + "%";
+                        } else if (batPercent < 75.0) {
+                            return chargingIcon + " " + batPercent + "%";
+                        } else {
+                            return chargingIcon + " " + batPercent + "%";
                         }
                     }
 
-                    IconImage {
-                        anchors.centerIn: parent
-                        source: trayDelegate.modelData.icon
-                        implicitSize: 16
+                    color: Theme.colGreen
+                    font {
+                        family: Theme.fontFamily
+                        pixelSize: Theme.fontSize
+                        bold: true
                     }
-
-                    QsMenuAnchor {
-                        id: menuAnchor
-                        menu: trayDelegate.modelData.menu
-
-                        anchor.window: trayDelegate.QsWindow.window
-                        anchor.adjustment: PopupAdjustment.Flip
-                        anchor.onAnchoring: {
-                            const window = trayDelegate.QsWindow.window;
-                            const widgetRect = window.contentItem.mapFromItem(trayDelegate, 0, trayDelegate.height, trayDelegate.width, trayDelegate.height);
-                            menuAnchor.anchor.rect = widgetRect;
-                        }
-                    }
-                }
-            }
-
-            // Wifi
-            Text {
-                text: "  " + root.wifiNetwork
-                color: Theme.colBlue
-                font {
-                    family: Theme.fontFamily
-                    pixelSize: Theme.fontSize
-                    bold: true
-                }
-            }
-
-            Rectangle {
-                Layout.preferredWidth: 1
-                Layout.preferredHeight: 16
-                color: Theme.colMuted
-            }
-
-            // Sound
-            Text {
-                text: {
-                    const sink = Pipewire.defaultAudioSink;
-                    return "  " + Math.round(sink.audio.volume * 100) + "%";
-                }
-                color: Theme.colCyan
-                font {
-                    family: Theme.fontFamily
-                    pixelSize: Theme.fontSize
-                    bold: true
-                }
-            }
-
-            Rectangle {
-                Layout.preferredWidth: 1
-                Layout.preferredHeight: 16
-                color: Theme.colMuted
-            }
-
-            // Cpu
-            Text {
-                text: " " + root.cpuUsage + "%"
-                color: Theme.colYellow
-                font {
-                    family: Theme.fontFamily
-                    pixelSize: Theme.fontSize
-                    bold: true
-                }
-            }
-
-            Rectangle {
-                Layout.preferredWidth: 1
-                Layout.preferredHeight: 16
-                color: Theme.colMuted
-            }
-
-            // Memory
-            Text {
-                text: " " + root.memUsage + "%"
-                color: Theme.colCyan
-                font {
-                    family: Theme.fontFamily
-                    pixelSize: Theme.fontSize
-                    bold: true
-                }
-            }
-
-            Rectangle {
-                Layout.preferredWidth: 1
-                Layout.preferredHeight: 16
-                color: Theme.colMuted
-            }
-
-            // Battery
-            Text {
-                text: {
-                    let batPercent = UPower.displayDevice.percentage * 100;
-                    let chargingIcon = "";
-
-                    if (UPower.displayDevice.state == 4) {
-                        chargingIcon = " ";
-                    }
-
-                    if (batPercent < 5.0) {
-                        return chargingIcon + " " + batPercent + "%";
-                    } else if (batPercent < 25.0) {
-                        return chargingIcon + " " + batPercent + "%";
-                    } else if (batPercent < 50.0) {
-                        return chargingIcon + " " + batPercent + "%";
-                    } else if (batPercent < 75.0) {
-                        return chargingIcon + " " + batPercent + "%";
-                    } else {
-                        return chargingIcon + " " + batPercent + "%";
-                    }
-                }
-
-                color: Theme.colGreen
-                font {
-                    family: Theme.fontFamily
-                    pixelSize: Theme.fontSize
-                    bold: true
                 }
             }
         }
