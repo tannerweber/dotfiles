@@ -417,10 +417,11 @@ ShellRoot {
         property bool showFailure: false
 
         // Clear the failure text once the user starts typing.
-        onCurrentTextChanged: showFailure = false;
+        onCurrentTextChanged: showFailure = false
 
         function tryUnlock() {
-            if (currentText === "") return;
+            if (currentText === "")
+                return;
 
             rootLock.unlockInProgress = true;
             pam.start();
@@ -511,7 +512,7 @@ ShellRoot {
                             rootLock.currentText = this.text;
                             passwordDots.count = rootLock.currentText.length;
                         }
-                        onAccepted: rootLock.tryUnlock();
+                        onAccepted: rootLock.tryUnlock()
 
                         // Update the text in the box to match the text in the context.
                         // This makes sure multiple monitors have the same text.
@@ -522,7 +523,6 @@ ShellRoot {
                                 passwordBox.text = rootLock.currentText;
                             }
                         }
-
                     }
 
                     // Password Dots
@@ -557,7 +557,6 @@ ShellRoot {
             }
         }
     }
-
 
     //////////////////////////////////// OSD ///////////////////////////////////
     Scope {
