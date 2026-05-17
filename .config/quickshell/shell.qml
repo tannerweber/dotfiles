@@ -426,15 +426,29 @@ ShellRoot {
             pam.start();
         }
 
+        IpcHandler {
+            target: "lock"
+
+            function lockScreen(): void {
+                lock.locked = true;
+            }
+        }
+
+        Process {
+            id: niriPowerOffMonitorsProc
+            command: ["sh", "-c", "niri msg action power-off-monitors"]
+        }
+
         IdleMonitor {
             enabled: true
             respectInhibitors: true
-            timeout: 60 // Seconds
+            timeout: 60 * 5 // Seconds
 
             onIsIdleChanged: {
                 if (lock.locked == false) {
-                    lock.locked = true
+                    lock.locked = true;
                 }
+                niriPowerOffMonitorsProc.running = true;
             }
         }
 
