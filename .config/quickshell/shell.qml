@@ -375,7 +375,7 @@ ShellRoot {
                 // Battery
                 Text {
                     text: {
-                        let batPercent = UPower.displayDevice.percentage * 100;
+                        let batPercent = Math.round(UPower.displayDevice.percentage * 100);
                         let chargingIcon = "";
 
                         if (UPower.displayDevice.state == 4) {
