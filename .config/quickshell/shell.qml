@@ -2,11 +2,13 @@ import Quickshell
 import Quickshell.Wayland
 import Quickshell.Io
 import Quickshell.Services.Pipewire
+import Quickshell.Services.Pam
 import Quickshell.Services.SystemTray
 import Quickshell.Services.UPower
 import Quickshell.Widgets
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
 import "./Theme.qml"
 
 ShellRoot {
@@ -405,6 +407,143 @@ ShellRoot {
             }
         }
     }
+
+    //////////////////////////////////// Lock Screen ///////////////////////////
+    Scope {
+        id: rootLock
+
+        property string currentText: ""
+        property bool unlockInProgress: false
+        property bool showFailure: false
+
+        // Clear the failure text once the user starts typing.
+        onCurrentTextChanged: showFailure = false;
+
+        function tryUnlock() {
+            if (currentText === "") return;
+
+            rootLock.unlockInProgress = true;
+            pam.start();
+        }
+
+        IdleMonitor {
+            enabled: true
+            respectInhibitors: true
+            timeout: 60 // Seconds
+
+            onIsIdleChanged: {
+                if (lock.locked == false) {
+                    lock.locked = true
+                }
+            }
+        }
+
+        PamContext {
+            id: pam
+
+            // pam_unix will ask for a response for the password prompt
+            onPamMessage: {
+                if (this.responseRequired) {
+                    this.respond(rootLock.currentText);
+                }
+            }
+
+            // pam_unix won't send any important messages so all we need is the completion status.
+            onCompleted: result => {
+                if (result == PamResult.Success) {
+                    lock.locked = false;
+                } else {
+                    rootLock.currentText = "";
+                    rootLock.showFailure = true;
+                }
+
+                rootLock.unlockInProgress = false;
+            }
+        }
+
+        WlSessionLock {
+            id: lock
+
+            // Session can be locked immediately when quickshell starts
+            locked: false
+
+            WlSessionLockSurface {
+                color: Theme.colBg
+
+                RowLayout {
+                    visible: Window.active
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.top: parent.verticalCenter
+
+                    // Uncomment to bypass without using password
+                    // Button {
+                    //     text: "UNLOCK ME"
+                    //     onClicked: lock.locked = false
+                    // }
+
+                    TextField {
+                        id: passwordBox
+
+                        visible: false // Keep the field invisible
+                        implicitWidth: 400
+                        padding: 10
+                        color: "black"
+
+                        focus: true
+                        enabled: !rootLock.unlockInProgress
+                        echoMode: TextInput.Password
+                        inputMethodHints: Qt.ImhSensitiveData
+                        onTextChanged: {
+                            rootLock.currentText = this.text;
+                            passwordDots.count = rootLock.currentText.length;
+                        }
+                        onAccepted: rootLock.tryUnlock();
+
+                        // Update the text in the box to match the text in the context.
+                        // This makes sure multiple monitors have the same text.
+                        Connections {
+                            target: rootLock
+
+                            function onCurrentTextChanged() {
+                                passwordBox.text = rootLock.currentText;
+                            }
+                        }
+
+                    }
+
+                    // Password Dots
+                    Row {
+                        spacing: 10
+
+                        Repeater {
+                            id: passwordDots
+                            property int count: 0
+                            model: count
+
+                            Rectangle {
+                                width: 40
+                                height: 40
+                                radius: 10
+                                color: Theme.colMuted
+                            }
+                        }
+                    }
+
+                    Text {
+                        text: "Incorrect password"
+                        visible: rootLock.showFailure
+                        color: Theme.colYellow
+                        font {
+                            family: Theme.fontFamily
+                            pixelSize: 20
+                            bold: true
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
     //////////////////////////////////// OSD ///////////////////////////////////
     Scope {
