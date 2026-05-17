@@ -57,7 +57,7 @@
   };
 
   security = {
-    pam.services.swaylock = { };
+    # pam.services.swaylock = { };
     rtkit.enable = true;
     polkit.enable = true;
   };
@@ -137,8 +137,8 @@
     pkgs.brightnessctl
     pkgs.rofi
     pkgs.mako
-    pkgs.swaylock
-    pkgs.swayidle
+    # pkgs.swaylock
+    # pkgs.swayidle
     pkgs.awww
     pkgs.xdg-desktop-portal-gnome
     pkgs.xdg-desktop-portal-gtk
