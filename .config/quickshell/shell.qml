@@ -1,6 +1,9 @@
+// vim:foldmethod=marker
+
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Io
+import Quickshell.Services.Notifications
 import Quickshell.Services.Pipewire
 import Quickshell.Services.Pam
 import Quickshell.Services.SystemTray
@@ -25,6 +28,7 @@ ShellRoot {
     property var lastCpuIdle: 0
     property var lastCpuTotal: 0
 
+    //////////////////////////////////// Processes and Timers {{{
     // Niri Current Workspace Num Process
     Process {
         id: niriWorkspaceNumProc
@@ -171,8 +175,9 @@ ShellRoot {
     PwObjectTracker {
         objects: [Pipewire.defaultAudioSink]
     }
+    // }}}
 
-    //////////////////////////////////// Status Bar ////////////////////////////
+    //////////////////////////////////// Status Bar {{{
     PanelWindow {
 
         anchors.top: true
@@ -407,8 +412,9 @@ ShellRoot {
             }
         }
     }
+    // }}}
 
-    //////////////////////////////////// Lock Screen ///////////////////////////
+    //////////////////////////////////// Lock Screen {{{
     Scope {
         id: rootLock
 
@@ -557,8 +563,122 @@ ShellRoot {
             }
         }
     }
+    // }}}
 
-    //////////////////////////////////// OSD ///////////////////////////////////
+    //////////////////////////////////// Notifications {{{
+    Scope {
+        id: rootNotifications
+        property bool shouldShowNotifications: false
+
+        NotificationServer {
+            id: notificationServer
+            bodySupported: true
+            imageSupported: true
+            bodyHyperlinksSupported: true
+            bodyMarkupSupported: true
+
+            onNotification: notification => {
+                notification.tracked = true;
+                rootNotifications.shouldShowNotifications = true;
+                hideTimerNotifications.restart();
+                // console.log(notification.summary);
+            }
+        }
+
+        Timer {
+            id: hideTimerNotifications
+            interval: 5000
+            onTriggered: rootNotifications.shouldShowNotifications = false
+        }
+
+        LazyLoader {
+            active: rootNotifications.shouldShowNotifications
+
+            PanelWindow {
+                anchors.top: true
+                anchors.right: true
+                exclusiveZone: 0
+                implicitWidth: 400
+                implicitHeight: Screen.height
+                color: "transparent"
+                mask: Region {} // An empty click mask prevents the window from blocking mouse events.
+
+                // Stack notificatons on top of each other
+                ListView {
+                    anchors {
+                        fill: parent
+                        topMargin: 10
+                        bottomMargin: 10
+                        leftMargin: 10
+                        rightMargin: 10
+                    }
+                    spacing: 5
+                    model: notificationServer.trackedNotifications
+
+                    delegate: Rectangle {
+                        width: parent.width
+                        height: 200
+                        radius: 15
+                        color: Theme.colBg
+
+                        ColumnLayout {
+                            spacing: 5
+
+                            Text {
+                                Layout.topMargin: 10
+                                Layout.leftMargin: 10
+                                Layout.rightMargin: 10
+                                Layout.maximumWidth: 365
+                                text: modelData.appName
+                                wrapMode: Text.Wrap
+                                maximumLineCount: 6
+                                elide: Text.ElideRight
+                                color: Theme.colBlue
+                                font {
+                                    family: Theme.fontFamily
+                                    pixelSize: Theme.fontSize
+                                }
+                            }
+
+                            Text {
+                                Layout.leftMargin: 10
+                                Layout.rightMargin: 10
+                                Layout.maximumWidth: 365
+                                text: modelData.summary
+                                wrapMode: Text.Wrap
+                                maximumLineCount: 6
+                                elide: Text.ElideRight
+                                color: Theme.colYellow
+                                font {
+                                    family: Theme.fontFamily
+                                    pixelSize: Theme.fontSize
+                                }
+                            }
+
+                            Text {
+                                Layout.bottomMargin: 10
+                                Layout.leftMargin: 10
+                                Layout.rightMargin: 10
+                                Layout.maximumWidth: 365
+                                text: modelData.body
+                                wrapMode: Text.Wrap
+                                maximumLineCount: 6
+                                elide: Text.ElideRight
+                                color: Theme.colCyan
+                                font {
+                                    family: Theme.fontFamily
+                                    pixelSize: Theme.fontSize
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // }}}
+
+    //////////////////////////////////// OSD {{{
     Scope {
         id: rootOsd
 
@@ -660,4 +780,5 @@ ShellRoot {
             }
         }
     }
+    // }}}
 }

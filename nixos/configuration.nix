@@ -136,7 +136,7 @@
     pkgs.quickshell
     pkgs.brightnessctl
     pkgs.rofi
-    pkgs.mako
+    # pkgs.mako
     # pkgs.swaylock
     # pkgs.swayidle
     pkgs.awww
