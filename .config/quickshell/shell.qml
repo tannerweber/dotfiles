@@ -581,7 +581,7 @@ ShellRoot {
                 notification.tracked = true;
                 rootNotifications.shouldShowNotifications = true;
                 hideTimerNotifications.restart();
-                // console.log(notification.summary);
+            // console.log(notification.summary);
             }
         }
 
