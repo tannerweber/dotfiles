@@ -1,7 +1,8 @@
 -- Tanner Weber
 -- ~/.config/nvim/init.lua
+-- vim:foldmethod=marker
 
---============================ Basic options =================================--
+-- Basic options {{{
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 vim.g.autoformat = false
@@ -37,8 +38,9 @@ vim.o.inccommand = 'split'
 vim.o.laststatus = 3
 
 vim.lsp.document_color.enable()
+-- }}}
 
---============================ Functions =====================================--
+-- Functions {{{
 local function mf(keys, func, desc)
   vim.keymap.set('n', keys, function()
     func()
@@ -54,8 +56,9 @@ local function mlf(keys, func, desc)
     func()
   end, { desc = desc })
 end
+-- }}}
 
---============================ Keymaps =======================================--
+-- Keymaps {{{
 vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
@@ -86,8 +89,9 @@ vim.keymap.set('n', '<leader>cd', function()
     })
   end
 end, { desc = 'Toggle virtual text' })
+-- }}}
 
---============================ Clipboard =====================================--
+-- Clipboard {{{
 -- if vim.uv.os_uname().sysname == 'Linux' then
 if true then
   vim.o.clipboard = 'unnamedplus'
@@ -113,8 +117,9 @@ if true then
   ml('p', '"+p', 'Paste from + register')
   ml('d', '"+d', 'Delete to + register')
 end
+-- }}}
 
---============================ Plugins =======================================--
+-- Plugins {{{
 vim.pack.add({
   {
     src = 'https://github.com/folke/tokyonight.nvim.git',
@@ -146,8 +151,9 @@ vim.pack.add({
   { src = 'https://github.com/kristijanhusak/vim-dadbod-completion.git' },
   { src = 'https://github.com/kristijanhusak/vim-dadbod-ui.git' },
 })
+-- }}}
 
---============================ Mini ==========================================--
+-- Mini {{{
 require('mini.files').setup()
 local function minifiles_toggle(...)
   if not MiniFiles.close() then
@@ -157,12 +163,14 @@ end
 mlf('e', minifiles_toggle, 'Mini Files')
 require('mini.pairs').setup()
 require('mini.ai').setup()
+-- }}}
 
---============================ Database ======================================--
+-- Database {{{
 vim.g.db_ui_use_nerd_fonts = 1
 -- 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' },
+-- }}}
 
---============================ Harpoon =======================================--
+-- Harpoon {{{
 do
   local harpoon = require('harpoon')
   harpoon:setup() -- Required
@@ -192,7 +200,9 @@ do
     end, { desc = '󱡅 Harpoon to ' .. i })
   end
 end
---============================ Git Signs =====================================--
+-- }}}
+
+-- Git Signs {{{
 do
   local gitsigns = require('gitsigns')
   gitsigns.setup()
@@ -214,7 +224,9 @@ do
     gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
   end, { desc = 'git reset hunk selection' })
 end
---============================ LSP ===========================================--
+-- }}}
+
+-- LSP {{{
 require('blink.cmp').setup({
   keymap = {
     ['<C-l>'] = { 'accept' },
@@ -277,7 +289,9 @@ vim.diagnostic.config({
     },
   },
 })
---============================ Snacks ========================================--
+-- }}}
+
+-- Snacks {{{
 require('snacks').setup({
   animate = { duration = 10, fps = 144 },
   bigfile = { enabled = true },
@@ -304,8 +318,9 @@ mf('gd', Snacks.picker.lsp_definitions, 'Goto Definition')
 mf('gD', Snacks.picker.lsp_declarations, 'Goto Declaration')
 mf('gI', Snacks.picker.lsp_implementations, 'Goto Implementation')
 mf('gy', Snacks.picker.lsp_type_definitions, 'Goto T[y]pe Definition')
+-- }}}
 
---============================ Colorscheme ===================================--
+-- Colorscheme {{{
 require('tokyonight').setup({
   style = 'night',
   transparent = true,
@@ -332,8 +347,9 @@ set_markdown_heading_color(3, '#7aa2f7')
 set_markdown_heading_color(4, '#db4b4b')
 set_markdown_heading_color(5, '#3d59a1')
 set_markdown_heading_color(6, '#3d59a1')
+-- }}}
 
---============================ Treesitter ====================================--
+-- Treesitter {{{
 require('nvim-treesitter').setup({
   install_dir = vim.fn.stdpath('data') .. '/site',
   highlight = { enable = true },
@@ -365,8 +381,9 @@ require('nvim-treesitter').setup({
 --     end,
 --   })
 -- end,
+-- }}}
 
---============================ Trouble =======================================--
+-- Trouble {{{
 -- cmd = 'Trouble',
 require('trouble').setup()
 ml('xx', ':Trouble diagnostics toggle<cr>', 'Diagnostics (Trouble)')
@@ -375,21 +392,24 @@ ml('xL', ':Trouble loclist toggle<cr>', 'Location List (Trouble)')
 ml('xQ', ':Trouble qflist toggle<cr>', 'Quickfix List (Trouble)')
 ml('cs', ':Trouble symbols toggle focus=false<cr>', 'Symbols (Trouble)')
 ml('cl', ':Trouble lsp toggle focus=false win.position=right<cr>', 'LS')
+-- }}}
 
---============================ Which Key =====================================--
+-- Which Key {{{
 require('which-key').setup({
   preset = 'helix',
 })
+-- }}}
 
---============================ Auto Commands =================================--
+-- Auto Commands {{{
 -- Highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
   end,
 })
+-- }}}
 
---============================ Status Line ===================================--
+-- Status Line {{{
 function MyStatusLine()
   -- Tokyonight colors
   local colors = {
@@ -581,8 +601,9 @@ vim.api.nvim_create_autocmd({
     vim.opt_local.statusline = ' %F'
   end,
 })
+-- }}}
 
---============================ Tab Line ======================================--
+-- Tab Line {{{
 -- function CustomTabLine()
 --   local function get_harpooned_files()
 --     local tbl = require('harpoon'):list()
@@ -611,8 +632,9 @@ vim.api.nvim_create_autocmd({
 -- })
 --
 -- vim.o.showtabline = 2
+-- }}}
 
---============================ Filetype Fix ==================================--
+-- Filetype Fix {{{
 vim.api.nvim_create_autocmd({
   'BufNewFile',
   'BufRead',
@@ -623,3 +645,4 @@ vim.api.nvim_create_autocmd({
     vim.bo.filetype = 'cpp'
   end,
 })
+-- }}}
