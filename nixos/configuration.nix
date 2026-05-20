@@ -133,7 +133,8 @@
 
     # Desktop Environment
     # pkgs.waybar
-    pkgs.quickshell
+    # pkgs.quickshell
+    pkgs.noctalia-shell
     pkgs.brightnessctl
     pkgs.rofi
     # pkgs.mako

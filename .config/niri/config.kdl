@@ -65,8 +65,7 @@ input {
 
 layout { // Settings that influence how windows are positioned and sized.
     background-color "transparent"
-    gaps 0
-    // gaps 2
+    gaps 6
     center-focused-column "on-overflow"
     preset-column-widths {
         proportion 0.5
@@ -85,8 +84,7 @@ layout { // Settings that influence how windows are positioned and sized.
 
 	border {
         on
-        width 0
-        // width 2
+        width 2
         active-color "#00ffff"
         inactive-color "#999999"
         urgent-color "#ff0000"
@@ -117,7 +115,8 @@ layer-rule {
 	place-within-backdrop true
 }
 
-spawn-at-startup "quickshell"
+spawn-at-startup "noctalia-shell"
+// spawn-at-startup "quickshell"
 // spawn-at-startup "waybar"
 // spawn-at-startup "swww-daemon"
 // spawn-sh-at-startup "swaybg -i ~/.rice/wallpaper.png"
@@ -169,14 +168,15 @@ window-rule {
 }
 
 // Example: enable rounded corners for all windows.
-/-window-rule {
+window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
 
 switch-events {
 	// lid-close { spawn "swaylock"; }
-	lid-close { spawn "quickshell" "ipc" "call" "lock" "lockScreen"; }
+	// lid-close { spawn "quickshell" "ipc" "call" "lock" "lockScreen"; }
+	lid-close { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
 }
 
 binds {
@@ -197,10 +197,17 @@ binds {
               "-show" \
               "recursivebrowser";
     }
-    Mod+R hotkey-overlay-title="Run App: rofi -show drun" {
-        spawn "rofi" \
-              "-show" \
-              "drun";
+    // Mod+R hotkey-overlay-title="Run App: rofi -show drun" {
+    //     spawn "rofi" \
+    //           "-show" \
+    //           "drun";
+    // }
+    Mod+R hotkey-overlay-title="Run App: noctalia app launcher" {
+        spawn "noctalia-shell" \
+              "ipc" \
+              "call" \
+              "launcher" \
+              "toggle";
     }
     Mod+Shift+R hotkey-overlay-title="Run App: fuzzel" {
         spawn "fuzzel" \
@@ -221,7 +228,8 @@ binds {
         spawn "~/.rice/powermenu.sh"
     }
     // Super+Shift+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-    Super+Shift+L hotkey-overlay-title="Lock the Screen: quickshell" { spawn-sh "quickshell ipc call lock lockScreen"; }
+    // Super+Shift+L hotkey-overlay-title="Lock the Screen: quickshell" { spawn-sh "quickshell ipc call lock lockScreen"; }
+    Super+Shift+L hotkey-overlay-title="Lock the Screen: noctalia" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
