@@ -224,8 +224,15 @@ binds {
               "--line-height" "25" \
               "--input-color" "ffffffff";
     }
-    Mod+P hotkey-overlay-title="Run power menu script ~/.rice/powermenu.sh" {
-        spawn "~/.rice/powermenu.sh"
+    // Mod+P hotkey-overlay-title="Run power menu script ~/.rice/powermenu.sh" {
+    //     spawn "~/.rice/powermenu.sh"
+    // }
+    Mod+P hotkey-overlay-title="Power menu: noctalia" {
+        spawn "noctalia-shell" \
+              "ipc" \
+              "call" \
+              "sessionMenu" \
+              "toggle";
     }
     // Super+Shift+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     // Super+Shift+L hotkey-overlay-title="Lock the Screen: quickshell" { spawn-sh "quickshell ipc call lock lockScreen"; }
