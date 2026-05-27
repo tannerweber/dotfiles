@@ -96,9 +96,19 @@
     };
   };
 
+  services.flatpak.enable = true;
+
   xdg.mime.defaultApplications = {
     "application/pdf" = "zen.desktop";
     "text/*" = "nvim.desktop";
+  };
+
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+    };
   };
 
   ###################################### Users #################################
@@ -109,6 +119,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "podman"
     ];
     shell = pkgs.fish;
   };
@@ -177,6 +188,8 @@
     # ghostty
     pkgs.wezterm
     pkgs.kitty
+    pkgs.bazaar
+    pkgs.winboat
     # pkgs.librewolf
   ];
 
