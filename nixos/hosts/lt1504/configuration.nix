@@ -44,7 +44,7 @@
     networkmanager.enable = true;
   };
 
-  ###################################### Locality ##############################
+  # Locality
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -61,37 +61,38 @@
 
   security.rtkit.enable = true;
 
-  services = {
-    xserver = {
-      enable = true;
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
+  services.xserver = {
+    enable = true;
+    xkb = {
+      layout = "us";
+      variant = "";
     };
+  };
 
-    # Display Manager
-    displayManager.ly = {
-      enable = true;
-      x11Support = false;
-    };
+  # Display Manager
+  services.displayManager.ly = {
+    enable = true;
+    x11Support = false;
+  };
 
-    # Desktop Environment
-    desktopManager.plasma6.enable = true;
+  # Desktop Environment
+  services.desktopManager.plasma6.enable = true;
 
-    # Scheduling
-    system76-scheduler.enable = true;
+  # Scheduling
+  services.system76-scheduler.enable = true;
 
-    printing.enable = true; # Enable CUPS
-    pulseaudio.enable = false;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      #jack.enable = true;
-      #media-session.enable = true;
-    };
+  # Printing CUPS
+  services.printing.enable = true;
+
+  # Audio
+  services.pulseaudio.enable = false;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # jack.enable = true;
+    # media-session.enable = true;
   };
 
   services.flatpak.enable = true;
