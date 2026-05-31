@@ -7,6 +7,7 @@
 
 {
   imports = [
+    ./programs/niri.nix
     ./programs/vim.nix
     ./programs/zen-browser.nix
     ./services/kanata.nix
