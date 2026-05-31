@@ -11,11 +11,14 @@
   outputs =
     { self, nixpkgs, ... }@inputs:
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./configuration.nix
-        ];
-        specialArgs = { inherit inputs; };
+      nixosConfigurations = {
+        lt1504 = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/lt1504/configuration.nix
+            ./nixosModules
+          ];
+        };
       };
     };
 }

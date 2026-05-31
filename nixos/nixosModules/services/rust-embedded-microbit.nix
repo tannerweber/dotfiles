@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 {
   services.udev = {
