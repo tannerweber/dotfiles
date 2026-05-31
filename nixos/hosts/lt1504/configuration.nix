@@ -11,6 +11,7 @@
 {
   myModNiriDesktop.enable = true;
   myModVim.enable = true;
+  myModWinboat.enable = true;
   myModZenBrowser.enable = true;
   myModKanata.enable = true;
 
@@ -102,14 +103,6 @@
     "text/*" = "nvim.desktop";
   };
 
-  virtualisation = {
-    containers.enable = true;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-    };
-  };
-
   ###################################### Users #################################
   # Don't forget to set a password with ‘passwd’.
   users.users.tannerw = {
@@ -171,7 +164,6 @@
     pkgs.wezterm
     pkgs.kitty
     pkgs.bazaar
-    pkgs.winboat
     # pkgs.librewolf
   ];
 
