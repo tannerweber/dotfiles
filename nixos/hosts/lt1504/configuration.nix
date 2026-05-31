@@ -59,11 +59,7 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  security = {
-    # pam.services.swaylock = { };
-    rtkit.enable = true;
-    polkit.enable = true;
-  };
+  security.rtkit.enable = true;
 
   services = {
     xserver = {
@@ -88,7 +84,6 @@
 
     printing.enable = true; # Enable CUPS
     pulseaudio.enable = false;
-    gnome.gnome-keyring.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;

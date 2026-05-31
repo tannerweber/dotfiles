@@ -12,6 +12,9 @@
 
   config = lib.mkIf config.myModNiriDesktop.enable {
     programs.niri.enable = true;
+    security.polkit.enable = true;
+    services.gnome.gnome-keyring.enable = true;
+    # securirty.pam.services.swaylock = { };
     environment.systemPackages = with pkgs; [
       # waybar
       # quickshell
