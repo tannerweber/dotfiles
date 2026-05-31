@@ -6,22 +6,28 @@
 }:
 
 {
-  services.udev = {
-    enable = true;
-    extraRules = ''
-      # CMSIS-DAP for microbit
-      ACTION!="add|change", GOTO="microbit_rules_end"
-      SUBSYSTEM=="usb", ATTR{idVendor}=="0d28", ATTR{idProduct}=="0204", TAG+="uaccess"
-      LABEL="microbit_rules_end"
-    '';
+  options = {
+    myModRustEmbeddedMicrobit.enable = lib.mkEnableOption "enables microbit module";
   };
 
-  environment.systemPackages = with pkgs; [
-    rustup
-    gdb
-    gcc
-    gcc-arm-embedded
-    usbutils
-    probe-rs-tools
-  ];
+  config = lib.mkIf config.myModRustEmbeddedMicrobit.enable {
+    services.udev = {
+      enable = true;
+      extraRules = ''
+        # CMSIS-DAP for microbit
+        ACTION!="add|change", GOTO="microbit_rules_end"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="0d28", ATTR{idProduct}=="0204", TAG+="uaccess"
+        LABEL="microbit_rules_end"
+      '';
+    };
+
+    environment.systemPackages = with pkgs; [
+      rustup
+      gdb
+      gcc
+      gcc-arm-embedded
+      usbutils
+      probe-rs-tools
+    ];
+  };
 }
