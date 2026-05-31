@@ -14,6 +14,7 @@
   myModVim.enable = true;
   myModWinboat.enable = true;
   myModZenBrowser.enable = true;
+  myModAudio.enable = true;
   myModKanata.enable = true;
 
   imports = [
@@ -70,17 +71,6 @@
 
   # Printing CUPS
   services.printing.enable = true;
-
-  # Audio
-  services.pulseaudio.enable = false;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # jack.enable = true;
-    # media-session.enable = true;
-  };
 
   services.flatpak.enable = true;
 
