@@ -50,14 +50,6 @@
 
   security.rtkit.enable = true;
 
-  services.xserver = {
-    enable = true;
-    xkb = {
-      layout = "us";
-      variant = "";
-    };
-  };
-
   # Display Manager
   services.displayManager.ly = {
     enable = true;

@@ -28,6 +28,7 @@
       xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
       banana-cursor
+      xwayland-satellite
     ];
   };
 }
