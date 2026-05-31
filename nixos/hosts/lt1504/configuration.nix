@@ -9,9 +9,10 @@
 }:
 
 {
+  myModNiriDesktop.enable = true;
   myModVim.enable = true;
-  myModKanata.enable = true;
   myModZenBrowser.enable = true;
+  myModKanata.enable = true;
 
   imports = [
     ./hardware-configuration.nix
@@ -132,7 +133,6 @@
     fish.enable = true;
     lazygit.enable = true;
     neovim.enable = true;
-    niri.enable = true;
     yazi.enable = true;
     zoxide.enable = true;
     git.enable = true;
@@ -142,20 +142,6 @@
   ###################################### Packages ##############################
   # To search run: nix search wget
   environment.systemPackages = [
-    # Desktop Environment
-    # pkgs.waybar
-    # pkgs.quickshell
-    pkgs.noctalia-shell
-    pkgs.brightnessctl
-    pkgs.rofi
-    # pkgs.mako
-    # pkgs.swaylock
-    # pkgs.swayidle
-    pkgs.awww
-    pkgs.xdg-desktop-portal-gnome
-    pkgs.xdg-desktop-portal-gtk
-    pkgs.banana-cursor
-
     # Nix Utils
     pkgs.nixd
     pkgs.nixfmt
@@ -200,5 +186,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }
