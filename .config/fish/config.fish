@@ -1,6 +1,4 @@
 if status is-interactive
-    umask 177
-
     # PATH
     fish_add_path $HOME/.local/bin/
     fish_add_path $HOME/.npm-global/bin/
