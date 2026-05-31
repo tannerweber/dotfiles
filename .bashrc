@@ -1,6 +1,8 @@
 # Tanner Weber
 # tannerw@pdx.edu
 
+umask 177
+
 # PATH
 export PATH="$HOME/.local/nvim-linux-x86_64/bin:$PATH"
 

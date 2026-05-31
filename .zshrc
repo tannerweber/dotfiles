@@ -1,3 +1,5 @@
+umask 177
+
 # KEY BINDS
 bindkey -e
 
