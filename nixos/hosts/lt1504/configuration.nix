@@ -9,6 +9,9 @@
 }:
 
 {
+  myModVim.enable = true;
+  myModKanata.enable = true;
+
   imports = [
     ./hardware-configuration.nix
   ];

@@ -6,30 +6,36 @@
 }:
 
 {
-  services.kanata = {
-    enable = true;
-    keyboards.internalKeyboard = {
-      extraDefCfg = ''
-        process-unmapped-keys yes
-        concurrent-tap-hold yes
-      '';
-      config = ''
-        (defsrc
-          grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-          tab  q    w    e    r    t    y    u    i    o    p    [
-          caps a    s    d    f    g    h    j    k    l    ;    '    ret
-          lsft z    x    c    v    b    n    m    ,    .    /
-          lctl lmet lalt spc  ralt
-        )
+  options = {
+    myModKanata.enable = lib.mkEnableOption "enables kanata module";
+  };
 
-        (deflayer default
-          grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-          tab  q    w    e    r    t    y    u    i    o    p    [
-          esc  a    s    d    f    g    h    j    k    l    ;    '    ret
-          lsft z    x    c    v    b    n    m    ,    .    /
-          lctl lmet lalt spc  ralt
-        )
-      '';
+  config = lib.mkIf config.myModKanata.enable {
+    services.kanata = {
+      enable = true;
+      keyboards.internalKeyboard = {
+        extraDefCfg = ''
+          process-unmapped-keys yes
+          concurrent-tap-hold yes
+        '';
+        config = ''
+          (defsrc
+            grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+            tab  q    w    e    r    t    y    u    i    o    p    [
+            caps a    s    d    f    g    h    j    k    l    ;    '    ret
+            lsft z    x    c    v    b    n    m    ,    .    /
+            lctl lmet lalt spc  ralt
+          )
+
+          (deflayer default
+            grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+            tab  q    w    e    r    t    y    u    i    o    p    [
+            esc  a    s    d    f    g    h    j    k    l    ;    '    ret
+            lsft z    x    c    v    b    n    m    ,    .    /
+            lctl lmet lalt spc  ralt
+          )
+        '';
+      };
     };
   };
 }
