@@ -11,6 +11,7 @@
 {
   myModVim.enable = true;
   myModKanata.enable = true;
+  myModZenBrowser.enable = true;
 
   imports = [
     ./hardware-configuration.nix
@@ -141,8 +142,6 @@
   ###################################### Packages ##############################
   # To search run: nix search wget
   environment.systemPackages = [
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-
     # Desktop Environment
     # pkgs.waybar
     # pkgs.quickshell
