@@ -15,6 +15,7 @@
   myModWinboat.enable = true;
   myModZenBrowser.enable = true;
   myModAudio.enable = true;
+  myModFlatpak.enable = true;
   myModKanata.enable = true;
 
   imports = [
@@ -71,8 +72,6 @@
 
   # Printing CUPS
   services.printing.enable = true;
-
-  services.flatpak.enable = true;
 
   xdg.mime.defaultApplications = {
     "application/pdf" = "zen.desktop";
@@ -139,7 +138,6 @@
     # ghostty
     pkgs.wezterm
     pkgs.kitty
-    pkgs.bazaar
     # pkgs.librewolf
   ];
 
