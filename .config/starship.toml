@@ -294,7 +294,7 @@ style = "fg:#FFFFFF bg:#86BBD8"
 format = '[ $symbol($version) ]($style)'
 
 [zig]
-symbol = '[Z]'
+symbol = ' '
 style = "fg:#FFFFFF bg:#86BBD8"
 format = '[ $symbol($version) ]($style)'
 
