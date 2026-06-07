@@ -17,22 +17,28 @@
     { self, nixpkgs, ... }@inputs:
     {
       nixosConfigurations = {
-        lt1504 = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/lt1504/configuration.nix
-            ./nixosModules
-            inputs.home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.tannerw = import ./hosts/lt1504/home.nix;
-                backupFileExtension = "backup";
-              };
-            }
-          ];
-        };
+        lt1504 =
+          let
+            hostname = "lt1504";
+          in
+          nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs; };
+            modules = [
+              ./hosts/${hostname}/configuration.nix
+              ./nixosModules
+              inputs.home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  backupFileExtension = "backup";
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users = {
+                    tannerw = import ./hosts/${hostname}/home.nix;
+                  };
+                };
+              }
+            ];
+          };
       };
     };
 }
