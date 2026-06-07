@@ -12,29 +12,6 @@ if status is-interactive
 	set -x EDITOR "nvim"
     set -x LS_COLORS "di=1;33:*.o=0;34:*.txt=01;31"
 
-    # Abbreviations
-	abbr --add ... cd .. \&\& cd ..
-    abbr --add la "eza -al --icons --group"
-    abbr --add d "eza -al --icons --group"
-    abbr --add c clear
-	abbr --add gs git status
-	abbr --add gd git diff
-	abbr --add gl git log
-	abbr --add gc git commit -m
-	abbr --add gb git branch
-	abbr --add grv git remote -v
-	abbr --add gad git add .
-	abbr --add gau git add -u
-	abbr --add gaa git add -A
-	abbr --add gpom git push origin main
-	abbr --add n nvim
-
-	# Completions source
-	source ~/.config/fish/my_completions.fish
-
-    # fzf
-    fzf --fish | source
-
     # Vim bindings
     fish_hybrid_key_bindings
     #fish_default_keybindings
@@ -43,29 +20,8 @@ if status is-interactive
     set fish_cursor_insert line
     set fish_cursor_external line
 
-    # bat
-	set -x MANPAGER "sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
-
-    # yazi
-    function y
-	set tmp (mktemp -t "yazi-cwd.XXXXXX")
-	yazi $argv --cwd-file="$tmp"
-	if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-		builtin cd -- "$cwd"
-	end
-	rm -f -- "$tmp"
-    end
-
-    # zoxide
-	if test -n "(which zoxide)"
-    	zoxide init fish | source
-		abbr --add cd "z"
-	end
-
-    # starship.rs
-	starship init fish | source
-end
-
-function fish_greeting
-    echo Using (fish -v) as $USER on $hostname
+    source ~/.config/fish/abbrs.fish
+	source ~/.config/fish/my_completions.fish
+    source ~/.config/fish/programs.fish
+    source ~/.config/fish/greeting.fish
 end

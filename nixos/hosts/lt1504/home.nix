@@ -43,6 +43,16 @@ in
     '';
   };
 
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      source ${dotDir}/.config/fish/abbrs.fish
+      source ${dotDir}/.config/fish/my_completions.fish
+      source ${dotDir}/.config/fish/programs.fish
+      source ${dotDir}/.config/fish/greeting.fish
+    '';
+  };
+
   programs.zsh.enable = false;
 
   programs.git.enable = true;
