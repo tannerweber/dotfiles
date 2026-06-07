@@ -8,12 +8,26 @@
 let
   mkSym = config.lib.file.mkOutOfStoreSymlink;
   dotDir = "/home/tannerw/.dotfiles";
+  ns = pkgs.writeShellApplication {
+    name = "ns";
+    runtimeInputs = with pkgs; [
+      fzf
+      nix-search-tv
+    ];
+    text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
+  };
 in
 {
   home.username = "tannerw";
   home.homeDirectory = "/home/tannerw";
   home.stateVersion = "26.05";
+
   programs.home-manager.enable = true;
+
+  programs.nix-search-tv = {
+    enable = true;
+    enableTelevisionIntegration = true;
+  };
 
   programs.bash = {
     enable = true;
@@ -90,6 +104,8 @@ in
   programs.dbeaver.enable = false;
 
   home.packages = with pkgs; [
+    ns
+
     curl
     wget
     mdfried
