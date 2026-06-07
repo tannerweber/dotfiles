@@ -65,11 +65,6 @@
   # Printing CUPS
   services.printing.enable = true;
 
-  xdg.mime.defaultApplications = {
-    "application/pdf" = "zen.desktop";
-    "text/*" = "nvim.desktop";
-  };
-
   ###################################### Users #################################
   # Don't forget to set a password with ‘passwd’.
   users.users.tannerw = {
@@ -85,56 +80,13 @@
 
   ###################################### Programs ##############################
   programs = {
-    bat.enable = true;
     fish.enable = true;
-    lazygit.enable = true;
-    neovim.enable = true;
-    yazi.enable = true;
-    zoxide.enable = true;
-    git.enable = true;
-    starship.enable = true;
   };
 
   ###################################### Packages ##############################
   # To search run: nix search wget
   environment.systemPackages = [
-    # Nix Utils
-    pkgs.nixd
-    pkgs.nixfmt
-
-    # Language Stuff
-    pkgs.typst
-    pkgs.tree-sitter
-
-    # Interactive CLI Programs
-    pkgs.eza
-    pkgs.fzf
-    pkgs.btop
     pkgs.htop
-    pkgs.fastfetch
-    pkgs.opencode
-    pkgs.starship
-    pkgs.clock-rs
-    pkgs.mdfried
-
-    # CLI Utils
-    pkgs.curl
-    # dmidecode
-    # lshw
-    pkgs.ripgrep
-    pkgs.wget
-
-    # Other GUI Programs
-    # dbeaver-bin
-    pkgs.filezilla
-    # ghostty
-    pkgs.wezterm
-    pkgs.kitty
-    # pkgs.librewolf
-  ];
-
-  fonts.packages = with pkgs; [
-    nerd-fonts.hack
   ];
 
   # Before changing this value read the documentation for this option
