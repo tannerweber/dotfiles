@@ -65,27 +65,27 @@
   # Printing CUPS
   services.printing.enable = true;
 
-  ###################################### Users #################################
   # Don't forget to set a password with ‘passwd’.
-  users.users.tannerw = {
-    isNormalUser = true;
-    description = "Tanner Weber";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "podman"
-    ];
-    shell = pkgs.fish;
+  users.users = {
+    tannerw = {
+      isNormalUser = true;
+      description = "Tanner Weber";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "podman"
+      ];
+      shell = pkgs.fish;
+    };
   };
 
-  ###################################### Programs ##############################
   programs = {
     fish.enable = true;
+    git.enable = true;
   };
 
-  ###################################### Packages ##############################
-  # To search run: nix search wget
   environment.systemPackages = [
+    pkgs.curl
     pkgs.htop
   ];
 
