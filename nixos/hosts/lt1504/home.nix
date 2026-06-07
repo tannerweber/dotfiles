@@ -72,7 +72,7 @@ in
   xdg.configFile."kitty/kitty.conf".source = mkSym "${dotDir}/.config/kitty/kitty.conf";
 
   programs.wezterm.enable = true;
-  xdg.configFile."wezterm/wezterm.lua".source = mkSym "${dotDir}/.wezterm.lua";
+  xdg.configFile."wezterm/wezterm.lua".source = mkSym "${dotDir}/.config/wezterm/wezterm.lua";
 
   programs.ghostty.enable = false;
   programs.opencode.enable = true;
