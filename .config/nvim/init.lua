@@ -645,4 +645,15 @@ vim.api.nvim_create_autocmd({
     vim.bo.filetype = 'cpp'
   end,
 })
+
+vim.api.nvim_create_autocmd({
+  'BufNewFile',
+  'BufRead',
+}, {
+  desc = 'SetNixSyntax',
+  pattern = '*.nix',
+  callback = function()
+    vim.bo.syntax = 'nix'
+  end,
+})
 -- }}}
