@@ -101,6 +101,8 @@ in
   programs.ghostty.enable = false;
   xdg.configFile."ghostty/config".source = mkSym "${dotDir}/.config/ghostty/config";
 
+  programs.sioyek.enable = true;
+
   programs.opencode.enable = true;
   programs.librewolf.enable = false;
   programs.dbeaver.enable = false;
@@ -136,8 +138,11 @@ in
 
   fonts.fontconfig.enable = true;
 
-  xdg.mimeApps.defaultApplications = {
-    "application/pdf" = "zen.desktop";
-    "text/*" = "nvim.desktop";
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = "sioyek.desktop";
+      "text/*" = "nvim.desktop";
+    };
   };
 }
