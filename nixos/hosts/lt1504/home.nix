@@ -103,6 +103,8 @@ in
   programs.librewolf.enable = false;
   programs.dbeaver.enable = false;
 
+  xdg.configFile."gdb/gdbinit".source = mkSym "${dotDir}/.config/gdb/gdbinit";
+
   home.packages = with pkgs; [
     ns
 
