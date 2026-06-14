@@ -33,8 +33,11 @@
   ];
 
   # Bootloader
-  boot.loader.limine.enable = true;
-  boot.loader.limine.secureBoot.enable = true;
+  boot.loader.limine = {
+    enable = true;
+    secureBoot.enable = true;
+    style.wallpapers = [ pkgs.nixos-artwork.wallpapers.stripes-logo.gnomeFilePath ];
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
   swapDevices = [
