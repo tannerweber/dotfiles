@@ -33,7 +33,8 @@
   ];
 
   # Bootloader
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.limine.enable = true;
+  boot.loader.limine.secureBoot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   swapDevices = [
@@ -85,6 +86,7 @@
   };
 
   environment.systemPackages = [
+    pkgs.sbctl
     pkgs.curl
     pkgs.htop
   ];
