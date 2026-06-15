@@ -14,7 +14,7 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    { nixpkgs, ... }@inputs:
     {
       nixosConfigurations = {
         lt1504 =
@@ -55,6 +55,8 @@
                   backupFileExtension = "backup";
                   useGlobalPkgs = true;
                   useUserPackages = true;
+                  extraSpecialArgs = { inherit inputs; };
+                  sharedModules = [ ./homeManagerModules ];
                   users = {
                     tannerw = import ./hosts/${hostname}/home.nix;
                   };

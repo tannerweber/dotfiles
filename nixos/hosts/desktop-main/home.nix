@@ -18,6 +18,8 @@ let
   };
 in
 {
+  myModFish.enable = true;
+
   home.username = "tannerw";
   home.homeDirectory = "/home/tannerw";
   home.stateVersion = "26.05";
@@ -54,17 +56,6 @@ in
     initExtra = ''
       eval "$(fzf --bash)"
       eval "$(zoxide init bash)"
-    '';
-  };
-
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = ''
-      set -x LS_COLORS "di=1;33:*.o=0;34:*.txt=01;31"
-      source ${dotDir}/.config/fish/abbrs.fish
-      source ${dotDir}/.config/fish/my_completions.fish
-      source ${dotDir}/.config/fish/programs.fish
-      source ${dotDir}/.config/fish/greeting.fish
     '';
   };
 
@@ -128,6 +119,8 @@ in
 
     typst
     tree-sitter
+
+    galaxy-buds-client
 
     # Fonts
     nerd-fonts.hack
