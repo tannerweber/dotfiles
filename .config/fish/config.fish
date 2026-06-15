@@ -12,15 +12,8 @@ if status is-interactive
 	set -x EDITOR "nvim"
     set -x LS_COLORS "di=1;33:*.o=0;34:*.txt=01;31"
 
-    # Vim bindings
-    fish_hybrid_key_bindings
-    #fish_default_keybindings
-    set fish_cursor_default block
-    set fish_cursor_visual block
-    set fish_cursor_insert line
-    set fish_cursor_external line
-
     source ~/.config/fish/abbrs.fish
+    source ~/.config/fish/binds.fish
 	source ~/.config/fish/my_completions.fish
     source ~/.config/fish/programs.fish
     source ~/.config/fish/greeting.fish
