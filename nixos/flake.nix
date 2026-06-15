@@ -39,6 +39,29 @@
               }
             ];
           };
+
+        desktop-main =
+          let
+            hostname = "desktop-main";
+          in
+          nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs; };
+            modules = [
+              ./hosts/${hostname}/configuration.nix
+              ./nixosModules
+              inputs.home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  backupFileExtension = "backup";
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users = {
+                    tannerw = import ./hosts/${hostname}/home.nix;
+                  };
+                };
+              }
+            ];
+          };
       };
     };
 }
