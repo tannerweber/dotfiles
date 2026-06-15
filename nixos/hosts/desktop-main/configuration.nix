@@ -46,6 +46,8 @@
     networkmanager.enable = true;
   };
 
+  hardware.bluetooth.enable = true;
+
   security.rtkit.enable = true;
 
   # Display Manager
