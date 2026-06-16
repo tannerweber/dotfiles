@@ -8,6 +8,7 @@
 {
   imports = [
     ./locality.nix
+    ./programs/gaming.nix
     ./programs/niri.nix
     ./programs/vim.nix
     ./programs/winboat.nix

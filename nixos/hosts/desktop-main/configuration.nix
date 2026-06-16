@@ -10,6 +10,7 @@
 
 {
   myModLocality.enable = true;
+  myModGaming.enable = true;
   myModNiriDesktop.enable = true;
   myModVim.enable = true;
   myModWinboat.enable = true;
@@ -21,6 +22,16 @@
   imports = [
     ./hardware-configuration.nix
   ];
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+  hardware.nvidia = {
+    open = true;
+    modesetting.enable = true;
+  };
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   # FREEDOM
   nixpkgs.config.allowUnfree = true;

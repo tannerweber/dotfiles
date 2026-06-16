@@ -81,6 +81,7 @@ in
 
   home.packages = with pkgs; [
     ns
+    nvtopPackages.nvidia
 
     curl
     wget
