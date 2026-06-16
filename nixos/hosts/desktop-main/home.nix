@@ -23,10 +23,6 @@ in
 
   programs.home-manager.enable = true;
 
-  programs.opencode.enable = true;
-  programs.librewolf.enable = false;
-  programs.dbeaver.enable = false;
-
   xdg.configFile."niri/config.kdl".source = mkSym "${dotDir}/.config/niri/config.kdl";
   xdg.configFile."rofi/config.rasi".source = mkSym "${dotDir}/.config/rofi/config.rasi";
   xdg.configFile."noctalia/colors.json".source = mkSym "${dotDir}/.config/noctalia/colors.json";
@@ -38,14 +34,7 @@ in
   home.packages = with pkgs; [
     mdfried
     filezilla
-
     typst
-
     galaxy-buds-client
-
-    # CLI Utils
-    # dmidecode
-    # lshw
   ];
-
 }
