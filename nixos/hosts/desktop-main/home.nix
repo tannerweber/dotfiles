@@ -20,6 +20,7 @@ in
 {
   myModBash.enable = true;
   myModFish.enable = true;
+  myModSioyek.enable = true;
 
   home.username = "tannerw";
   home.homeDirectory = "/home/tannerw";
@@ -66,8 +67,6 @@ in
   programs.ghostty.enable = false;
   xdg.configFile."ghostty/config".source = mkSym "${dotDir}/.config/ghostty/config";
 
-  programs.sioyek.enable = true;
-
   programs.opencode.enable = true;
   programs.librewolf.enable = false;
   programs.dbeaver.enable = false;
@@ -110,7 +109,6 @@ in
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "application/pdf" = "sioyek.desktop";
       "text/*" = "nvim.desktop";
     };
   };
