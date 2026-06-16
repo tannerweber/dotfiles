@@ -17,5 +17,17 @@ in
   config = lib.mkIf config.myModNeovim.enable {
     programs.neovim.enable = true;
     xdg.configFile."nvim/init.lua".source = mkSym "${dotDir}/.config/nvim/init.lua";
+
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "text/*" = "nvim.desktop";
+      };
+    };
+
+    home.packages = with pkgs; [
+      nixd
+      tree-sitter
+    ];
   };
 }
