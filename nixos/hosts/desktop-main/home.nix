@@ -23,7 +23,6 @@ in
 
   programs.home-manager.enable = true;
 
-
   programs.opencode.enable = true;
   programs.librewolf.enable = false;
   programs.dbeaver.enable = false;
@@ -37,8 +36,6 @@ in
   xdg.configFile."MangoHud/MangoHud.conf".source = mkSym "${dotDir}/.config/MangoHud/MangoHud.conf";
 
   home.packages = with pkgs; [
-    nvtopPackages.nvidia
-
     mdfried
     filezilla
 
