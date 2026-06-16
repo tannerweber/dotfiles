@@ -20,6 +20,7 @@
       # quickshell
       noctalia-shell
       brightnessctl
+      playerctl
       rofi
       # mako
       # swaylock
