@@ -20,6 +20,7 @@ in
 {
   myModBash.enable = true;
   myModFish.enable = true;
+  myModNeovim.enable = true;
   myModSioyek.enable = true;
 
   home.username = "tannerw";
@@ -49,9 +50,6 @@ in
   programs.ripgrep.enable = true;
   programs.bat.enable = true;
   programs.yazi.enable = true;
-
-  programs.neovim.enable = true;
-  xdg.configFile."nvim/init.lua".source = mkSym "${dotDir}/.config/nvim/init.lua";
 
   programs.fastfetch.enable = true;
   programs.htop.enable = true;
