@@ -78,6 +78,7 @@ in
   xdg.configFile."noctalia/plugins.json".source = mkSym "${dotDir}/.config/noctalia/plugins.json";
   xdg.configFile."noctalia/settings.json".source = mkSym "${dotDir}/.config/noctalia/settings.json";
   xdg.configFile."gdb/gdbinit".source = mkSym "${dotDir}/.config/gdb/gdbinit";
+  xdg.configFile."MangoHud/MangoHud.conf".source = mkSym "${dotDir}/.config/MangoHud/MangoHud.conf";
 
   home.packages = with pkgs; [
     ns
