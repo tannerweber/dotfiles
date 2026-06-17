@@ -65,7 +65,8 @@ input {
 
 layout { // Settings that influence how windows are positioned and sized.
     background-color "transparent"
-    gaps 6
+    gaps 0
+    // gaps 6
     center-focused-column "on-overflow"
     preset-column-widths {
         proportion 0.5
@@ -83,7 +84,7 @@ layout { // Settings that influence how windows are positioned and sized.
     }
 
 	border {
-        on
+        off
         width 2
         active-color "#00ffff"
         inactive-color "#999999"
@@ -169,7 +170,7 @@ window-rule {
 }
 
 // Example: enable rounded corners for all windows.
-window-rule {
+/-window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
