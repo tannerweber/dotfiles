@@ -1,9 +1,4 @@
-# Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 {
-  inputs,
-  config,
   pkgs,
   ...
 }:
@@ -39,7 +34,8 @@
   # };
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.devices."luks-0d16854e-1a91-4a83-b2ac-38082eda095a".device = "/dev/disk/by-uuid/0d16854e-1a91-4a83-b2ac-38082eda095a";
+  boot.initrd.luks.devices."luks-0d16854e-1a91-4a83-b2ac-38082eda095a".device =
+    "/dev/disk/by-uuid/0d16854e-1a91-4a83-b2ac-38082eda095a";
 
   networking = {
     hostName = "nixos";
