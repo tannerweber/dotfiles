@@ -24,11 +24,8 @@
     ./hardware-configuration.nix
   ];
 
-  # FREEDOM
+  system.stateVersion = "26.05";
   nixpkgs.config.allowUnfree = true;
-  # boot.kernelPackages = pkgs.linuxPackages_latest-libre;
-
-  # Flakes Enable
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -90,8 +87,4 @@
     pkgs.curl
     pkgs.htop
   ];
-
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "26.05"; # Did you read the comment?
 }
