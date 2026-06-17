@@ -11,6 +11,7 @@
   };
 
   config = lib.mkIf config.myModAudio.enable {
+    security.rtkit.enable = true;
     services = {
       pulseaudio.enable = false;
       pipewire = {

@@ -51,8 +51,6 @@
 
   hardware.bluetooth.enable = true;
 
-  security.rtkit.enable = true; # Move to audio.nix
-
   # Display Manager
   services.displayManager.ly = {
     enable = true;
