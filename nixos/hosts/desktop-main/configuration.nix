@@ -42,6 +42,7 @@
   # };
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.luks.devices."luks-0d16854e-1a91-4a83-b2ac-38082eda095a".device = "/dev/disk/by-uuid/0d16854e-1a91-4a83-b2ac-38082eda095a";
 
   networking = {
     hostName = "nixos";
@@ -50,7 +51,7 @@
 
   hardware.bluetooth.enable = true;
 
-  security.rtkit.enable = true;
+  security.rtkit.enable = true; # Move to audio.nix
 
   # Display Manager
   services.displayManager.ly = {
