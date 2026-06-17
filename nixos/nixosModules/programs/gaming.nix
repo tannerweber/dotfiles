@@ -7,7 +7,7 @@
 
 {
   options = {
-    myModGaming.enable = lib.mkEnableOption "enables gaming modules";
+    myModGaming.enable = lib.mkEnableOption "gaming modules";
   };
 
   config = lib.mkIf config.myModGaming.enable {

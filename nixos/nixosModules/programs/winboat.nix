@@ -7,7 +7,7 @@
 
 {
   options = {
-    myModWinboat.enable = lib.mkEnableOption "enables winboat modules";
+    myModWinboat.enable = lib.mkEnableOption "winboat modules";
   };
 
   config = lib.mkIf config.myModWinboat.enable {

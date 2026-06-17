@@ -7,7 +7,7 @@
 
 {
   options = {
-    myModNiriDesktop.enable = lib.mkEnableOption "enables niri modules";
+    myModNiriDesktop.enable = lib.mkEnableOption "niri modules";
   };
 
   config = lib.mkIf config.myModNiriDesktop.enable {

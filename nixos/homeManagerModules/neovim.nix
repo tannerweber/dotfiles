@@ -11,7 +11,7 @@ let
 in
 {
   options = {
-    myModNeovim.enable = lib.mkEnableOption "enables neovim modules";
+    myModNeovim.enable = lib.mkEnableOption "neovim modules";
   };
 
   config = lib.mkIf config.myModNeovim.enable {

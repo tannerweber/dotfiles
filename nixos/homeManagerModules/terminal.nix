@@ -11,7 +11,7 @@ let
 in
 {
   options = {
-    myModTerminal.enable = lib.mkEnableOption "enables terminal modules";
+    myModTerminal.enable = lib.mkEnableOption "terminal modules";
   };
 
   config = lib.mkIf config.myModTerminal.enable {

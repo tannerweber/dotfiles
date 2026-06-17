@@ -7,7 +7,7 @@
 
 {
   options = {
-    myModSioyek.enable = lib.mkEnableOption "enables sioyek modules";
+    myModSioyek.enable = lib.mkEnableOption "sioyek modules";
   };
 
   config = lib.mkIf config.myModSioyek.enable {

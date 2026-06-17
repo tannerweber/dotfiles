@@ -7,7 +7,7 @@
 
 {
   options = {
-    myModNvidia.enable = lib.mkEnableOption "enables nvidia module";
+    myModNvidia.enable = lib.mkEnableOption "nvidia modules";
   };
 
   config = lib.mkIf config.myModNvidia.enable {

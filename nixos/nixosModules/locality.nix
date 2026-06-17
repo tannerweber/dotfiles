@@ -7,7 +7,7 @@
 
 {
   options = {
-    myModLocality.enable = lib.mkEnableOption "enables locality modules";
+    myModLocality.enable = lib.mkEnableOption "locality modules";
   };
 
   config = lib.mkIf config.myModLocality.enable {

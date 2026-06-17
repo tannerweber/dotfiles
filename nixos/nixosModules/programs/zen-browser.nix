@@ -7,7 +7,7 @@
 
 {
   options = {
-    myModZenBrowser.enable = lib.mkEnableOption "enables zen browser modules";
+    myModZenBrowser.enable = lib.mkEnableOption "zen browser modules";
   };
 
   config = lib.mkIf config.myModZenBrowser.enable {

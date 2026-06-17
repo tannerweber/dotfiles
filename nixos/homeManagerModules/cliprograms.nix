@@ -19,7 +19,7 @@ let
 in
 {
   options = {
-    myModCliPrograms.enable = lib.mkEnableOption "enables cli programs modules";
+    myModCliPrograms.enable = lib.mkEnableOption "cli programs modules";
   };
 
   config = lib.mkIf config.myModCliPrograms.enable {

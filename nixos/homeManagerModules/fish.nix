@@ -10,7 +10,7 @@ let
 in
 {
   options = {
-    myModFish.enable = lib.mkEnableOption "enables fish modules";
+    myModFish.enable = lib.mkEnableOption "fish modules";
   };
 
   config = lib.mkIf config.myModFish.enable {

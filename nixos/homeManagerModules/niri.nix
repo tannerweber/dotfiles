@@ -11,7 +11,7 @@ let
 in
 {
   options = {
-    myModNiri.enable = lib.mkEnableOption "enables niri modules";
+    myModNiri.enable = lib.mkEnableOption "niri modules";
   };
 
   config = lib.mkIf config.myModNiri.enable {

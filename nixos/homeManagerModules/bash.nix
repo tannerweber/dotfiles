@@ -10,7 +10,7 @@ let
 in
 {
   options = {
-    myModBash.enable = lib.mkEnableOption "enables bash modules";
+    myModBash.enable = lib.mkEnableOption "bash modules";
   };
 
   config = lib.mkIf config.myModBash.enable {

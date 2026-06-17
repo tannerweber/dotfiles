@@ -7,7 +7,7 @@
 
 {
   options = {
-    myModVim.enable = lib.mkEnableOption "enables vim modules";
+    myModVim.enable = lib.mkEnableOption "vim modules";
   };
 
   config = lib.mkIf config.myModVim.enable {
