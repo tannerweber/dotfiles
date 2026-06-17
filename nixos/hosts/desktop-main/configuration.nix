@@ -27,12 +27,11 @@
   ];
 
   # Bootloader
-  # boot.loader.limine = {
-  #   enable = true;
-  #   secureBoot.enable = true;
-  # style.wallpapers = [ pkgs.nixos-artwork.wallpapers.stripes-logo.gnomeFilePath ];
-  # };
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.limine = {
+    enable = true;
+    # secureBoot.enable = true;
+    style.wallpapers = [ pkgs.nixos-artwork.wallpapers.stripes-logo.gnomeFilePath ];
+  };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.luks.devices."luks-0d16854e-1a91-4a83-b2ac-38082eda095a".device =
     "/dev/disk/by-uuid/0d16854e-1a91-4a83-b2ac-38082eda095a";
