@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   ...
 }:
@@ -21,10 +22,13 @@
 
   system.stateVersion = "26.05";
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix = {
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   # Bootloader
   boot.loader.limine = {
