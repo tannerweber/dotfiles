@@ -22,10 +22,10 @@ in
   home.homeDirectory = "/home/tannerw";
   home.stateVersion = "26.05";
 
-  programs.home-manager.enable = true;
-
-  xdg.configFile."gdb/gdbinit".source = mkSym "${dotDir}/.config/gdb/gdbinit";
-  xdg.configFile."MangoHud/MangoHud.conf".source = mkSym "${dotDir}/.config/MangoHud/MangoHud.conf";
+  programs = {
+    home-manager.enable = true;
+    discord.enable = true;
+  };
 
   home.packages = with pkgs; [
     mdfried
@@ -33,4 +33,7 @@ in
     typst
     galaxy-buds-client
   ];
+
+  xdg.configFile."gdb/gdbinit".source = mkSym "${dotDir}/.config/gdb/gdbinit";
+  xdg.configFile."MangoHud/MangoHud.conf".source = mkSym "${dotDir}/.config/MangoHud/MangoHud.conf";
 }
