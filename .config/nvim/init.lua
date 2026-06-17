@@ -276,6 +276,26 @@ vim.lsp.config('lua_ls', {
     },
   },
 })
+vim.lsp.config('nixd', {
+  settings = {
+    nixd = {
+      nixpkgs = {
+        expr = 'import <nixpkgs> { }',
+      },
+      formatting = {
+        command = { 'nixfmt' },
+      },
+      options = {
+        nixos = {
+          expr = '(builtins.getFlake (toString /home/tannerw/.dotfiles/nixos/.)).nixosConfigurations.desktop-main.options',
+        },
+        home_manager = {
+          expr = '(builtins.getFlake (toString /home/tannerw/.dotfiles/nixos/.)).nixosConfigurations.desktop-main.options.home-manager.users.type.getSubOptions []',
+        },
+      },
+    },
+  },
+})
 vim.diagnostic.config({
   underline = true,
   update_in_insert = false,
