@@ -15,6 +15,7 @@
   myModAudio.enable = true;
   myModFlatpak.enable = true;
   myModKanata.enable = true;
+  myModXmonad.enable = true;
 
   imports = [
     ./hardware-configuration.nix
@@ -50,7 +51,7 @@
   # Display Manager
   services.displayManager.ly = {
     enable = true;
-    x11Support = false;
+    x11Support = true;
   };
 
   # Desktop Environment

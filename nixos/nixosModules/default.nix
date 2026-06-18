@@ -18,5 +18,6 @@
     ./services/flatpak.nix
     ./services/kanata.nix
     ./services/rust-embedded-microbit.nix
+    ./services/xmonad.nix
   ];
 }
