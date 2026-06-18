@@ -9,8 +9,8 @@ input {
             // from org.freedesktop.locale1. You can control these using
             // localectl set-x11-keymap.
         }
-	//repeat-delay 200
-	//repeat-rate 50
+	repeat-delay 200
+	repeat-rate 35
         numlock
     }
 
@@ -23,9 +23,6 @@ input {
 
     mouse {
         accel-profile "flat"
-    }
-
-    trackpoint {
     }
 }
 
