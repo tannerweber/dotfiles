@@ -17,6 +17,7 @@ in
   myModNiri.enable = true;
   myModSioyek.enable = true;
   myModTerminal.enable = true;
+  myModXmonad.enable = true;
 
   home.username = "tannerw";
   home.homeDirectory = "/home/tannerw";

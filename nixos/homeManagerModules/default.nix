@@ -14,5 +14,6 @@
     ./niri.nix
     ./sioyek.nix
     ./terminal.nix
+    ./xmonad.nix
   ];
 }
