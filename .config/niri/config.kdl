@@ -140,15 +140,9 @@ cursor {
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
 // Fixed in nightly
-// window-rule {
-//     match app-id=r#"^org\.wezfurlong\.wezterm$"#
-//     default-column-width {}
-// }
-
-// Open the Firefox picture-in-picture player as floating by default.
-window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
+/-window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
 }
 
 // Example: block out two password managers from screen capture.
@@ -167,6 +161,16 @@ window-rule {
 /-window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
+}
+
+window-rule {
+    match app-id=r#"steam$"# title="^Friends List$"
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"steam$"# title="^Steam Settings$"
+    open-floating true
 }
 
 switch-events {
