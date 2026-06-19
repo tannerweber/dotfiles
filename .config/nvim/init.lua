@@ -263,6 +263,7 @@ vim.lsp.enable({
   'bashls',
   'clojure_lsp',
   'qmlls',
+  'hls',
 })
 vim.lsp.config('lua_ls', {
   settings = {
