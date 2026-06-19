@@ -2,6 +2,7 @@ include "./config_common.kdl"
 
 output "DP-1" {
     mode "1920x1080@144.001"
+    focus-at-startup
 }
 
 output "HDMI-A-1" {
