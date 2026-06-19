@@ -173,6 +173,11 @@ window-rule {
     open-floating true
 }
 
+window-rule {
+    match app-id=r#"GalaxyBudsClient$"# title="^Galaxy Buds Manager$"
+    open-floating true
+}
+
 switch-events {
 	// lid-close { spawn "swaylock"; }
 	// lid-close { spawn "quickshell" "ipc" "call" "lock" "lockScreen"; }
