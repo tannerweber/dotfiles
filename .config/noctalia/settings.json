@@ -177,7 +177,7 @@
                     "showSwapUsage": false,
                     "textColor": "none",
                     "useMonospaceFont": true,
-                    "usePadding": false
+                    "usePadding": true
                 },
                 {
                     "iconColor": "none",
