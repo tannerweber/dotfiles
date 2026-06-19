@@ -139,10 +139,11 @@ cursor {
 
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
-window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
+// Fixed in nightly
+// window-rule {
+//     match app-id=r#"^org\.wezfurlong\.wezterm$"#
+//     default-column-width {}
+// }
 
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
@@ -177,7 +178,7 @@ switch-events {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+T hotkey-overlay-title="Open Terminal: wezterm" { spawn "wezterm"; }
+    Mod+Return hotkey-overlay-title="Wezterm" { spawn "wezterm"; }
     Mod+W hotkey-overlay-title="Change wallpaper" {
         spawn-sh "awww img $(~/.rice/get_random_wallpaper.sh) --transition-type wipe --transition-duration 0.5";
     }
@@ -192,11 +193,6 @@ binds {
               "-show" \
               "recursivebrowser";
     }
-    // Mod+R hotkey-overlay-title="Run App: rofi -show drun" {
-    //     spawn "rofi" \
-    //           "-show" \
-    //           "drun";
-    // }
     Mod+R hotkey-overlay-title="Run App: noctalia app launcher" {
         spawn "noctalia-shell" \
               "ipc" \
@@ -204,24 +200,34 @@ binds {
               "launcher" \
               "toggle";
     }
-    Mod+Shift+R hotkey-overlay-title="Run App: fuzzel" {
-        spawn "fuzzel" \
-              "--text-color" "ffffffff"\
-              "--background-color" "25252bee" \
-              "--border-color" "00ffffff" \
-              "--border-width" "2" \
-              "--prompt" "" \
-              "--selection-color" "00ffffff" \
-              "--selection-text-color" "000000ff" \
-              "--selection-match-color" "111111ff" \
-              "--vertical-pad" "25" \
-              "--inner-pad" "15" \
-              "--line-height" "25" \
-              "--input-color" "ffffffff";
+    Mod+Space hotkey-overlay-title="Run App: noctalia app launcher" {
+        spawn "noctalia-shell" \
+              "ipc" \
+              "call" \
+              "launcher" \
+              "toggle";
     }
-    // Mod+P hotkey-overlay-title="Run power menu script ~/.rice/powermenu.sh" {
-    //     spawn "~/.rice/powermenu.sh"
+    Mod+Shift+R hotkey-overlay-title="Run App: rofi -show drun" {
+        spawn "rofi" \
+              "-show" \
+              "drun";
+    }
+    // Mod+Shift+R hotkey-overlay-title="Run App: fuzzel" {
+    //     spawn "fuzzel" \
+    //           "--text-color" "ffffffff"\
+    //           "--background-color" "25252bee" \
+    //           "--border-color" "00ffffff" \
+    //           "--border-width" "2" \
+    //           "--prompt" "" \
+    //           "--selection-color" "00ffffff" \
+    //           "--selection-text-color" "000000ff" \
+    //           "--selection-match-color" "111111ff" \
+    //           "--vertical-pad" "25" \
+    //           "--inner-pad" "15" \
+    //           "--line-height" "25" \
+    //           "--input-color" "ffffffff";
     // }
+
     Mod+P hotkey-overlay-title="Power menu: noctalia" {
         spawn "noctalia-shell" \
               "ipc" \
@@ -229,10 +235,14 @@ binds {
               "sessionMenu" \
               "toggle";
     }
-    // Super+Shift+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-    // Super+Shift+L hotkey-overlay-title="Lock the Screen: quickshell" { spawn-sh "quickshell ipc call lock lockScreen"; }
+    // Mod+P hotkey-overlay-title="Run power menu script ~/.rice/powermenu.sh" {
+    //     spawn "~/.rice/powermenu.sh"
+    // }
+
     Super+Shift+L hotkey-overlay-title="Lock the Screen: noctalia" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
+    // Super+Shift+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    // Super+Shift+L hotkey-overlay-title="Lock the Screen: quickshell" { spawn-sh "quickshell ipc call lock lockScreen"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
@@ -391,7 +401,7 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
-    Mod+V       { toggle-window-floating; }
+    Mod+T       { toggle-window-floating; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
     Mod+Shift+W { toggle-column-tabbed-display; }
