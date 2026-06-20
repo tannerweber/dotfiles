@@ -4,6 +4,7 @@ abbr --add d "eza -al --icons --group"
 abbr --add c clear
 abbr --add gs git status
 abbr --add gd git diff
+abbr --add gds git diff --staged
 abbr --add gl git log
 abbr --add gc git commit -m
 abbr --add gb git branch
