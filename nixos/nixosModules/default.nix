@@ -17,6 +17,7 @@
     ./services/audio.nix
     ./services/flatpak.nix
     ./services/kanata.nix
+    ./services/ly.nix
     ./services/rust-embedded-microbit.nix
     ./services/xmonad.nix
   ];

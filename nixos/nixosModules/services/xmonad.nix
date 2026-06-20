@@ -7,7 +7,7 @@
 
 {
   options = {
-    myModXmonad.enable = lib.mkEnableOption "xmonad module";
+    myModXmonad.enable = lib.mkEnableOption "xmonad modules";
   };
 
   config = lib.mkIf config.myModXmonad.enable {

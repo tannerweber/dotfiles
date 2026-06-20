@@ -7,7 +7,7 @@
 
 {
   options = {
-    myModAudio.enable = lib.mkEnableOption "audio module";
+    myModAudio.enable = lib.mkEnableOption "audio modules";
   };
 
   config = lib.mkIf config.myModAudio.enable {

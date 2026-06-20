@@ -7,7 +7,7 @@
 
 {
   options = {
-    myModRustEmbeddedMicrobit.enable = lib.mkEnableOption "microbit module";
+    myModRustEmbeddedMicrobit.enable = lib.mkEnableOption "microbit modules";
   };
 
   config = lib.mkIf config.myModRustEmbeddedMicrobit.enable {

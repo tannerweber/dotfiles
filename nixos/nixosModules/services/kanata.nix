@@ -7,7 +7,7 @@
 
 {
   options = {
-    myModKanata.enable = lib.mkEnableOption "kanata module";
+    myModKanata.enable = lib.mkEnableOption "kanata modules";
   };
 
   config = lib.mkIf config.myModKanata.enable {

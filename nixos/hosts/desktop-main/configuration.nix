@@ -14,7 +14,7 @@
   myModZenBrowser.enable = true;
   myModAudio.enable = true;
   myModFlatpak.enable = true;
-  myModKanata.enable = true;
+  myModLy.enable = true;
   myModXmonad.enable = true;
 
   imports = [
@@ -47,12 +47,6 @@
   };
 
   hardware.bluetooth.enable = true;
-
-  # Display Manager
-  services.displayManager.ly = {
-    enable = true;
-    x11Support = true;
-  };
 
   # Desktop Environment
   services.desktopManager.plasma6.enable = true;
