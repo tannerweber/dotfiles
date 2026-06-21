@@ -181,6 +181,11 @@
                 },
                 {
                     "iconColor": "none",
+                    "id": "KeepAwake",
+                    "textColor": "none"
+                },
+                {
+                    "iconColor": "none",
                     "id": "PowerProfile"
                 },
                 {
