@@ -18,6 +18,7 @@ in
       enable = true;
       interactiveShellInit = ''
         set -x LS_COLORS "di=1;33:*.o=0;34:*.txt=01;31"
+        set -x EDITOR "nvim"
         source ${dotDir}/.config/fish/abbrs.fish
         source ${dotDir}/.config/fish/binds.fish
         source ${dotDir}/.config/fish/my_completions.fish
