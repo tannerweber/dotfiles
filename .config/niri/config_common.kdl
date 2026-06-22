@@ -183,6 +183,11 @@ window-rule {
     open-floating true
 }
 
+window-rule {
+    match app-id=r#"org.kde.dolphin"#
+    open-floating true
+}
+
 switch-events {
 	// lid-close { spawn "swaylock"; }
 	// lid-close { spawn "quickshell" "ipc" "call" "lock" "lockScreen"; }
@@ -202,11 +207,14 @@ binds {
               "-show" \
               "filebrowser";
     }
-    Mod+F hotkey-overlay-title="Run App: rofi -show recursivebrowser" {
-        spawn "rofi" \
-              "-show" \
-              "recursivebrowser";
+    Mod+F hotkey-overlay-title="Run App: dolphin" {
+        spawn "dolphin"
     }
+    // Mod+F hotkey-overlay-title="Run App: rofi -show recursivebrowser" {
+    //     spawn "rofi" \
+    //           "-show" \
+    //           "recursivebrowser";
+    // }
     Mod+R hotkey-overlay-title="Run App: noctalia app launcher" {
         spawn "noctalia-shell" \
               "ipc" \
