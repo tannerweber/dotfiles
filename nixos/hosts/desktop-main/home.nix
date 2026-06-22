@@ -33,6 +33,7 @@ in
     filezilla
     typst
     galaxy-buds-client
+    moonlight-qt
   ];
 
   xdg.configFile."niri/config.kdl".source = mkSym "${dotDir}/.config/niri/config_desktop_main.kdl";
