@@ -32,6 +32,8 @@
                   backupFileExtension = "backup";
                   useGlobalPkgs = true;
                   useUserPackages = true;
+                  extraSpecialArgs = { inherit inputs; };
+                  sharedModules = [ ./homeManagerModules ];
                   users = {
                     tannerw = import ./hosts/${hostname}/home.nix;
                   };
