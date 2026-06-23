@@ -9,6 +9,7 @@
   imports = [
     ./locality.nix
     ./hardware/nvidia.nix
+    ./programs/cliprograms.nix
     ./programs/gaming.nix
     ./programs/niri.nix
     ./programs/vim.nix

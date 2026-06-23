@@ -7,6 +7,7 @@
 {
   myModLocality.enable = true;
   myModNvidia.enable = true;
+  myModCliPrograms.enable = true;
   myModGaming.enable = true;
   myModNiriDesktop.enable = true;
   myModVim.enable = true;
@@ -70,15 +71,4 @@
       shell = pkgs.fish;
     };
   };
-
-  programs = {
-    fish.enable = true;
-    git.enable = true;
-  };
-
-  environment.systemPackages = [
-    pkgs.sbctl
-    pkgs.curl
-    pkgs.htop
-  ];
 }
