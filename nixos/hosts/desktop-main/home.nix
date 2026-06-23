@@ -34,6 +34,7 @@ in
     typst
     galaxy-buds-client
     moonlight-qt
+    brave
   ];
 
   xdg.configFile."niri/config.kdl".source = mkSym "${dotDir}/.config/niri/config_desktop_main.kdl";
