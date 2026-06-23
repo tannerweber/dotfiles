@@ -10,8 +10,8 @@ output "HDMI-A-1" {
     scale 1.15
 }
 
-spawn-sh-at-startup "wezterm"
+spawn-sh-at-startup "zen"
 spawn-sh-at-startup "GalaxyBudsClient"
-spawn-sh-at-startup "sleep 5 && niri msg action focus-workspace 2 && zen"
+spawn-sh-at-startup "sleep 5 && niri msg action focus-workspace 2 && wezterm"
 spawn-sh-at-startup "sleep 8 && niri msg action focus-monitor-next && discord"
 spawn-sh-at-startup "sleep 13 && niri msg action focus-monitor-previous && niri msg action focus-workspace 1"
