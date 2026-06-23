@@ -17,20 +17,21 @@
   myModAudio.enable = true;
   myModFlatpak.enable = true;
   myModKanata.enable = true;
+  myModLy.enable = true;
 
   imports = [
     ./hardware-configuration.nix
   ];
 
-  # FREEDOM
+  system.stateVersion = "25.05";
   nixpkgs.config.allowUnfree = true;
-  # boot.kernelPackages = pkgs.linuxPackages_latest-libre;
-
-  # Flakes Enable
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix = {
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   # Bootloader
   boot.loader.limine = {
@@ -50,14 +51,6 @@
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
-  };
-
-  security.rtkit.enable = true;
-
-  # Display Manager
-  services.displayManager.ly = {
-    enable = true;
-    x11Support = false;
   };
 
   # Desktop Environment
@@ -93,8 +86,4 @@
     pkgs.curl
     pkgs.htop
   ];
-
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
 }
