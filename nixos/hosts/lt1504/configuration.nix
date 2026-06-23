@@ -10,6 +10,7 @@
 
 {
   myModLocality.enable = true;
+  myModCliPrograms.enable = true;
   myModNiriDesktop.enable = true;
   myModVim.enable = true;
   myModWinboat.enable = true;
@@ -75,15 +76,4 @@
       shell = pkgs.fish;
     };
   };
-
-  programs = {
-    fish.enable = true;
-    git.enable = true;
-  };
-
-  environment.systemPackages = [
-    pkgs.sbctl
-    pkgs.curl
-    pkgs.htop
-  ];
 }
