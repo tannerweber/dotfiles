@@ -11,6 +11,7 @@ let
 in
 {
   myModBash.enable = true;
+  myModCemu.enable = true;
   myModCliPrograms.enable = true;
   myModFish.enable = true;
   myModNeovim.enable = true;

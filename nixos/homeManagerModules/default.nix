@@ -8,6 +8,7 @@
 {
   imports = [
     ./bash.nix
+    ./cemu.nix
     ./cliprograms.nix
     ./fish.nix
     ./neovim.nix
