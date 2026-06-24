@@ -14,5 +14,13 @@
     environment.systemPackages = [
       inputs.inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
+
+    xdg.mime = {
+      enable = true;
+      defaultApplications = {
+        "x-scheme-handler/http" = "zen.desktop";
+        "x-scheme-handler/https" = "zen.desktop";
+      };
+    };
   };
 }
