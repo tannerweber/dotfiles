@@ -99,7 +99,7 @@ local function map_alt(key, action, mod)
     table.insert(config.keys, { key = key, mods = mods, action = action })
   end
 end
-config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
+-- config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
   { key = 'a', mods = 'LEADER|CTRL', action = act.SendKey { key = 'a', mods = 'CTRL' } },
 
@@ -164,6 +164,12 @@ config.keys = {
   { key = 'j', mods = 'LEADER', action = act{ActivatePaneDirection="Down"} },
   { key = 'k', mods = 'LEADER', action = act{ActivatePaneDirection="Up"} },
   { key = 'l', mods = 'LEADER', action = act{ActivatePaneDirection="Right"} },
+
+  -- Fix key encoding for ANSI sequences
+  { key = 'UpArrow', action = act.SendString '\x1b[A' },
+  { key = 'DownArrow', action = act.SendString '\x1b[B' },
+  { key = 'RightArrow', action = act.SendString '\x1b[C' },
+  { key = 'LeftArrow', action = act.SendString '\x1b[D' },
 }
 
 -- Domain bindings
