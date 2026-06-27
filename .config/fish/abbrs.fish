@@ -14,3 +14,4 @@ abbr --add gau git add -u
 abbr --add gaa git add -A
 abbr --add gpom git push origin main
 abbr --add n nvim
+abbr --add nsd "nix store diff-closures /nix/var/nix/profiles/system-"
