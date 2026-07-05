@@ -24,7 +24,7 @@
     ./hardware-configuration.nix
   ];
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "26.05";
   nixpkgs.config.allowUnfree = true;
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
@@ -37,17 +37,12 @@
   # Bootloader
   boot.loader.limine = {
     enable = true;
-    secureBoot.enable = true;
+    secureBoot.enable = false;
     style.wallpapers = [ pkgs.nixos-artwork.wallpapers.stripes-logo.gnomeFilePath ];
   };
   boot.loader.efi.canTouchEfiVariables = true;
-
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 16 * 1024; # 16 GiB
-    }
-  ];
+  boot.initrd.luks.devices."luks-22c9a714-cd66-4bfd-83c3-c87edb4d73c7".device =
+    "/dev/disk/by-uuid/22c9a714-cd66-4bfd-83c3-c87edb4d73c7";
 
   networking = {
     hostName = "nixos";
