@@ -19,6 +19,11 @@ alias gaa = git add -A
 alias gpom = git push origin main
 alias n = nvim
 
+$env.config.edit_mode = "emacs"
+$env.config.cursor_shape.emacs = "line"
+$env.config.cursor_shape.vi_insert = "line"
+$env.config.cursor_shape.vi_normal = "block"
+
 # Preferences
 $env.config.buffer_editor = "nvim"
 $env.config.show_banner = false
