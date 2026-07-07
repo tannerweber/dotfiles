@@ -19,6 +19,7 @@
     ./services/flatpak.nix
     ./services/kanata.nix
     ./services/ly.nix
+    ./services/openssh.nix
     ./services/rust-embedded-microbit.nix
     ./services/xmonad.nix
   ];

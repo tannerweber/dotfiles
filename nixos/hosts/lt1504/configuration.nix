@@ -19,6 +19,7 @@
   myModFlatpak.enable = true;
   myModKanata.enable = true;
   myModLy.enable = true;
+  myModOpenSSH.enable = true;
 
   imports = [
     ./hardware-configuration.nix
