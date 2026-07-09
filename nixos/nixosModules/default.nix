@@ -17,6 +17,7 @@
     ./programs/zen-browser.nix
     ./services/audio.nix
     ./services/flatpak.nix
+    ./services/guix.nix
     ./services/kanata.nix
     ./services/ly.nix
     ./services/openssh.nix

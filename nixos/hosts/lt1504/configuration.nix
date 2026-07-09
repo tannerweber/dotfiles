@@ -17,6 +17,7 @@
   myModZenBrowser.enable = true;
   myModAudio.enable = true;
   myModFlatpak.enable = true;
+  myModGuix.enable = true;
   myModKanata.enable = true;
   myModLy.enable = true;
   myModOpenSSH.enable = true;
