@@ -38,7 +38,7 @@
   # Bootloader
   boot.loader.limine = {
     enable = true;
-    secureBoot.enable = false;
+    secureBoot.enable = true;
     style.wallpapers = [ pkgs.nixos-artwork.wallpapers.stripes-logo.gnomeFilePath ];
   };
   boot.loader.efi.canTouchEfiVariables = true;
