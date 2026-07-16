@@ -20,6 +20,7 @@
       sbctl
       curl
       htop
+      usbutils
     ];
   };
 }
