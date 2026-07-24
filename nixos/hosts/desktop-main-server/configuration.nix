@@ -9,6 +9,7 @@
   myModNvidia.enable = true;
   myModCliPrograms.enable = true;
   myModVim.enable = true;
+  myModOpenSSH.enable = true;
 
   imports = [
     ./hardware-configuration.nix
