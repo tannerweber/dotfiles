@@ -13,7 +13,6 @@
   myModCliPrograms.enable = true;
   myModNiriDesktop.enable = true;
   myModVim.enable = true;
-  myModWinboat.enable = true;
   myModZenBrowser.enable = true;
   myModAudio.enable = true;
   myModFlatpak.enable = true;
@@ -67,7 +66,6 @@
       extraGroups = [
         "networkmanager"
         "wheel"
-        "podman"
       ];
       shell = pkgs.fish;
     };
