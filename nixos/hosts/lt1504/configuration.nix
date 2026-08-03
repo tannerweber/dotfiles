@@ -49,6 +49,8 @@
     networkmanager.enable = true;
   };
 
+  programs.nix-ld.enable = true;
+
   # Desktop Environment
   services.desktopManager.plasma6.enable = true;
 
