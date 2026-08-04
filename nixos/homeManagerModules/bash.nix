@@ -24,6 +24,7 @@ in
         "d" = "eza -al --icons --group";
         "gs" = "git status";
         "gd" = "git diff";
+        "gds " = "git diff --staged";
         "gl" = "git log";
         "gc" = "git commit -m";
         "gb" = "git branch";

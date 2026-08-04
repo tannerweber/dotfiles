@@ -66,18 +66,6 @@
               }
             ];
           };
-
-        desktop-main-server =
-          let
-            hostname = "desktop-main-server";
-          in
-          nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs; };
-            modules = [
-              ./hosts/${hostname}/configuration.nix
-              ./nixosModules
-            ];
-          };
       };
     };
 }

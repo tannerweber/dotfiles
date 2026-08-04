@@ -18,13 +18,9 @@
     ./programs/zen-browser.nix
     ./services/audio.nix
     ./services/flatpak.nix
-    ./services/glance.nix
     ./services/guix.nix
-    ./services/homepage-dashboard.nix
-    ./services/jellyfin.nix
     ./services/kanata.nix
     ./services/ly.nix
-    ./services/miniflux.nix
     ./services/openssh.nix
     ./services/rust-embedded-microbit.nix
     ./services/xmonad.nix
