@@ -25,7 +25,7 @@ in
         "c" = "clear";
         "gs" = "git status";
         "gd" = "git diff";
-        "gds " = "git diff --staged";
+        "gds" = "git diff --staged";
         "gl" = "git log";
         "gco" = "git commit -m";
         "gb" = "git branch";
