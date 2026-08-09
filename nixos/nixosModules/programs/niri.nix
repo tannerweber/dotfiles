@@ -12,6 +12,7 @@
 
   config = lib.mkIf config.myModNiriDesktop.enable {
     programs.niri.enable = true;
+    services.displayManager.defaultSession = "niri";
     security.polkit.enable = true;
     services.gnome.gnome-keyring.enable = true;
     # securirty.pam.services.swaylock = { };
