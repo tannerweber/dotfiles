@@ -20,18 +20,23 @@ in
         ".." = "cd ..";
         "..." = "cd .. && cd ..";
         "cd" = "z";
-        "c" = "clear";
+        "la" = "eza -al --icons --group";
         "d" = "eza -al --icons --group";
+        "c" = "clear";
         "gs" = "git status";
         "gd" = "git diff";
         "gds " = "git diff --staged";
         "gl" = "git log";
-        "gc" = "git commit -m";
+        "gco" = "git commit -m";
         "gb" = "git branch";
+        "gc" = "git checkout";
+        "gcm" = "git checkout main";
         "grv" = "git remote -v";
         "gad" = "git add .";
         "gau" = "git add -u";
         "gaa" = "git add -A";
+        "gwa" = "git worktree add";
+        "gwr" = "git worktree remove";
         "n" = "nvim";
       };
       sessionVariables = {
