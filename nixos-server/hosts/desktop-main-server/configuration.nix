@@ -11,6 +11,7 @@
   myModVim.enable = true;
   myModGlance.enable = true;
   myModJellyfin.enable = true;
+  myModMealie.enable = true;
   myModOpenSSH.enable = true;
 
   imports = [

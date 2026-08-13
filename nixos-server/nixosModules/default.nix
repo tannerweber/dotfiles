@@ -14,6 +14,7 @@
     ./services/glance.nix
     ./services/homepage-dashboard.nix
     ./services/jellyfin.nix
+    ./services/mealie.nix
     ./services/miniflux.nix
     ./services/openssh.nix
   ];

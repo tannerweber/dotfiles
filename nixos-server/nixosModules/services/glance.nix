@@ -47,6 +47,10 @@
                         title = "Jellyfin";
                         url = "http://127.0.0.1:8096";
                       }
+                      {
+                        title = "Mealie";
+                        url = "http://127.0.0.1:9925";
+                      }
                     ];
                   }
                 ];
