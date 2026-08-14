@@ -36,6 +36,9 @@ in
     programs.starship.enable = true;
     xdg.configFile."starship.toml".source = mkSym "${dotDir}/.config/starship.toml";
 
+    programs.tmux.enable = true;
+    home.file.".tmux.conf".source = mkSym "${dotDir}/.tmux.conf";
+
     programs.eza.enable = true;
     programs.fzf.enable = true;
     programs.zoxide.enable = true;
