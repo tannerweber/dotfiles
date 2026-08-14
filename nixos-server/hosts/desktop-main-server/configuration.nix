@@ -9,6 +9,7 @@
   myModNvidia.enable = true;
   myModCliPrograms.enable = true;
   myModVim.enable = true;
+  myModCaddy.enable = true;
   myModGlance.enable = true;
   myModJellyfin.enable = true;
   myModMealie.enable = true;

@@ -12,16 +12,21 @@
 
   config =
     let
+      addr = "127.0.0.1";
       port = 9925;
+      portLocal = port + 1;
     in
     lib.mkIf config.myModMealie.enable {
-      networking.firewall.allowedTCPPorts = [ port ];
       services.mealie = {
         enable = true;
-        listenAddress = "0.0.0.0:${toString port}";
+        listenAddress = "${addr}:${toString portLocal}";
         settings = {
           ALLOW_SIGNUP = "false";
         };
       };
+      networking.firewall.allowedTCPPorts = [ port ];
+      services.caddy.virtualHosts.":${toString port}".extraConfig = ''
+        reverse_proxy http://127.0.0.1:${toString portLocal}
+      '';
     };
 }
