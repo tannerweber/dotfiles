@@ -17,7 +17,7 @@
         shellAbbrs = {
           "..." = "cd .. && cd ..";
           "c" = "clear";
-          "d" = "ls -al";
+          "d" = "ls -alFh --color";
           "gs" = "git status";
           "gd" = "git diff";
           "gds " = "git diff --staged";
