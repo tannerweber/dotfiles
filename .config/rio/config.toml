@@ -33,7 +33,7 @@ mode = "Fullscreen"
 
 [window.background-image]
 path = 'C:\Users\twebe\OneDrive\Pictures\Wallpapers\wallpaper.png'
-opacity = 0.15
+opacity = 0.05
 
 [bindings]
 keys = [
