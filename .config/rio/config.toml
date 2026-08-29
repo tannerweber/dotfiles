@@ -1,0 +1,85 @@
+# See the full configuration reference: https://rioterm.com/docs/config
+
+working-dir = 'C:\Users\twebe'
+confirm-before-quit = false
+
+[fonts]
+size = 16
+
+[fonts.regular]
+family = "Hack Nerd Font"
+style = "default"
+
+[fonts.bold]
+family = "Hack Nerd Font"
+style = "default"
+
+[fonts.italic]
+family = "Hack Nerd Font"
+style = "default"
+
+[fonts.bold-italic]
+family = "Hack Nerd Font"
+style = "default"
+
+[shell]
+program = "nu"
+
+[editor]
+program = "nvim"
+
+[window]
+mode = "Fullscreen"
+
+[window.background-image]
+path = 'C:\Users\twebe\OneDrive\Pictures\Wallpapers\wallpaper.png'
+opacity = 0.15
+
+[bindings]
+keys = [
+    { key = "q", with = "alt", action = "CloseSplitOrTab" },
+    { key = "c", with = "alt", action = "CreateTab" },
+    { key = "n", with = "alt", action = "ScrollPageDown" },
+    { key = "p", with = "alt", action = "ScrollPageUp" },
+    { key = "5", with = "alt | shift", action = "SplitRight" },
+    { key = "'", with = "alt | shift", action = "SplitDown" },
+    { key = "enter", with = "alt", action = "ToggleFullscreen" },
+    { key = "1", with = "alt", action = "SelectTab(0)" },
+    { key = "2", with = "alt", action = "SelectTab(1)" },
+    { key = "3", with = "alt", action = "SelectTab(2)" },
+    { key = "4", with = "alt", action = "SelectTab(3)" },
+    { key = "5", with = "alt", action = "SelectTab(4)" },
+    { key = "6", with = "alt", action = "SelectTab(5)" },
+    { key = "7", with = "alt", action = "SelectTab(6)" },
+    { key = "8", with = "alt", action = "SelectTab(7)" },
+    { key = "9", with = "alt", action = "SelectTab(8)" },
+    { key = "0", with = "alt", action = "SelectTab(9)" },
+    { key = "m", with = "alt", action = "OpenCommandPalette" },
+    { key = "left", with = "alt", action = "SelectPrevTab" },
+    { key = "right", with = "alt", action = "SelectNextTab" },
+    { key = "l", with = "alt", action = "SelectNextSplit" },
+    { key = "h", with = "alt", action = "SelectPrevSplit" },
+]
+
+[colors]
+background = '#000000'
+foreground = '#f2f2f2'
+selection-background = '#414141'
+selection-foreground = '#ffffff'
+cursor = '#ffffff'
+black = '#2a2a2a'
+red = '#ff0000'
+green = '#79ff0f'
+yellow = '#e7bf00'
+blue = '#396bd7'
+magenta = '#b449be'
+cyan = '#66ccff'
+white = '#bbbbbb'
+light_black = '#666666'
+light_red = '#ff0080'
+light_green = '#66ff66'
+light_yellow = '#f3d64e'
+light_blue = '#709aed'
+light_magenta = '#db67e6'
+light_cyan = '#7adff2'
+light_white = '#ffffff'
