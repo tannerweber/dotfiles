@@ -16,6 +16,7 @@
             modules = [
               ./hosts/${hostname}/configuration.nix
               ./nixosModules
+              ../nixosModulesShared
             ];
           };
       };

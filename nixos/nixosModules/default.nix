@@ -7,12 +7,9 @@
 
 {
   imports = [
-    ./locality.nix
-    ./hardware/nvidia.nix
     ./programs/cliprograms.nix
     ./programs/gaming.nix
     ./programs/niri.nix
-    ./programs/vim.nix
     ./programs/virt-manager.nix
     ./programs/winboat.nix
     ./programs/zen-browser.nix
@@ -21,7 +18,6 @@
     ./services/guix.nix
     ./services/kanata.nix
     ./services/ly.nix
-    ./services/openssh.nix
     ./services/rust-embedded-microbit.nix
     ./services/sunshine.nix
     ./services/xmonad.nix

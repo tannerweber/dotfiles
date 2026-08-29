@@ -26,6 +26,7 @@
             modules = [
               ./hosts/${hostname}/configuration.nix
               ./nixosModules
+              ../nixosModulesShared
               inputs.home-manager.nixosModules.home-manager
               {
                 home-manager = {
@@ -51,6 +52,7 @@
             modules = [
               ./hosts/${hostname}/configuration.nix
               ./nixosModules
+              ../nixosModulesShared
               inputs.home-manager.nixosModules.home-manager
               {
                 home-manager = {
