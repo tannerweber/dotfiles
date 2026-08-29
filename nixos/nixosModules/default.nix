@@ -23,6 +23,7 @@
     ./services/ly.nix
     ./services/openssh.nix
     ./services/rust-embedded-microbit.nix
+    ./services/sunshine.nix
     ./services/xmonad.nix
   ];
 }
