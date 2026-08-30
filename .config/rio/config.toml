@@ -59,6 +59,7 @@ keys = [
     { key = "right", with = "alt", action = "SelectNextTab" },
     { key = "l", with = "alt", action = "SelectNextSplit" },
     { key = "h", with = "alt", action = "SelectPrevSplit" },
+    { key = "f", with = "alt", action = "SearchForward" },
 ]
 
 [colors]
