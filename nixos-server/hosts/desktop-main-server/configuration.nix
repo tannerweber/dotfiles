@@ -39,6 +39,7 @@
     enable = true;
     flake = "../../";
     flags = [ "--commit-lock-file" ];
+    dates = "daily";
   };
 
   # Bootloader
