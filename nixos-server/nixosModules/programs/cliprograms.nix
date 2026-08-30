@@ -33,8 +33,16 @@
           "gwa" = "git worktree add";
           "gwr" = "git worktree remove";
           "gpom" = "git push origin main";
+          "n" = "vim";
           "nsd" = "nix store diff-closures /nix/var/nix/profiles/system-";
         };
+        interactiveShellInit = ''
+          fish_hybrid_key_bindings
+          set fish_cursor_default block
+          set fish_cursor_visual block
+          set fish_cursor_insert line
+          set fish_cursor_external line
+        '';
       };
       git.enable = true;
     };
