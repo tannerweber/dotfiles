@@ -15,11 +15,13 @@
       enable = true;
       settings = {
         PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
-        LogLevel = "VERBOSE";
         AllowUsers = [ "tannerw" ];
-        MaxAuthTries = 5;
+        MaxAuthTries = 3;
+        LogLevel = "VERBOSE";
       };
     };
+    services.fail2ban.enable = true;
   };
 }
