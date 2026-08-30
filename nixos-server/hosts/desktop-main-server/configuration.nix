@@ -35,6 +35,12 @@
     ];
   };
 
+  system.autoUpgrade = {
+    enable = true;
+    flake = "../../";
+    flags = [ "--commit-lock-file" ];
+  };
+
   # Bootloader
   boot.loader.limine = {
     enable = true;
