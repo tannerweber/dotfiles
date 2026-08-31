@@ -16,6 +16,14 @@ let
     ];
     text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
   };
+  updatix = pkgs.writeShellApplication {
+    name = "updatix";
+    text = ''
+      arg1="$(find /nix/var/nix/profiles/ -maxdepth 1 -type l | sort -t- -k2,2nr | head -n 2 | sed -n '2p')"
+      arg2="$(find /nix/var/nix/profiles/ -maxdepth 1 -type l | sort -t- -k2,2nr | head -n 1)"
+      nix store diff-closures "$arg1" "$arg2"
+    '';
+  };
 in
 {
   options = {
@@ -53,6 +61,7 @@ in
 
     home.packages = with pkgs; [
       ns
+      updatix
       curl
       wget
       nixfmt
