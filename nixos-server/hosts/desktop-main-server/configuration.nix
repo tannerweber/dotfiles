@@ -37,7 +37,7 @@
 
   system.autoUpgrade = {
     enable = true;
-    flake = "../../";
+    flake = "/home/tannerw/.dotfiles/nixos-server/";
     flags = [ "--commit-lock-file" ];
     dates = "daily";
   };
