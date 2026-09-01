@@ -17,6 +17,7 @@
               ./hosts/${hostname}/configuration.nix
               ./nixosModules
               ../nixosModulesShared
+              { networking.hostName = hostname; }
             ];
           };
       };

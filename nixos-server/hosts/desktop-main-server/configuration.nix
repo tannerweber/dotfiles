@@ -35,9 +35,14 @@
     ];
   };
 
+  # Auto Upgrade
+  environment.etc."gitconfig".text = ''
+    [safe]
+      directory = /home/tannerw/.dotfiles
+  '';
   system.autoUpgrade = {
     enable = true;
-    flake = "/home/tannerw/.dotfiles/nixos-server/";
+    flake = "/home/tannerw/.dotfiles/nixos-server";
     flags = [ "--commit-lock-file" ];
     dates = "daily";
   };
@@ -53,7 +58,6 @@
     "/dev/disk/by-uuid/0d16854e-1a91-4a83-b2ac-38082eda095a";
 
   networking = {
-    hostName = "nixos-server";
     networkmanager.enable = true;
   };
 
