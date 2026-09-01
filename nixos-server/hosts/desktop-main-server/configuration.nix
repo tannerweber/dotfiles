@@ -42,10 +42,20 @@
     [safe]
       directory = /home/tannerw/.dotfiles
   '';
+  systemd.services.nixos-upgrade.environment = {
+    GIT_AUTHOR_NAME = "NixOS Auto-upgrade";
+    GIT_AUTHOR_EMAIL = "root@desktop-main-server";
+    GIT_COMMITTER_NAME = "NixOS Auto-upgrade";
+    GIT_COMMITTER_EMAIL = "root@desktop-main-server";
+  };
   system.autoUpgrade = {
     enable = true;
     flake = "/home/tannerw/.dotfiles/nixos-server";
-    flags = [ "--commit-lock-file" ];
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "--commit-lock-file"
+    ];
     dates = "daily";
   };
 
