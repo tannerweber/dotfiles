@@ -57,6 +57,8 @@ keys = [
     { key = "m", with = "alt", action = "OpenCommandPalette" },
     { key = "left", with = "alt", action = "SelectPrevTab" },
     { key = "right", with = "alt", action = "SelectNextTab" },
+    { key = "left", with = "alt | control", action = "MoveCurrentTabToPrev" },
+    { key = "right", with = "alt | control", action = "MoveCurrentTabToNext" },
     { key = "l", with = "alt", action = "SelectNextSplit" },
     { key = "h", with = "alt", action = "SelectPrevSplit" },
     { key = "f", with = "alt", action = "SearchForward" },
