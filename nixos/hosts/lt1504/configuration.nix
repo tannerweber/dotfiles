@@ -41,8 +41,8 @@
     style.wallpapers = [ pkgs.nixos-artwork.wallpapers.stripes-logo.gnomeFilePath ];
   };
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.devices."luks-22c9a714-cd66-4bfd-83c3-c87edb4d73c7".device =
-    "/dev/disk/by-uuid/22c9a714-cd66-4bfd-83c3-c87edb4d73c7";
+  boot.initrd.luks.devices."luks-ea0ea4e6-9c37-4f62-a3b0-a728f149f085".device =
+    "/dev/disk/by-uuid/ea0ea4e6-9c37-4f62-a3b0-a728f149f085";
 
   networking = {
     hostName = "nixos";
