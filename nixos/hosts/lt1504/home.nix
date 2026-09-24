@@ -26,12 +26,15 @@ in
 
   programs = {
     home-manager.enable = true;
+    keepassxc.enable = true;
   };
 
   home.packages = with pkgs; [
     mdfried
     filezilla
     typst
+    signal-desktop
+    kdePackages.kleopatra
   ];
 
   xdg.configFile."niri/config.kdl".source = mkSym "${dotDir}/.config/niri/config_lt1504.kdl";

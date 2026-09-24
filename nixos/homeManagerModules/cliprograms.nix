@@ -65,6 +65,7 @@ in
       curl
       wget
       nixfmt
+      gnupg
     ];
   };
 }
