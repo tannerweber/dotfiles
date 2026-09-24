@@ -147,9 +147,9 @@ vim.pack.add({
   { src = 'https://github.com/nvim-mini/mini.ai.git' },
   { src = 'https://github.com/nvim-mini/mini.files.git' },
 
-  { src = 'https://github.com/tpope/vim-dadbod.git' },
-  { src = 'https://github.com/kristijanhusak/vim-dadbod-completion.git' },
-  { src = 'https://github.com/kristijanhusak/vim-dadbod-ui.git' },
+  -- { src = 'https://github.com/tpope/vim-dadbod.git' },
+  -- { src = 'https://github.com/kristijanhusak/vim-dadbod-completion.git' },
+  -- { src = 'https://github.com/kristijanhusak/vim-dadbod-ui.git' },
 })
 -- }}}
 
