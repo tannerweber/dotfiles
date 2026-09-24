@@ -233,14 +233,18 @@ require('blink.cmp').setup({
   },
   sources = {
     per_filetype = {
-      sql = { 'snippets', 'dadbod', 'buffer' },
-    },
-    providers = {
-      dadbod = {
-        name = 'Dadbod',
-        module = 'vim_dadbod_completion.blink',
+      sql = {
+        'snippets',
+        -- 'dadbod',
+        'buffer'
       },
     },
+    -- providers = {
+    --   dadbod = {
+    --     name = 'Dadbod',
+    --     module = 'vim_dadbod_completion.blink',
+    --   },
+    -- },
   },
   fuzzy = {
     implementation = 'lua',
