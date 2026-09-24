@@ -26,6 +26,7 @@ in
 
   programs = {
     home-manager.enable = true;
+    keepassxc.enable = true;
     discord.enable = true;
   };
 
@@ -33,9 +34,10 @@ in
     mdfried
     filezilla
     typst
+    signal-desktop
+    kdePackages.kleopatra
     galaxy-buds-client
     moonlight-qt
-    brave
   ];
 
   xdg.configFile."niri/config.kdl".source = mkSym "${dotDir}/.config/niri/config_desktop_main.kdl";
