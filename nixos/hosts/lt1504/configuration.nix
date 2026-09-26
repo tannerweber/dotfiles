@@ -41,7 +41,6 @@
     "/dev/disk/by-uuid/ea0ea4e6-9c37-4f62-a3b0-a728f149f085";
 
   networking = {
-    hostName = "nixos";
     networkmanager.enable = true;
   };
 

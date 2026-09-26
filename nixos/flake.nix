@@ -29,6 +29,7 @@
               ../nixosModulesShared
               inputs.home-manager.nixosModules.home-manager
               {
+                networking.hostName = hostname;
                 home-manager = {
                   backupFileExtension = "backup";
                   useGlobalPkgs = true;
@@ -55,6 +56,7 @@
               ../nixosModulesShared
               inputs.home-manager.nixosModules.home-manager
               {
+                networking.hostName = hostname;
                 home-manager = {
                   backupFileExtension = "backup";
                   useGlobalPkgs = true;
