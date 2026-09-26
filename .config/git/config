@@ -2,6 +2,7 @@
 	name = Tanner Weber
 	email = tannerw@pdx.edu
 	username = tannerw
+	signingkey = /home/tannerw/.ssh/id_ed25519
 
 [init]
 	defaultBranch = main
@@ -12,3 +13,9 @@
 
 [pull]
 	rebase = true
+
+[gpg]
+	format = ssh
+
+[commit]
+	gpgsign = true
