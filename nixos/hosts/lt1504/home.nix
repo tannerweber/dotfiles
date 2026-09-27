@@ -35,6 +35,7 @@ in
     typst
     signal-desktop
     kdePackages.kleopatra
+    openvpn
   ];
 
   xdg.configFile."niri/config.kdl".source = mkSym "${dotDir}/.config/niri/config_lt1504.kdl";

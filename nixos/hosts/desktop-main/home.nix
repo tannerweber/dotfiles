@@ -36,6 +36,7 @@ in
     typst
     signal-desktop
     kdePackages.kleopatra
+    openvpn
     galaxy-buds-client
     moonlight-qt
   ];
