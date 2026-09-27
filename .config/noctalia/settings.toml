@@ -104,7 +104,7 @@ enabled = false
 enabled = false
 
 [widget.clock]
-format = "%I:%M %p - %A %b %d"
+format = "%l:%M %p - %A %b %d"
 
 [widget.cpu]
 visualization = "none"
