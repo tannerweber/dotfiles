@@ -128,27 +128,23 @@ cursor {
     // xcursor-size 24
 }
 
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
-// Fixed in nightly
-/-window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
-
-// Example: block out two password managers from screen capture.
-// (This example rule is commented out with a "/-" in front.)
-/-window-rule {
+// Blocking
+window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
+    match app-id=r#"gcr-prompter"#
+    match app-id=r#"discord"#
     block-out-from "screen-capture"
-
-    // Use this instead if you want them visible on third-party screenshot tools.
-    // block-out-from "screencast"
 }
 
-// Example: enable rounded corners for all windows.
+// Blocking
+layer-rule {
+    match namespace="notif"
+    match namespace="noctalia"
+    block-out-from "screen-capture"
+}
+
+// Rounded Corners
 /-window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
