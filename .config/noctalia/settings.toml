@@ -66,22 +66,26 @@ fingerprint = false
 enabled = false
 schema_version = 2
 
-    [lockscreen_widgets.grid]
-    cell_size = 16
-    major_interval = 4
-    visible = true
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
+    output = "DP-1"
 
-    [lockscreen_widgets.widget."lockscreen-login-box@DP-1".settings]
-    show_media = false
-    show_weather = false
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-1".settings]
+        show_media = false
+        show_weather = false
 
-    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
-    show_media = false
-    show_weather = false
+    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
+    output = "HDMI-A-1"
 
-    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
-    show_media = false
-    show_weather = false
+        [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
+        show_media = false
+        show_weather = false
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    output = "eDP-1"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        show_media = false
+        show_weather = false
 
 [osd]
 position = "top_right"
