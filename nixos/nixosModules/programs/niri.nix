@@ -16,13 +16,18 @@
     security.polkit.enable = true;
     services.gnome.gnome-keyring.enable = true;
     # securirty.pam.services.swaylock = { };
+    programs.noctalia = {
+      enable = true;
+      recommendedServices.enable = true;
+    };
     environment.systemPackages = with pkgs; [
       # waybar
       # quickshell
-      noctalia-shell
+      # noctalia-shell
       brightnessctl
       playerctl
-      rofi
+      fuzzel
+      # rofi
       # mako
       # swaylock
       # swayidle

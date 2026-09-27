@@ -1,0 +1,113 @@
+config_version = 14
+
+[bar.default]
+capsule = true
+end = [
+    "tray",
+    "network",
+    "volume",
+    "brightness",
+    "cpu",
+    "ram",
+    "caffeine",
+    "power_profile",
+    "bluetooth",
+    "notifications",
+    "battery",
+    "control-center"
+]
+font_weight = 400
+margin_ends = 0
+panel_overlap = 0
+radius = 0
+reserve_space = true
+scale = 1.25
+shadow = false
+start = [ "workspaces", "active_window" ]
+widget_spacing = 5
+
+[desktop_widgets]
+enabled = false
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[idle]
+behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = true
+    timeout = 615.0
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = false
+    timeout = 900.0
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 600.0
+
+[lockscreen]
+fingerprint = false
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-1".settings]
+    show_media = false
+    show_weather = false
+
+    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
+    show_media = false
+    show_weather = false
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+    show_media = false
+    show_weather = false
+
+[osd]
+position = "top_right"
+position_vertical = "top_right"
+
+[shell]
+clipboard_enabled = false
+offline_mode = true
+settings_show_advanced = false
+
+    [shell.panel]
+    open_near_click_control_center = true
+    session_placement = "floating"
+    session_position = "center"
+
+    [shell.shadow]
+    alpha = 0.0
+
+[wallpaper]
+enabled = false
+
+[weather]
+enabled = false
+
+[widget.clock]
+format = "%I:%M %p - %A %b %d"
+
+[widget.cpu]
+visualization = "none"
+
+[widget.ram]
+visualization = "none"

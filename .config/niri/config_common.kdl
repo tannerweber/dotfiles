@@ -100,7 +100,7 @@ layer-rule {
 	place-within-backdrop true
 }
 
-spawn-at-startup "noctalia-shell"
+spawn-at-startup "noctalia"
 // spawn-at-startup "quickshell"
 // spawn-at-startup "waybar"
 // spawn-at-startup "swww-daemon"
@@ -196,22 +196,23 @@ window-rule {
 switch-events {
 	// lid-close { spawn "swaylock"; }
 	// lid-close { spawn "quickshell" "ipc" "call" "lock" "lockScreen"; }
-	lid-close { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+	lid-close { spawn "noctalia" "msg" "session " "lock"; }
 }
 
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return hotkey-overlay-title="Wezterm" { spawn "wezterm"; }
+    Mod+B hotkey-overlay-title="Zen Browser" { spawn "zen"; }
     Mod+W hotkey-overlay-title="Change wallpaper" {
         spawn-sh "awww img $(~/.rice/get_random_wallpaper.sh) --transition-type wipe --transition-duration 0.5";
     }
 
-    Mod+B hotkey-overlay-title="Run App: rofi -show filebrowser" {
-        spawn "rofi" \
-              "-show" \
-              "filebrowser";
-    }
+    // Mod+B hotkey-overlay-title="Run App: rofi -show filebrowser" {
+    //     spawn "rofi" \
+    //           "-show" \
+    //           "filebrowser";
+    // }
     Mod+F hotkey-overlay-title="Run App: dolphin" {
         spawn "dolphin"
     }
@@ -220,53 +221,67 @@ binds {
     //           "-show" \
     //           "recursivebrowser";
     // }
-    Mod+R hotkey-overlay-title="Run App: noctalia app launcher" {
-        spawn "noctalia-shell" \
-              "ipc" \
-              "call" \
-              "launcher" \
-              "toggle";
-    }
-    Mod+Space hotkey-overlay-title="Run App: noctalia app launcher" {
-        spawn "noctalia-shell" \
-              "ipc" \
-              "call" \
-              "launcher" \
-              "toggle";
-    }
-    Mod+Shift+R hotkey-overlay-title="Run App: rofi -show drun" {
-        spawn "rofi" \
-              "-show" \
-              "drun";
-    }
-    // Mod+Shift+R hotkey-overlay-title="Run App: fuzzel" {
-    //     spawn "fuzzel" \
-    //           "--text-color" "ffffffff"\
-    //           "--background-color" "25252bee" \
-    //           "--border-color" "00ffffff" \
-    //           "--border-width" "2" \
-    //           "--prompt" "" \
-    //           "--selection-color" "00ffffff" \
-    //           "--selection-text-color" "000000ff" \
-    //           "--selection-match-color" "111111ff" \
-    //           "--vertical-pad" "25" \
-    //           "--inner-pad" "15" \
-    //           "--line-height" "25" \
-    //           "--input-color" "ffffffff";
+    // Mod+R hotkey-overlay-title="Run App: noctalia app launcher" {
+    //     spawn "noctalia-shell" \
+    //           "ipc" \
+    //           "call" \
+    //           "launcher" \
+    //           "toggle";
     // }
+    // Mod+Space hotkey-overlay-title="Run App: noctalia app launcher" {
+    //     spawn "noctalia-shell" \
+    //           "ipc" \
+    //           "call" \
+    //           "launcher" \
+    //           "toggle";
+    // }
+    // Mod+Shift+R hotkey-overlay-title="Run App: rofi -show drun" {
+    //     spawn "rofi" \
+    //           "-show" \
+    //           "drun";
+    // }
+    Mod+R hotkey-overlay-title="Run App: fuzzel" {
+        spawn "fuzzel" \
+              "--text-color" "ffffffff"\
+              "--background-color" "25252bee" \
+              "--border-color" "00ffffff" \
+              "--border-width" "2" \
+              "--prompt" "" \
+              "--selection-color" "00ffffff" \
+              "--selection-text-color" "000000ff" \
+              "--selection-match-color" "111111ff" \
+              "--vertical-pad" "25" \
+              "--inner-pad" "15" \
+              "--line-height" "25" \
+              "--input-color" "ffffffff";
+    }
+    Mod+Space hotkey-overlay-title="Run App: fuzzel" {
+        spawn "fuzzel" \
+              "--text-color" "ffffffff"\
+              "--background-color" "25252bee" \
+              "--border-color" "00ffffff" \
+              "--border-width" "2" \
+              "--prompt" "" \
+              "--selection-color" "00ffffff" \
+              "--selection-text-color" "000000ff" \
+              "--selection-match-color" "111111ff" \
+              "--vertical-pad" "25" \
+              "--inner-pad" "15" \
+              "--line-height" "25" \
+              "--input-color" "ffffffff";
+    }
 
     Mod+P hotkey-overlay-title="Power menu: noctalia" {
-        spawn "noctalia-shell" \
-              "ipc" \
-              "call" \
-              "sessionMenu" \
-              "toggle";
+        spawn "noctalia" \
+              "msg" \
+              "panel-toggle" \
+              "session";
     }
     // Mod+P hotkey-overlay-title="Run power menu script ~/.rice/powermenu.sh" {
     //     spawn "~/.rice/powermenu.sh"
     // }
 
-    Mod+Shift+L hotkey-overlay-title="Lock the Screen: noctalia" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
+    Mod+Shift+L hotkey-overlay-title="Lock the Screen: noctalia" { spawn "noctalia" "msg" "session" "lock"; }
     // Mod+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
     // Mod+Shift+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     // Mod+Shift+L hotkey-overlay-title="Lock the Screen: quickshell" { spawn-sh "quickshell ipc call lock lockScreen"; }
