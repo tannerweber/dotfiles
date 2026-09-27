@@ -26,6 +26,9 @@ shadow = false
 start = [ "workspaces", "active_window" ]
 widget_spacing = 5
 
+[control_center]
+hidden_tabs = [ "media", "weather", "calendar" ]
+
 [desktop_widgets]
 enabled = false
 schema_version = 2
