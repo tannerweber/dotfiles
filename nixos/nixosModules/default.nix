@@ -17,6 +17,7 @@
     ./services/flatpak.nix
     ./services/guix.nix
     ./services/kanata.nix
+    ./services/kde.nix
     ./services/ly.nix
     ./services/rust-embedded-microbit.nix
     ./services/sunshine.nix

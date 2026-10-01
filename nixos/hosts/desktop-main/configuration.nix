@@ -14,6 +14,7 @@
   myModZenBrowser.enable = true;
   myModAudio.enable = true;
   myModFlatpak.enable = true;
+  myModKde.enable = true;
   myModLy.enable = true;
   myModXmonad.enable = true;
 
@@ -47,17 +48,11 @@
 
   hardware.bluetooth.enable = true;
 
-  # Desktop Environment
-  services.desktopManager.plasma6.enable = true;
-
   # Scheduling
   services.system76-scheduler.enable = true;
 
   # Printing CUPS
   services.printing.enable = true;
-
-  # KDE Connect
-  programs.kdeconnect.enable = true;
 
   # Don't forget to set a password with ‘passwd’.
   users.users = {
