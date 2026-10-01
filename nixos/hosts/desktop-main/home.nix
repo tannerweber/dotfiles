@@ -39,6 +39,9 @@ in
     openvpn
     galaxy-buds-client
     moonlight-qt
+    rstudio
+    celluloid
+    ungoogled-chromium
   ];
 
   xdg.configFile."niri/config.kdl".source = mkSym "${dotDir}/.config/niri/config_desktop_main.kdl";
