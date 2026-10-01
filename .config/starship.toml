@@ -272,6 +272,11 @@ symbol = " "
 style = "fg:#FFFFFF bg:#86BBD8"
 format = '[ ${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 
+[rlang]
+symbol = " "
+style = "fg:#FFFFFF bg:#86BBD8"
+format = '[ $symbol ($version) ]($style)'
+
 [rust]
 symbol = " "
 style = "fg:#FFFFFF bg:#86BBD8"
