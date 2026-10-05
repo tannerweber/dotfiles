@@ -39,7 +39,6 @@ in
     openvpn
     galaxy-buds-client
     moonlight-qt
-    rstudio
     celluloid
     ungoogled-chromium
   ];

@@ -16,7 +16,6 @@
   myModFlatpak.enable = true;
   myModKde.enable = true;
   myModLy.enable = true;
-  myModXmonad.enable = true;
 
   imports = [
     ./hardware-configuration.nix

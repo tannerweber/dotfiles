@@ -24,5 +24,8 @@
       kdePackages.spectacle
       kdePackages.konsole
     ];
+    environment.systemPackages = with pkgs; [
+      papirus-icon-theme
+    ];
   };
 }
