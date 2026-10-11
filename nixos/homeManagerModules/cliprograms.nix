@@ -24,6 +24,12 @@ let
       nix store diff-closures "$arg1" "$arg2"
     '';
   };
+  rmarkdown-render = pkgs.writeShellApplication {
+    name = "rmarkdown-render";
+    text = ''
+      echo "rmarkdown::render('$1')" | R --vanilla
+    '';
+  };
 in
 {
   options = {
@@ -62,6 +68,7 @@ in
     home.packages = with pkgs; [
       ns
       updatix
+      rmarkdown-render
       curl
       wget
       nixfmt
