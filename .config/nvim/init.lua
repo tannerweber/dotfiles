@@ -28,7 +28,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.signcolumn = 'yes'
 vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '.', nbsp = '␣' }
+vim.opt.listchars = { tab = '» ', trail = '␣' }
 vim.o.winborder = 'rounded'
 vim.o.splitright = true
 vim.o.splitbelow = true
@@ -263,6 +263,7 @@ vim.lsp.enable({
   'pyright',
   'pylsp',
   'rust_analyzer',
+  'r_language_server',
   'fish_lsp',
   'bashls',
   'clojure_lsp',
