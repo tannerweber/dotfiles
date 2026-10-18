@@ -18,6 +18,7 @@
     ./services/guix.nix
     ./services/kanata.nix
     ./services/kde.nix
+    ./services/logic-analyzer.nix
     ./services/ly.nix
     ./services/rust-embedded-microbit.nix
     ./services/sunshine.nix

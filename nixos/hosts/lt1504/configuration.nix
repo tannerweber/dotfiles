@@ -14,6 +14,7 @@
   myModFlatpak.enable = true;
   myModKanata.enable = true;
   myModKde.enable = true;
+  myModLogicAnalyzer.enable = true;
   myModLy.enable = true;
   myModOpenSSH.enable = true;
 
@@ -61,6 +62,7 @@
       extraGroups = [
         "networkmanager"
         "wheel"
+        "dialout"
       ];
       shell = pkgs.fish;
     };
