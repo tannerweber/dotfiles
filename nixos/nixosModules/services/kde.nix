@@ -21,7 +21,6 @@
       kdePackages.discover
       kdePackages.plasma-systemmonitor
       kdePackages.qrca
-      kdePackages.spectacle
       kdePackages.konsole
     ];
     environment.systemPackages = with pkgs; [
