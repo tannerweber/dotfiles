@@ -15,7 +15,8 @@
   myModKanata.enable = true;
   myModKde.enable = true;
   myModLogicAnalyzer.enable = true;
-  myModLy.enable = true;
+  myModPlasmaLoginManager.enable = true;
+  myModPlymouth.enable = true;
   myModOpenSSH.enable = true;
 
   imports = [
@@ -46,12 +47,9 @@
     networkmanager.enable = true;
   };
 
+  services.displayManager.defaultSession = "niri";
   programs.nix-ld.enable = true;
-
-  # Scheduling
   services.system76-scheduler.enable = true;
-
-  # Printing CUPS
   services.printing.enable = true;
 
   # Don't forget to set a password with ‘passwd’.
