@@ -15,7 +15,8 @@
   myModAudio.enable = true;
   myModFlatpak.enable = true;
   myModKde.enable = true;
-  myModLy.enable = true;
+  myModPlasmaLoginManager.enable = true;
+  myModPlymouth.enable = true;
 
   imports = [
     ./hardware-configuration.nix
@@ -45,12 +46,9 @@
     networkmanager.enable = true;
   };
 
+  services.displayManager.defaultSession = "plasma";
   hardware.bluetooth.enable = true;
-
-  # Scheduling
   services.system76-scheduler.enable = true;
-
-  # Printing CUPS
   services.printing.enable = true;
 
   # Don't forget to set a password with ‘passwd’.

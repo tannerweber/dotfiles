@@ -20,6 +20,8 @@
     ./services/kde.nix
     ./services/logic-analyzer.nix
     ./services/ly.nix
+    ./services/plasma-login-manager.nix
+    ./services/plymouth.nix
     ./services/rust-embedded-microbit.nix
     ./services/sunshine.nix
     ./services/xmonad.nix
