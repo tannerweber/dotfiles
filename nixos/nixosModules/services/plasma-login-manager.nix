@@ -15,7 +15,6 @@
       plasma-login-manager.enable = true;
       autoLogin.user = "tannerw";
     };
-    boot.initrd.systemd.enable = true;
     systemd.services.plasmalogin.serviceConfig.KeyringMode = "inherit";
     security.pam.services.plasmalogin-autologin.rules.auth = {
       systemd_loadkey = {
