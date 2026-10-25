@@ -73,6 +73,7 @@ in
       wget
       nixfmt
       gnupg
+      mdfried
     ];
   };
 }

@@ -31,16 +31,26 @@ in
   };
 
   home.packages = with pkgs; [
-    mdfried
-    filezilla
-    typst
-    signal-desktop
-    kdePackages.kleopatra
-    openvpn
     galaxy-buds-client
     moonlight-qt
+    newsflash
+
     celluloid
-    ungoogled-chromium
+    loupe
+
+    signal-desktop
+    kdePackages.kleopatra
+
+    fragments
+    proton-vpn
+    openvpn
+
+    rnote
+    wordbook
+    gnome-calculator
+    gnome-graphs
+    hieroglyphic
+    typst
   ];
 
   xdg.configFile."niri/config.kdl".source = mkSym "${dotDir}/.config/niri/config_desktop_main.kdl";
