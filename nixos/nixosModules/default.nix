@@ -7,6 +7,7 @@
 
 {
   imports = [
+    ./programs/appimage.nix
     ./programs/cliprograms.nix
     ./programs/gaming.nix
     ./programs/niri.nix

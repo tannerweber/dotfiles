@@ -6,6 +6,7 @@
 
 {
   myModLocality.enable = true;
+  myModAppImage.enable = true;
   myModCliPrograms.enable = true;
   myModNiriDesktop.enable = true;
   myModVim.enable = true;
