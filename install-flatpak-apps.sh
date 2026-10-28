@@ -4,3 +4,4 @@ flatpak install flathub org.keepassxc.KeePassXC
 flatpak install flathub org.kde.kleopatra
 flatpak install flathub net.lutris.Lutris
 flatpak install flathub com.moonlight_stream.Moonlight
+flatpak install flathub io.github.tobagin.scramble
