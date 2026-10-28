@@ -47,8 +47,6 @@ in
     hieroglyphic
     typst
     typstyle
-
-    stm32cubemx
   ];
 
   xdg.configFile."niri/config.kdl".source = mkSym "${dotDir}/.config/niri/config_lt1504.kdl";

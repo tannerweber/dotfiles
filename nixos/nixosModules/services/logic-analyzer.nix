@@ -22,6 +22,8 @@
       pulseview
       tio
       i2c-tools
+      openocd
+      stlink-gui
     ];
   };
 }
