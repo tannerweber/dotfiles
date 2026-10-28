@@ -30,12 +30,25 @@ in
   };
 
   home.packages = with pkgs; [
-    mdfried
-    filezilla
-    typst
+    celluloid
+    loupe
+    gnome-obfuscate
+    paper-clip
+
     signal-desktop
     kdePackages.kleopatra
+
     openvpn
+
+    rnote
+    wordbook
+    gnome-calculator
+    gnome-graphs
+    hieroglyphic
+    typst
+    typstyle
+
+    stm32cubemx
   ];
 
   xdg.configFile."niri/config.kdl".source = mkSym "${dotDir}/.config/niri/config_lt1504.kdl";
