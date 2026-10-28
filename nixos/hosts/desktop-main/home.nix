@@ -37,6 +37,8 @@ in
 
     celluloid
     loupe
+    gnome-obfuscate
+    paper-clip
 
     signal-desktop
     kdePackages.kleopatra

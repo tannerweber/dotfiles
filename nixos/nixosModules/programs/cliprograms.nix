@@ -21,6 +21,8 @@
       curl
       htop
       usbutils
+      zip
+      unzip
     ];
   };
 }
