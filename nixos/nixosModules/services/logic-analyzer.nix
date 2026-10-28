@@ -20,6 +20,8 @@
       sigrok-cli
       sigrok-firmware-fx2lafw
       pulseview
+      tio
+      i2c-tools
     ];
   };
 }
