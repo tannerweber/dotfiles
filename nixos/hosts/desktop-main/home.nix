@@ -53,6 +53,7 @@ in
     gnome-graphs
     hieroglyphic
     typst
+    typstyle
   ];
 
   xdg.configFile."niri/config.kdl".source = mkSym "${dotDir}/.config/niri/config_desktop_main.kdl";
