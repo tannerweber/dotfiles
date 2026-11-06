@@ -269,6 +269,7 @@ vim.lsp.enable({
   'clojure_lsp',
   'qmlls',
   'hls',
+  'tinymist',
 })
 vim.lsp.config('lua_ls', {
   settings = {
