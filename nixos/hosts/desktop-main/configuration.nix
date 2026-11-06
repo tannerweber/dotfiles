@@ -51,6 +51,10 @@
   services.system76-scheduler.enable = true;
   services.printing.enable = true;
 
+  programs.nix-ld = {
+    enable = true;
+  };
+
   # Don't forget to set a password with ‘passwd’.
   users.users = {
     tannerw = {
