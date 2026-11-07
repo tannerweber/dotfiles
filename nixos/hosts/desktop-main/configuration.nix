@@ -17,6 +17,7 @@
   myModKde.enable = true;
   myModPlasmaLoginManager.enable = true;
   myModPlymouth.enable = true;
+  myModPrinting.enable = true;
 
   imports = [
     ./hardware-configuration.nix
@@ -49,7 +50,6 @@
   services.displayManager.defaultSession = "plasma";
   hardware.bluetooth.enable = true;
   services.system76-scheduler.enable = true;
-  services.printing.enable = true;
 
   programs.nix-ld = {
     enable = true;

@@ -23,6 +23,7 @@
     ./services/ly.nix
     ./services/plasma-login-manager.nix
     ./services/plymouth.nix
+    ./services/printing.nix
     ./services/rust-embedded-microbit.nix
     ./services/sunshine.nix
     ./services/xmonad.nix
