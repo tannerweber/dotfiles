@@ -15,6 +15,11 @@
       enable = true;
       packages = [ pkgs.libsigrok ];
     };
+    programs.wireshark = {
+      enable = true;
+      usbmon.enable = true;
+      dumpcap.enable = true;
+    };
 
     environment.systemPackages = with pkgs; [
       sigrok-cli
@@ -24,6 +29,8 @@
       i2c-tools
       openocd
       stlink-gui
+      gcc-arm-embedded
+      gqrx
     ];
   };
 }
