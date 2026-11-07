@@ -25,21 +25,24 @@
       };
     };
 
-    xdg.mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "application/pdf" = "sioyek.desktop";
-      };
-    };
+    # xdg.mimeApps = {
+    #   enable = true;
+    #   defaultApplications = {
+    #     "application/pdf" = "sioyek.desktop";
+    #   };
+    # };
 
-    xdg.desktopEntries.sioyek = {
-      name = "Sioyek";
+    xdg.desktopEntries.sioyek-pdf = {
+      name = "Sioyek PDF";
       exec = "env QT_QPA_PLATFORM=xcb sioyek %U";
       icon = "sioyek";
       terminal = false;
       categories = [
         "Office"
         "Viewer"
+      ];
+      mimeType = [
+        "application/pdf"
       ];
     };
   };

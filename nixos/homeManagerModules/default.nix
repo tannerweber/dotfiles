@@ -11,6 +11,7 @@
     ./cemu.nix
     ./cliprograms.nix
     ./fish.nix
+    ./junction.nix
     ./neovim.nix
     ./niri.nix
     ./sioyek.nix

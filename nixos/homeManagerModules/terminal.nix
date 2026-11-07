@@ -29,5 +29,14 @@ in
     home.packages = with pkgs; [
       nerd-fonts.hack
     ];
+
+    xdg.terminal-exec = {
+      enable = true;
+      settings = {
+        default = [
+          "org.wezfurlong.wezterm.desktop"
+        ];
+      };
+    };
   };
 }
