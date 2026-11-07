@@ -208,6 +208,7 @@ behind = "  Behind"
 untracked = "  U"
 modified = "  M"
 staged = "  Staged"
+stashed = "  "
 
 [golang]
 symbol = " "
