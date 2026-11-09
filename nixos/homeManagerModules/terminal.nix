@@ -21,8 +21,11 @@ in
     programs.kitty.enable = true;
     xdg.configFile."kitty/kitty.conf".source = mkSym "${dotDir}/.config/kitty/kitty.conf";
 
-    programs.ghostty.enable = false;
+    programs.ghostty.enable = true;
     xdg.configFile."ghostty/config".source = mkSym "${dotDir}/.config/ghostty/config";
+
+    home.file.".rice/wallpapers/gradient_1920x1080.png".source =
+      mkSym "${dotDir}/gradient_1920x1080.png";
 
     fonts.fontconfig.enable = true;
 
