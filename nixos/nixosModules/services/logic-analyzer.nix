@@ -20,6 +20,10 @@
       usbmon.enable = true;
       dumpcap.enable = true;
     };
+    hardware.ubertooth = {
+      enable = true;
+      group = "ubertooth";
+    };
 
     environment.systemPackages = with pkgs; [
       sigrok-cli

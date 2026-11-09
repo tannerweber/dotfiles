@@ -62,6 +62,7 @@
         "networkmanager"
         "wheel"
         "dialout"
+        "ubertooth"
       ];
       shell = pkgs.fish;
     };
