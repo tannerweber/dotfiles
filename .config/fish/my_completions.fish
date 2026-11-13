@@ -1,32 +1,27 @@
 # Fish completions for git with GitHub, GitLab, and Codeberg support
 
-# GitHub URL
-complete -c git -n '__fish_seen_subcommand_from clone' -a 'https://github.com/' -d ' GitHub repository URL'
-complete -c git -n '__fish_seen_subcommand_from remote add' -a 'https://github.com/' -d ' GitHub repository URL'
-complete -c git -n '__fish_seen_subcommand_from remote set-url' -a 'https://github.com/' -d ' GitHub repository URL'
+function git_url_comp -a url desc
+    complete -c git \
+        -n '__fish_seen_subcommand_from clone' -a $url -d $desc
+    complete -c git \
+        -n '__fish_seen_subcommand_from remote' \
+        -n '__fish_seen_subcommand_from add' -a $url -d $desc
+    complete -c git \
+        -n '__fish_seen_subcommand_from remote' \
+        -n '__fish_seen_subcommand_from set-url' -a $url -d $desc
+end
 
-# GitLab URL
-complete -c git -n '__fish_seen_subcommand_from clone' -a 'https://gitlab.com/' -d ' GitLab repository URL'
-complete -c git -n '__fish_seen_subcommand_from remote add' -a 'https://gitlab.com/' -d ' GitLab repository URL'
-complete -c git -n '__fish_seen_subcommand_from remote set-url' -a 'https://gitlab.com/' -d ' GitLab repository URL'
+# GitHub
+git_url_comp 'https://github.com/' ' GitHub repository URL'
+git_url_comp 'git@github.com:' ' GitHub SSH URL'
 
-# Codeberg URL
-complete -c git -n '__fish_seen_subcommand_from clone' -a 'https://codeberg.org/' -d ' Codeberg repository URL'
-complete -c git -n '__fish_seen_subcommand_from remote add' -a 'https://codeberg.org/' -d ' Codeberg repository URL'
-complete -c git -n '__fish_seen_subcommand_from remote set-url' -a 'https://codeberg.org/' -d ' Codeberg repository URL'
+# GitLab
+git_url_comp 'https://gitlab.com/' ' GitLab repository URL'
+git_url_comp 'git@gitlab.com:' ' GitLab SSH URL'
 
-# SSH URL
-complete -c git -n '__fish_seen_subcommand_from clone' -a 'git@github.com:' -d ' GitHub SSH URL'
-complete -c git -n '__fish_seen_subcommand_from remote add' -a 'git@github.com:' -d ' GitHub SSH URL'
-complete -c git -n '__fish_seen_subcommand_from remote set-url' -a 'git@github.com:' -d ' GitHub SSH URL'
-
-complete -c git -n '__fish_seen_subcommand_from clone' -a 'git@gitlab.com:' -d ' GitLab SSH URL'
-complete -c git -n '__fish_seen_subcommand_from remote add' -a 'git@gitlab.com:' -d ' GitLab SSH URL'
-complete -c git -n '__fish_seen_subcommand_from remote set-url' -a 'git@gitlab.com:' -d ' GitLab SSH URL'
-
-complete -c git -n '__fish_seen_subcommand_from clone' -a 'git@codeberg.org:' -d ' Codeberg SSH URL'
-complete -c git -n '__fish_seen_subcommand_from remote add' -a 'git@codeberg.org:' -d ' Codeberg SSH URL'
-complete -c git -n '__fish_seen_subcommand_from remote set-url' -a 'git@codeberg.org:' -d ' Codeberg SSH URL'
+# Codeberg
+git_url_comp 'https://codeberg.org/' ' Codeberg repository URL'
+git_url_comp 'git@codeberg.org:' ' Codeberg SSH URL'
 
 # GitHub CLI (gh)
 complete -c gh -n __fish_use_subcommand -a auth -d ' Authenticate with GitHub'
