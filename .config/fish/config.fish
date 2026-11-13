@@ -11,6 +11,7 @@ if status is-interactive
 	# Environment Variables
 	set -x EDITOR "nvim"
     set -x LS_COLORS "di=1;33:*.o=0;34:*.txt=01;31"
+    set -x LESSUTFCHARDEF "E000-F8FF:p,F0000-FFFFD:p,100000-10FFFD:p"
 
     source ~/.config/fish/abbrs.fish
     source ~/.config/fish/binds.fish
