@@ -27,6 +27,7 @@ in
 
     home.packages = with pkgs; [
       nixd
+      tinymist
       tree-sitter
       imagemagick
       fd

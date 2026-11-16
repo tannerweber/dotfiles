@@ -71,5 +71,9 @@
             ];
           };
       };
+      devShells = builtins.mapAttrs (system: pkgs: {
+        default = pkgs.callPackage ./shell.nix { };
+      }) inputs.nixpkgs.legacyPackages;
+      formatter = builtins.mapAttrs (system: pkgs: pkgs.nixfmt) inputs.nixpkgs.legacyPackages;
     };
 }

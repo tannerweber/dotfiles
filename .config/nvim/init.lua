@@ -434,6 +434,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+-- Typst compile
+vim.api.nvim_create_autocmd('BufWritePost', {
+  desc = 'TypstCompile',
+  pattern = '*.typ',
+  callback = function()
+    vim.cmd(':silent !typst compile %')
+  end,
+})
 -- }}}
 
 -- Status Line {{{
