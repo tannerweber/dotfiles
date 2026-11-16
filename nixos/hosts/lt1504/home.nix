@@ -14,6 +14,7 @@ in
   myModCemu.enable = true;
   myModCliPrograms.enable = true;
   myModFish.enable = true;
+  myModJunction.enable = true;
   myModNeovim.enable = true;
   myModNiri.enable = true;
   myModSioyek.enable = true;
