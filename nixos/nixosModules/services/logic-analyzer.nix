@@ -37,6 +37,7 @@
       gqrx
       binwalk
       wireshark
+      hashid
     ];
   };
 }
