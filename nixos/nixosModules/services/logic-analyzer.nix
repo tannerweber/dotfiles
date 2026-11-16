@@ -35,6 +35,8 @@
       stlink-gui
       gcc-arm-embedded
       gqrx
+      binwalk
+      wireshark
     ];
   };
 }
