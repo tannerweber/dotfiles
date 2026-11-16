@@ -24,8 +24,18 @@
       enable = true;
       group = "ubertooth";
     };
+    hardware.hackrf = {
+      enable = true;
+    };
+    hardware.rtl-sdr.enable = true;
 
     environment.systemPackages = with pkgs; [
+      rtl-sdr
+      rtl-sdr-blog
+      rtl-sdr-librtlsdr
+      rtl-sdr-osmocom
+
+      hackrf
       sigrok-cli
       sigrok-firmware-fx2lafw
       pulseview

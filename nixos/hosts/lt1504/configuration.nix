@@ -63,6 +63,7 @@
         "wheel"
         "dialout"
         "ubertooth"
+        "plugdev"
       ];
       shell = pkgs.fish;
     };
