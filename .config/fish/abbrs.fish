@@ -20,3 +20,9 @@ abbr --add gpom "git push origin main"
 abbr --add n "nvim"
 abbr --add nsd "nix store diff-closures /nix/var/nix/profiles/system-"
 abbr --add nd "nix develop"
+
+function cd_git_root
+    cd "$(git rev-parse --show-toplevel)"
+end
+
+abbr --add groot --function cd_git_root
