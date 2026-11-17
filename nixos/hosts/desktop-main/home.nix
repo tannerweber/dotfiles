@@ -40,6 +40,7 @@ in
     loupe
     gnome-obfuscate
     paper-clip
+    pinta
 
     signal-desktop
     kdePackages.kleopatra
