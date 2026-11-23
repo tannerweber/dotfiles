@@ -48,6 +48,7 @@
       binwalk
       wireshark
       hashid
+      inspectrum
     ];
   };
 }
