@@ -20,6 +20,12 @@
       usbmon.enable = true;
       dumpcap.enable = true;
     };
+    programs.tcpdump = {
+      enable = true;
+    };
+    programs.ghidra = {
+      enable = true;
+    };
     hardware.ubertooth = {
       enable = true;
       group = "ubertooth";
@@ -31,10 +37,15 @@
 
     environment.systemPackages = with pkgs; [
       rtl-sdr
+      rtl_433
       rtl-sdr-blog
       rtl-sdr-librtlsdr
       rtl-sdr-osmocom
 
+      urh
+      cubicsdr
+      python3
+      tcpdump
       hackrf
       sigrok-cli
       sigrok-firmware-fx2lafw
