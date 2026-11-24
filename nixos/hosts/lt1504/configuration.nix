@@ -13,9 +13,9 @@
   myModZenBrowser.enable = true;
   myModAudio.enable = true;
   myModFlatpak.enable = true;
+  myModIotSecurity.enable = true;
   myModKanata.enable = true;
   myModKde.enable = true;
-  myModLogicAnalyzer.enable = true;
   myModPlasmaLoginManager.enable = true;
   myModPlymouth.enable = true;
   myModOpenSSH.enable = true;

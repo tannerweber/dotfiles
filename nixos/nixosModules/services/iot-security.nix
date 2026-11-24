@@ -7,10 +7,10 @@
 
 {
   options = {
-    myModLogicAnalyzer.enable = lib.mkEnableOption "logic analyzer modules";
+    myModIotSecurity.enable = lib.mkEnableOption "iot security modules";
   };
 
-  config = lib.mkIf config.myModLogicAnalyzer.enable {
+  config = lib.mkIf config.myModIotSecurity.enable {
     services.udev = {
       enable = true;
       packages = [ pkgs.libsigrok ];

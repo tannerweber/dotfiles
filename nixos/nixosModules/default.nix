@@ -17,9 +17,9 @@
     ./services/audio.nix
     ./services/flatpak.nix
     ./services/guix.nix
+    ./services/iot-security.nix
     ./services/kanata.nix
     ./services/kde.nix
-    ./services/logic-analyzer.nix
     ./services/ly.nix
     ./services/plasma-login-manager.nix
     ./services/plymouth.nix
